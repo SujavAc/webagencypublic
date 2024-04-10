@@ -113,8 +113,8 @@ export const puckEditorConfig = {
           },
         },
       },
-      render: ({ noOfItems, sx, ...rest }) => {
-        return <PaperWrapper sx={sx} {...rest} noOfItems={noOfItems} />;
+      render: ({ noOfItems, ...rest }) => {
+        return <PaperWrapper noOfItems={noOfItems} {...rest}  />;
       },
     },
     GridLayout: {

@@ -13,6 +13,7 @@ const Page = () => {
   const slugArray = Array.isArray(pathname?.slug)
     ? pathname?.slug
     : [pathname?.slug];
+  console.log(pathname);
   const slug = decodeURI(slugArray?.join("/"));
   console.log(slug);
   const [pageContent, setPageContent] = useState(null);
@@ -22,7 +23,7 @@ const Page = () => {
     pageData && slug && pageData?.filter((data) => data?.pageName === slug);
 
   useEffect(() => {
-    const fetchPageContent = async () => {
+    const fetchPageContent = async (route: string) => {
       try {
         if (pageContentDataFromStore && pageContentDataFromStore?.length > 0) {
           return setPageContent(pageContentDataFromStore[0]);
@@ -30,7 +31,7 @@ const Page = () => {
         const { data, lastVisibleDoc, hasMore } = await getData("pages", 1, {
           key: "pageName",
           filterOperation: "==",
-          value: slug,
+          value: route,
         });
         const pageData = data[0];
         dispatch({ type: "Get_PAGES_DATA", payload: data });
@@ -48,8 +49,11 @@ const Page = () => {
       }
     };
     if (slug) {
-      fetchPageContent();
-    }
+      fetchPageContent(slug);
+    } else {
+    // Render the default homepage
+     fetchPageContent("homepage")
+  }
   }, [slug]);
 
   if (!pageContent) {

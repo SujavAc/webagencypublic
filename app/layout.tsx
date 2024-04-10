@@ -1,9 +1,6 @@
 "use client";
-
-import Footer from "@/components/Footer";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
 import { Inter } from "next/font/google";
 import { ColorModeContext } from "@/styles/ColorModeContext";
@@ -61,9 +58,7 @@ export default function RootLayout({
                 <AppRouterCacheProvider options={{ key: "css" }}>
                   <MySnackbarStack>
                     <Providers>
-                      <Header />
                       {children}
-                      <Footer />
                       <ScrollToTop />
                     </Providers>
                   </MySnackbarStack>

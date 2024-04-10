@@ -24,6 +24,14 @@ const Feature = (props) => {
     updateFeaturesData,
   } = props;
 
+  // const propsNeede = { 
+  //   databasePath: "components/componentLists/features",
+  //   limit: 10,
+  //   storeData: '',
+  //   componentName: 'features',
+  //   tableHeadCells: {id: "", label: "", disableSorting: false}
+  // }
+
   const databasePath = "components/componentLists/features";
 
   const limit = 2 || process.env.NEXT_PUBLIC_LIMIT;
