@@ -1,0 +1,48 @@
+{
+  "name": "A-tech webagency",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && next export",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^3.11.0",
+    "@emotion/cache": "^11.11.0",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
+    "@measured/puck": "^0.14.1",
+    "@mui/icons-material": "^5.15.12",
+    "@mui/lab": "^5.0.0-alpha.168",
+    "@mui/material": "^5.15.12",
+    "@mui/material-nextjs": "^5.15.11",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.17",
+    "@reduxjs/toolkit": "^2.2.1",
+    "dompurify": "^3.0.11",
+    "eslint": "8.33.0",
+    "eslint-config-next": "13.1.6",
+    "firebase": "^10.9.0",
+    "next": "^13.5.6",
+    "next-themes": "^0.2.1",
+    "notistack": "^3.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.0",
+    "react-modal-video": "^2.0.0",
+    "react-quill": "^2.0.0",
+    "react-redux": "^9.1.0",
+    "styled-components": "^6.1.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.9",
+    "@types/react": "^18.2.33",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.6",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.2.2"
+  }
+}

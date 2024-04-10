@@ -1,0 +1,70 @@
+{
+  "fontFamily": {
+    "type": "text"
+  },
+  "fontSize": {
+    "type": "text"
+  },
+  "fontStyle": {
+    "type": "select",
+    "options": [
+      { "label": "Normal", "value": "normal" },
+      { "label": "Italic", "value": "italic" },
+      { "label": "Oblique", "value": "oblique" },
+      { "label": "Initial", "value": "initial" },
+      { "label": "Inherit", "value": "inherit" },
+      { "label": "Unset", "value": "unset" }
+    ]
+  },
+  "fontWeight": {
+    "type": "select",
+    "options": [
+      { "label": "Normal", "value": "normal" },
+      { "label": "Bold", "value": "bold" },
+      { "label": "Bolder", "value": "bolder" },
+      { "label": "Lighter", "value": "lighter" },
+      { "label": "100", "value": "100" },
+      { "label": "200", "value": "200" },
+      { "label": "300", "value": "300" },
+      { "label": "400", "value": "400" },
+      { "label": "500", "value": "500" },
+      { "label": "600", "value": "600" },
+      { "label": "700", "value": "700" },
+      { "label": "800", "value": "800" },
+      { "label": "900", "value": "900" },
+      { "label": "Initial", "value": "initial" },
+      { "label": "Inherit", "value": "inherit" },
+      { "label": "Unset", "value": "unset" }
+    ]
+  },
+  "letterSpacing": {
+    "type": "text"
+  },
+  "lineHeight": {
+    "type": "text"
+  },
+  "textAlign": {
+    "type": "select",
+    "options": [
+      { "label": "Left", "value": "left" },
+      { "label": "Right", "value": "right" },
+      { "label": "Center", "value": "center" },
+      { "label": "Justify", "value": "justify" },
+      { "label": "Initial", "value": "initial" },
+      { "label": "Inherit", "value": "inherit" },
+      { "label": "Unset", "value": "unset" }
+    ]
+  },
+  "textTransform": {
+    "type": "select",
+    "options": [
+      { "label": "None", "value": "none" },
+      { "label": "Uppercase", "value": "uppercase" },
+      { "label": "Lowercase", "value": "lowercase" },
+      { "label": "Capitalize", "value": "capitalize" },
+      { "label": "Initial", "value": "initial" },
+      { "label": "Inherit", "value": "inherit" },
+      { "label": "Unset", "value": "unset" }
+    ]
+  }
+}

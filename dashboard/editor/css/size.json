@@ -1,0 +1,30 @@
+{
+  "boxShadow": {
+    "type": "text"
+  },
+  "width": {
+    "type": "text"
+  },
+  "minWidth": {
+    "type": "text"
+  },
+  "maxWidth": {
+    "type": "text"
+  },
+  "height": {
+    "type": "text"
+  },
+  "maxHeight": {
+    "type": "text"
+  },
+  "minHeight": {
+    "type": "text"
+  },
+  "boxSizing": {
+    "type": "select",
+    "options": [
+      { "label": "Content Box", "value": "content-box" },
+      { "label": "Border Box", "value": "border-box" }
+    ]
+  }
+}

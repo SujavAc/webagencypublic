@@ -1,0 +1,80 @@
+{
+  "margin": {
+    "type": "number"
+  },
+  "marginTop": {
+    "type": "number"
+  },
+  "marginRight": {
+    "type": "number"
+  },
+  "marginBottom": {
+    "type": "number"
+  },
+  "marginLeft": {
+    "type": "number"
+  },
+  "marginX": {
+    "type": "number"
+  },
+  "marginY": {
+    "type": "number"
+  },
+  "marginInline": {
+    "type": "number"
+  },
+  "marginInlineStart": {
+    "type": "number"
+  },
+  "marginInlineEnd": {
+    "type": "number"
+  },
+  "marginBlock": {
+    "type": "number"
+  },
+  "marginBlockStart": {
+    "type": "number"
+  },
+  "marginBlockEnd": {
+    "type": "number"
+  },
+  "padding": {
+    "type": "number"
+  },
+  "paddingTop": {
+    "type": "number"
+  },
+  "paddingRight": {
+    "type": "number"
+  },
+  "paddingBottom": {
+    "type": "number"
+  },
+  "paddingLeft": {
+    "type": "number"
+  },
+  "paddingX": {
+    "type": "number"
+  },
+  "paddingY": {
+    "type": "number"
+  },
+  "paddingInline": {
+    "type": "number"
+  },
+  "paddingInlineStart": {
+    "type": "number"
+  },
+  "paddingInlineEnd": {
+    "type": "number"
+  },
+  "paddingBlock": {
+    "type": "number"
+  },
+  "paddingBlockStart": {
+    "type": "number"
+  },
+  "paddingBlockEnd": {
+    "type": "number"
+  }
+}
