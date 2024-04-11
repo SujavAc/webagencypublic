@@ -13,10 +13,8 @@ export const addComponentData =
     if (!dbCollection || !componentData) {
       return;
     }
-    console.log(dbCollection);
     const { result, error } = await addDocument(dbCollection, componentData);
     if (error) {
-      console.log(error);
       dispatch({
         type: "SET_NOTISTACKMESSAGE_DATA",
         payload: { message: "Something went wrong", variant: "error" },
@@ -46,7 +44,6 @@ export const getSingleComponentData =
     getSingleDocument(dbCollection, id)
       .then((docSnap) => {
         if (docSnap.exists) {
-          console.log({ ...docSnap.data(), id: docSnap.id });
           return dispatch({
             type: "Get_COMPONENT_DATA",
             payload: { ...docSnap.data(), id: docSnap.id },
@@ -84,10 +81,9 @@ export const getComponentData =
     }
     const { data, error, hasMore, lastVisibleDoc } = await getData(
       dbCollection,
-      limit,
+      limit
     );
     if (error) {
-      console.log(error);
       dispatch({
         type: "SET_NOTISTACKMESSAGE_DATA",
         payload: {
@@ -108,7 +104,6 @@ export const getComponentData =
         type: "COMPONENT_HAS_MORE_DATA",
         payload: hasMore,
       });
-      console.log(data);
       return dispatch({ type: "Get_COMPONENT_DATA", payload: data });
     }
   };
@@ -131,7 +126,7 @@ export const LoadMoreComponentData =
       const { data, error, lastVisible, hasMore } = await loadMoreData(
         dbCollection,
         lastVisibleDoc,
-        limitN,
+        limitN
       );
       if (error) {
         dispatch({
@@ -220,20 +215,13 @@ export const updateComponentData =
       });
   };
 
-  export const queryComponentData =
-  (dbCollection: string, limitN:any, whereCondition: WhereCondition) =>
-  async(dispatch: any, getState: RootState) => {
+export const queryComponentData =
+  (dbCollection: string, limitN: any, whereCondition: WhereCondition) =>
+  async (dispatch: any, getState: RootState) => {
     if (!dbCollection || !whereCondition || !limitN) {
       return;
     }
-    const { data, error } = await getData(
-      dbCollection,
-      limitN,
-      whereCondition
-    );
-    console.log("running queery condition on Pages");
-    console.log(error);
-    console.log(data);
+    const { data, error } = await getData(dbCollection, limitN, whereCondition);
     // updateDocument(dbCollection, id, updatedData)
     //   .then(() => {
     //     dispatch({

@@ -11,10 +11,8 @@ export const addHeroBannerData =
     if (!dbCollection || !heroBannerData) {
       return;
     }
-    console.log(dbCollection);
     const { result, error } = await addDocument(dbCollection, heroBannerData);
     if (error) {
-      console.log(error);
       dispatch({
         type: "SET_NOTISTACKMESSAGE_DATA",
         payload: { message: "Something went wrong", variant: "error" },
@@ -43,7 +41,7 @@ export const getHeroBannerData =
     }
     const { data, error, hasMore, lastVisibleDoc } = await getData(
       dbCollection,
-      limit,
+      limit
     );
     if (error) {
       dispatch({
@@ -88,7 +86,7 @@ export const LoadMoreHeroBannerData =
       const { data, error, lastVisible, hasMore } = await loadMoreData(
         dbCollection,
         lastVisibleDoc,
-        limitN,
+        limitN
       );
       if (error) {
         dispatch({

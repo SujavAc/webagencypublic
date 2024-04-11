@@ -11,10 +11,8 @@ export const addFeaturesData =
     if (!dbCollection || !featureData) {
       return;
     }
-    console.log(dbCollection);
     const { result, error } = await addDocument(dbCollection, featureData);
     if (error) {
-      console.log(error);
       dispatch({
         type: "SET_NOTISTACKMESSAGE_DATA",
         payload: { message: "Something went wrong", variant: "error" },
@@ -43,7 +41,7 @@ export const getFeaturesData =
     }
     const { data, error, hasMore, lastVisibleDoc } = await getData(
       dbCollection,
-      limit,
+      limit
     );
     if (error) {
       dispatch({
@@ -88,7 +86,7 @@ export const LoadMoreFeaturesData =
       const { data, error, lastVisible, hasMore } = await loadMoreData(
         dbCollection,
         lastVisibleDoc,
-        limitN,
+        limitN
       );
       if (error) {
         dispatch({

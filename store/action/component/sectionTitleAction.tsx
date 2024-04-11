@@ -12,7 +12,6 @@ export const addSectionTitleData =
     if (!dbCollection || !sectionTitleData) {
       return;
     }
-    console.log(dbCollection);
     const { result, error } = await addDocument(dbCollection, sectionTitleData);
     if (error) {
       dispatch({
@@ -43,7 +42,7 @@ export const getSectionTitleData =
     }
     const { data, error, hasMore, lastVisibleDoc } = await getData(
       dbCollection,
-      limit,
+      limit
     );
     if (error) {
       dispatch({
@@ -88,7 +87,7 @@ export const LoadMoreSectionTitleData =
       const { data, error, lastVisible, hasMore } = await loadMoreData(
         dbCollection,
         lastVisibleDoc,
-        limitN,
+        limitN
       );
       if (error) {
         dispatch({
@@ -122,7 +121,7 @@ export const deleteSectionTitleData =
       return;
     }
     deleteDocument(dbCollection, id)
-      .then(async() => {
+      .then(async () => {
         dispatch({
           type: "DELETE_SECTION_TITLE_DATA",
           payload: id,
@@ -135,7 +134,6 @@ export const deleteSectionTitleData =
         // if(!error){
         //   data?.map((d) => ({...d, components: filterOutArrayByKeyValuePair(d.components, 'id', id)}))
         // }
-        // console.log(data);
         // need to update when the component variation is deleted.
         // not sure in which page this component is being used previously
         dispatch({

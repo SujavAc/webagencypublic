@@ -5,7 +5,7 @@ import { useEffect } from "react";
 const Messages = () => {
   const { enqueueSnackbar } = useSnackbar();
   const notiStack = useAppSelector(
-    (state) => state.notistackMessage.snackbarData,
+    (state) => state.notistackMessage.snackbarData
   );
   useEffect(() => {
     if (

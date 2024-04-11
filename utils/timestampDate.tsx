@@ -13,13 +13,11 @@ export const convertIntoReadable = (date: Timestamp) => {
 
   // Convert Firebase Timestamp to JavaScript Date
   const jsDate = new Date(
-    firebaseTimestamp.seconds * 1000 + firebaseTimestamp.nanoseconds / 1000000,
+    firebaseTimestamp.seconds * 1000 + firebaseTimestamp.nanoseconds / 1000000
   );
 
   // Format the date for user readability
   const formattedDate = jsDate.toLocaleString(); // Customize as per your requirement
-
-  console.log(formattedDate); // Output the formatted date
 
   return formattedDate;
 };

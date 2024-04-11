@@ -56,7 +56,7 @@ export function UserAuthContextProvider({
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useAppDispatch();
   const userDataInReduxStore = useAppSelector(
-    (state) => state.userInfo.userData,
+    (state) => state.userInfo.userData
   );
   const router = useRouter();
 
@@ -75,94 +75,6 @@ export function UserAuthContextProvider({
     router.push("/signin");
     return signOut(auth);
   }
-  // function loginWithGoogle() {
-  //   return signInWithPopup(auth, provider)
-  //     .then((result) => {
-  //       // This gives you a Google Access Token. You can use it to access the Google API.
-  //       // const credential = GoogleAuthProvider.credentialFromResult(result);
-  //       // const token = credential?.accessToken;
-  //       // The signed-in user info.
-  //       const user = result.user;
-  //       const successData = {
-  //         message: `Logged in successfully, ${user.displayName}`,
-  //         variant: "success",
-  //       };
-  //       enqueueSnackbar(successData);
-  //     })
-  //     .catch((error) => {
-  //       // Handle Errors here.
-  //       // const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       // The email of the user's account used.
-  //       // const email = error.email;
-  //       // The AuthCredential type that was used.
-  //       // const credential = GoogleAuthProvider.credentialFromError(error);
-  //       const errorData = {
-  //         message: errorMessage,
-  //         variant: "error",
-  //       };
-  //       enqueueSnackbar(errorData);
-  //     });
-  // }
-  // function signUpWithGoogle(userType: UserType) {
-  //   return signInWithPopup(auth, provider)
-  //     .then((result) => {
-  //       // This gives you a Google Access Token. You can use it to access the Google API.
-  //       // const credential = GoogleAuthProvider.credentialFromResult(result);
-  //       // const token = credential?.accessToken;
-  //       // The signed-in user info.
-  //       const user = result.user;
-  //       getUser(user?.uid)
-  //         .then((doc) => {
-  //           const userData = doc?.data();
-  //           if (userData) {
-  //             return;
-  //           } else {
-  //             const userInfo =
-  //               user && getUserDataFromGoogleSignUp(user, userType);
-  //             userInfo &&
-  //               setUserInfo(userInfo)
-  //                 .then(() => {
-  //                   const resData: snackbarError = {
-  //                     message: "Successfully register",
-  //                     variant: "success",
-  //                   };
-  //                   enqueueSnackbar(resData);
-  //                   setUser(userInfo);
-  //                 })
-  //                 .catch((error) => {
-  //                   console.log(error);
-  //                   const resData: snackbarError = {
-  //                     message: error.message,
-  //                     variant: "error",
-  //                   };
-  //                   enqueueSnackbar(resData);
-  //                 });
-  //           }
-  //         })
-  //         .catch((error) => {
-  //           const resData: snackbarError = {
-  //             message: error.message,
-  //             variant: "error",
-  //           };
-  //           enqueueSnackbar(resData);
-  //         });
-  //     })
-  //     .catch((error) => {
-  //       // Handle Errors here.
-  //       // const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       // The email of the user's account used.
-  //       // const email = error.email;
-  //       // The AuthCredential type that was used.
-  //       // const credential = GoogleAuthProvider.credentialFromError(error);
-  //       const errorData: snackbarError = {
-  //         message: errorMessage,
-  //         variant: "error",
-  //       };
-  //       enqueueSnackbar(errorData);
-  //     });
-  // }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {

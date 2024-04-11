@@ -1,13 +1,5 @@
 import Link from "next/link";
 
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Error Page | A-Tech Web Agency",
-  description: "This is Error Page.",
-  // other metadata
-};
-
 const ErrorPage = () => {
   return (
     <>

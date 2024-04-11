@@ -17,13 +17,12 @@ export const isExistingData =
       const { data, error, lastVisibleDoc } = await getData(
         dbCollection,
         1,
-        whereCondition,
+        whereCondition
       );
       const isExist = hasValue(data);
       if (error) {
         return { isExist, data: null, error, lastVisibleDoc: null };
       }
-      console.log(hasValue(data));
 
       return { isExist, data, error: null, lastVisibleDoc };
     }
@@ -35,7 +34,6 @@ export const addPagesData =
     if (!dbCollection || !pagesData) {
       return;
     }
-    console.log(dbCollection);
     const { pageName } = pagesData;
     const { isExist } = isExistingData(dbCollection, {
       key: "pageName",
@@ -45,7 +43,6 @@ export const addPagesData =
     if (!isExist) {
       const { result, error } = await addDocument(dbCollection, pagesData);
       if (error) {
-        console.log(error);
         dispatch({
           type: "SET_NOTISTACKMESSAGE_DATA",
           payload: { message: "Something went wrong", variant: "error" },
@@ -84,7 +81,7 @@ export const getPagesData =
     const { data, error, hasMore, lastVisibleDoc } = await getData(
       dbCollection,
       limit,
-      whereCondition,
+      whereCondition
     );
     if (error) {
       dispatch({
@@ -107,7 +104,6 @@ export const getPagesData =
         type: "PAGES_HAS_MORE_DATA",
         payload: hasMore,
       });
-      console.log(data);
       return dispatch({ type: "Get_PAGES_DATA", payload: data });
     }
   };
@@ -129,7 +125,7 @@ export const LoadMorePagesData =
       const { data, error, lastVisible, hasMore } = await loadMoreData(
         dbCollection,
         lastVisibleDoc,
-        limitN,
+        limitN
       );
       if (error) {
         dispatch({

@@ -1,14 +1,12 @@
 "use client";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
 import ScrollToTop from "@/components/ScrollToTop";
 import { Inter } from "next/font/google";
-import { ColorModeContext } from "@/styles/ColorModeContext";
+import MUIThemeProvider from "@/styles/MUIThemeProvider";
 import "node_modules/react-modal-video/css/modal-video.css";
 import "../styles/index.css";
 import React from "react";
 import { Provider as ReduxProvider } from "react-redux";
-import { getDesignTokens } from "@/styles/themeSwitcher";
 import { Providers } from "./providers";
 import store from "@/store/reducer/rootReducer";
 import MySnackbarStack from "@/components/Snackbar";
@@ -22,26 +20,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // light and dark Theme
-  const [mode, setMode] = React.useState<"light" | "dark">("light");
-
-  const colorMode = React.useMemo(
-    () => ({
-      toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
-      },
-      mode: mode,
-    }),
-    [mode],
-  );
-
-  const darkTheme = getDesignTokens(mode);
-
-  const theme = React.useMemo(
-    () => createTheme({}, darkTheme),
-
-    [darkTheme],
-  );
   return (
     <html suppressHydrationWarning lang="en">
       {/*
@@ -52,20 +30,18 @@ export default function RootLayout({
 
       <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>
         <ReduxProvider store={store}>
-          <ColorModeContext.Provider value={colorMode}>
-            <UserAuthContextProvider>
-              <ThemeProvider theme={theme}>
-                <AppRouterCacheProvider options={{ key: "css" }}>
-                  <MySnackbarStack>
-                    <Providers>
-                      {children}
-                      <ScrollToTop />
-                    </Providers>
-                  </MySnackbarStack>
-                </AppRouterCacheProvider>
-              </ThemeProvider>
-            </UserAuthContextProvider>
-          </ColorModeContext.Provider>
+          <Providers>
+            <MUIThemeProvider>
+              <UserAuthContextProvider>
+                <MySnackbarStack>
+                  <AppRouterCacheProvider options={{ key: "css" }}>
+                    {children}
+                    <ScrollToTop />
+                  </AppRouterCacheProvider>
+                </MySnackbarStack>
+              </UserAuthContextProvider>
+            </MUIThemeProvider>
+          </Providers>
         </ReduxProvider>
       </body>
     </html>

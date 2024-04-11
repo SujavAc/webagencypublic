@@ -1,22 +1,23 @@
 // pages/[id].js
 "use client";
-import Breadcrumb from "@/components/Common/Breadcrumb";
+import ErrorPage from "@/components/Error";
 import { puckEditorConfig } from "@/dashboard/editor/config";
 import { Preview } from "@/dashboard/editor/preview";
 import { getData } from "@/database/paginateData";
 import { useAppSelector, useAppDispatch } from "@/store/hook";
+import { Backdrop, Box, CircularProgress } from "@mui/material";
+import { circularProgressClasses } from "@mui/material/CircularProgress";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Page = () => {
   const pathname = useParams();
   const slugArray = Array.isArray(pathname?.slug)
     ? pathname?.slug
     : [pathname?.slug];
-  console.log(pathname);
   const slug = decodeURI(slugArray?.join("/"));
-  console.log(slug);
   const [pageContent, setPageContent] = useState(null);
+  const [loading, setLoading] = useState(true);
   const pageData = useAppSelector((state) => state.pages.pagesData);
   const dispatch = useAppDispatch();
   const pageContentDataFromStore =
@@ -26,6 +27,7 @@ const Page = () => {
     const fetchPageContent = async (route: string) => {
       try {
         if (pageContentDataFromStore && pageContentDataFromStore?.length > 0) {
+          setLoading(false);
           return setPageContent(pageContentDataFromStore[0]);
         }
         const { data, lastVisibleDoc, hasMore } = await getData("pages", 1, {
@@ -43,32 +45,70 @@ const Page = () => {
           type: "PAGES_HAS_MORE_DATA",
           payload: hasMore,
         });
-        return setPageContent(pageData);
+        setPageContent(pageData);
+        return setLoading(false);
       } catch (error) {
+        setLoading(false);
         console.error("Error fetching blog content:", error);
       }
     };
     if (slug) {
+      setLoading(true);
       fetchPageContent(slug);
     } else {
-    // Render the default homepage
-     fetchPageContent("homepage")
-  }
+      setLoading(true);
+      // Render the default homepage
+      fetchPageContent("homepage");
+    }
   }, [slug]);
 
-  if (!pageContent) {
-    return <div>Loading...</div>;
+  if (!pageContent && !loading) {
+    return <ErrorPage />;
   }
 
   return (
     <>
-      <Breadcrumb
-        pageName={slug}
-        description="Welcome to A-Tech Web Agency, where innovation meets excellence. We specialize in crafting bespoke digital solutions that elevate your online presence. Our dynamic team combines creativity and technical prowess to deliver cutting-edge websites and applications. From concept to execution, we're dedicated to bringing your vision to life. Join us in the journey towards digital success."
-      />
       <section id={slug} className="overflow-hidden py-16 md:py-20 lg:py-28">
         <div className="container">
-          <Preview config={puckEditorConfig} data={pageContent} />
+          {loading ? (
+            <Backdrop
+              sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+              open
+            >
+              <Box sx={{ position: "relative" }}>
+                <CircularProgress
+                  variant="determinate"
+                  sx={{
+                    color: (theme) =>
+                      theme.palette.grey[
+                        theme.palette.mode === "light" ? 200 : 800
+                      ],
+                  }}
+                  size={40}
+                  thickness={4}
+                  value={100}
+                />
+                <CircularProgress
+                  variant="indeterminate"
+                  disableShrink
+                  sx={{
+                    color: (theme) =>
+                      theme.palette.mode === "light" ? "#1a90ff" : "#308fe8",
+                    animationDuration: "550ms",
+                    position: "absolute",
+                    left: 0,
+                    [`& .${circularProgressClasses.circle}`]: {
+                      strokeLinecap: "round",
+                    },
+                  }}
+                  size={40}
+                  thickness={4}
+                />
+              </Box>
+            </Backdrop>
+          ) : (
+            <Preview config={puckEditorConfig} data={pageContent} />
+          )}
         </div>
       </section>
     </>

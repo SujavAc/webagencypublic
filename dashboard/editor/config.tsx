@@ -15,7 +15,6 @@ import { TypographyConfig } from "./components/dataDisplay/typography/typography
 import DividerComponent from "./components/dataDisplay/divider";
 import { DividerConfig } from "./components/dataDisplay/divider/dividerConfig";
 import flex from "./css/flex.json";
-import SectionTitleComponent from "@/components/Common/SectionTitle";
 import ButtonWrapper from "./components/inputs/button";
 import { ButtonWrapperConfig } from "./components/inputs/button/ButtonWrapperConfig";
 import Avatars from "./components/dataDisplay/avatar";
@@ -37,6 +36,7 @@ import TabsComponent from "./components/layout/Tab";
 import Video from "./components/builtInComponent/video";
 import Hero from "./components/builtInComponent/Hero";
 import SingleFeature from "./components/builtInComponent/singleFeature/SingleFeature";
+import SectionTitleComponent from "./components/builtInComponent/sectionTitle";
 
 // Create Puck component config
 export const puckEditorConfig = {
@@ -114,7 +114,7 @@ export const puckEditorConfig = {
         },
       },
       render: ({ noOfItems, ...rest }) => {
-        return <PaperWrapper noOfItems={noOfItems} {...rest}  />;
+        return <PaperWrapper noOfItems={noOfItems} {...rest} />;
       },
     },
     GridLayout: {
