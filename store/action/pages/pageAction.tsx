@@ -1,32 +1,10 @@
 import { AppDispatch, RootState } from "../../reducer/rootReducer";
-import { getData, loadMoreData } from "@/database/paginateData";
+import { getData, isExistingData, loadMoreData } from "@/database/paginateData";
 import addDocument, {
   deleteDocument,
   updateDocument,
 } from "@/database/operation/action";
 import { WhereCondition } from "@/types/firebase/where";
-import { hasValue } from "@/utils/dataValidation";
-
-export const isExistingData =
-  (dbCollection: string, whereCondition: WhereCondition) =>
-  async (dispatch: AppDispatch, getState: RootState) => {
-    {
-      if (!dbCollection || !whereCondition) {
-        return;
-      }
-      const { data, error, lastVisibleDoc } = await getData(
-        dbCollection,
-        1,
-        whereCondition
-      );
-      const isExist = hasValue(data);
-      if (error) {
-        return { isExist, data: null, error, lastVisibleDoc: null };
-      }
-
-      return { isExist, data, error: null, lastVisibleDoc };
-    }
-  };
 
 export const addPagesData =
   (dbCollection: string, pagesData: any) =>
@@ -35,7 +13,7 @@ export const addPagesData =
       return;
     }
     const { pageName } = pagesData;
-    const { isExist } = isExistingData(dbCollection, {
+    const { isExist } = await isExistingData(dbCollection, {
       key: "pageName",
       filterOperation: "==",
       value: pageName,

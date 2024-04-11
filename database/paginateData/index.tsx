@@ -8,12 +8,38 @@ import {
 } from "firebase/firestore";
 import { db } from "../config";
 import { WhereCondition } from "@/types/firebase/where";
+import { hasValue } from "@/utils/dataValidation";
+
+export const isExistingData = async (
+  dbCollection: string,
+  whereCondition: WhereCondition
+) => {
+  try {
+    if (!dbCollection || !whereCondition) {
+      return;
+    }
+    const { data, error, lastVisibleDoc } = await getData(
+      dbCollection,
+      1,
+      whereCondition
+    );
+    const isExist = hasValue(data);
+    if (error) {
+      return { isExist, data: null, error, lastVisibleDoc: null };
+    }
+    return { isExist, data, error: null, lastVisibleDoc };
+  } catch (error) {
+    // Handle error
+    console.error("Error checking existing data:", error);
+    return { isExist: false, data: null, error, lastVisibleDoc: null };
+  }
+};
 
 // get collection
 export const getData = async (
   dbcollection: string,
   limitN: number,
-  whereCondition?: WhereCondition,
+  whereCondition?: WhereCondition
 ) => {
   if (!dbcollection || !limitN) {
     return {
@@ -34,9 +60,9 @@ export const getData = async (
         where(
           whereCondition?.key,
           whereCondition?.filterOperation,
-          whereCondition?.value,
+          whereCondition?.value
         ),
-        limit(limitN),
+        limit(limitN)
       );
     }
     const docSnap = await getDocs(querySelection);
@@ -67,7 +93,7 @@ export const getData = async (
 export const loadMoreData = async (
   dbcollection: string,
   lastVisibleDoc: any,
-  limitN: number,
+  limitN: number
 ) => {
   if (!dbcollection || !lastVisibleDoc || !limitN) {
     return;
@@ -75,7 +101,7 @@ export const loadMoreData = async (
   try {
     const collRef = collection(db, dbcollection);
     const docSnap = await getDocs(
-      query(collRef, startAfter(lastVisibleDoc), limit(limitN)),
+      query(collRef, startAfter(lastVisibleDoc), limit(limitN))
     );
     let data = [];
     let lastVisible = null;

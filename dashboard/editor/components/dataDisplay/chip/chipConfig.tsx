@@ -28,7 +28,7 @@ export const ChipConfig = {
       { label: "True", value: true },
     ],
   },
-  icon: {
+  iconName: {
     type: "text",
   },
   size: {
