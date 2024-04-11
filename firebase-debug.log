@@ -1,0 +1,33 @@
+[debug] [2024-04-11T10:07:30.390Z] ----------------------------------------------------------------------
+[debug] [2024-04-11T10:07:30.404Z] Command:       /Users/Sujav-Acharya/.nvm/versions/node/v19.8.1/bin/node /Users/Sujav-Acharya/.nvm/versions/node/v19.8.1/bin/firebase deploy --only hosting:webagencypublic
+[debug] [2024-04-11T10:07:30.405Z] CLI Version:   11.25.3
+[debug] [2024-04-11T10:07:30.405Z] Platform:      darwin
+[debug] [2024-04-11T10:07:30.405Z] Node Version:  v19.8.1
+[debug] [2024-04-11T10:07:30.405Z] Time:          Thu Apr 11 2024 20:07:30 GMT+1000 (Australian Eastern Standard Time)
+[debug] [2024-04-11T10:07:30.406Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-04-11T10:07:30.472Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-04-11T10:07:30.472Z] > authorizing via signed-in user (acharya.sujav@gmail.com)
+[debug] [2024-04-11T10:07:30.472Z] [iam] checking project webagency-94d1d for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-04-11T10:07:30.474Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/webagency-94d1d:testIamPermissions [none]
+[debug] [2024-04-11T10:07:30.475Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/webagency-94d1d:testIamPermissions x-goog-quota-user=projects/webagency-94d1d
+[debug] [2024-04-11T10:07:30.475Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/webagency-94d1d:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-04-11T10:07:30.970Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/webagency-94d1d:testIamPermissions 200
+[debug] [2024-04-11T10:07:30.971Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/webagency-94d1d:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-04-11T10:07:30.972Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/webagency-94d1d [none]
+[debug] [2024-04-11T10:07:31.592Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/webagency-94d1d 200
+[debug] [2024-04-11T10:07:31.592Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/webagency-94d1d {"projectId":"webagency-94d1d","projectNumber":"10425491075","displayName":"webagency","name":"projects/webagency-94d1d","resources":{"hostingSite":"webagency-94d1d","storageBucket":"webagency-94d1d.appspot.com","locationId":"australia-southeast1"},"state":"ACTIVE","etag":"1_f78c967f-194e-43c3-8799-1abc42014566"}
+[debug] [2024-04-11T10:07:33.573Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/webagency-94d1d/sites pageToken=&pageSize=10
+[debug] [2024-04-11T10:07:34.876Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/webagency-94d1d/sites 200
+[debug] [2024-04-11T10:07:34.877Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/webagency-94d1d/sites {"sites":[{"name":"projects/webagency-94d1d/sites/webagency-94d1d","defaultUrl":"https://webagency-94d1d.web.app","appId":"1:10425491075:web:9dd1a13dba7e3ce460c5b6","type":"DEFAULT_SITE"},{"name":"projects/webagency-94d1d/sites/webagencypublic","defaultUrl":"https://webagencypublic.web.app","type":"USER_SITE"}]}
+[debug] [2024-04-11T10:07:34.877Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/webagency-94d1d/sites 
+[debug] [2024-04-11T10:07:35.382Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/webagency-94d1d/sites 200
+[debug] [2024-04-11T10:07:35.382Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/webagency-94d1d/sites {"sites":[{"name":"projects/webagency-94d1d/sites/webagency-94d1d","defaultUrl":"https://webagency-94d1d.web.app","appId":"1:10425491075:web:9dd1a13dba7e3ce460c5b6","type":"DEFAULT_SITE"},{"name":"projects/webagency-94d1d/sites/webagencypublic","defaultUrl":"https://webagencypublic.web.app","type":"USER_SITE"}]}
+[debug] [2024-04-11T10:07:35.383Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/webagency-94d1d/webApps/1:10425491075:web:9dd1a13dba7e3ce460c5b6/config [none]
+[debug] [2024-04-11T10:07:36.814Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/webagency-94d1d/webApps/1:10425491075:web:9dd1a13dba7e3ce460c5b6/config 200
+[debug] [2024-04-11T10:07:36.814Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/webagency-94d1d/webApps/1:10425491075:web:9dd1a13dba7e3ce460c5b6/config {"projectId":"webagency-94d1d","appId":"1:10425491075:web:9dd1a13dba7e3ce460c5b6","storageBucket":"webagency-94d1d.appspot.com","locationId":"australia-southeast1","apiKey":"AIzaSyBYMSgYaHhI2WeUMcyDXsPqMim-QeYLJTk","authDomain":"webagency-94d1d.firebaseapp.com","messagingSenderId":"10425491075","measurementId":"G-P1L76ZS079"}
+[debug] [2024-04-11T10:07:37.121Z] Error: Epic fail.
+    at prepareFrameworks (/Users/Sujav-Acharya/.nvm/versions/node/v19.8.1/lib/node_modules/firebase-tools/lib/frameworks/index.js:243:19)
+    at async deploy (/Users/Sujav-Acharya/.nvm/versions/node/v19.8.1/lib/node_modules/firebase-tools/lib/deploy/index.js:53:13)
+[error] 
+[error] Error: An unexpected error has occurred.
