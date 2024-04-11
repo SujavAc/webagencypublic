@@ -1,4 +1,4 @@
-// pages/[id].js
+// pages/[...slug].js
 import Page from "@/dynamicRoute/page";
 
 const DPage = () => {
