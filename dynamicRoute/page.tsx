@@ -28,13 +28,18 @@ const Page = () => {
       try {
         if (pageContentDataFromStore && pageContentDataFromStore?.length > 0) {
           setLoading(false);
+          console.log("local data");
           return setPageContent(pageContentDataFromStore[0]);
         }
-        const { data, lastVisibleDoc, hasMore } = await getData("pages", 1, {
-          key: "pageName",
-          filterOperation: "==",
-          value: route,
-        });
+        const { data, lastVisibleDoc, hasMore, error } = await getData(
+          "pages",
+          1,
+          {
+            key: "pageName",
+            filterOperation: "==",
+            value: route,
+          }
+        );
         const pageData = data[0];
         dispatch({ type: "Get_PAGES_DATA", payload: data });
         dispatch({
@@ -46,6 +51,7 @@ const Page = () => {
           payload: hasMore,
         });
         setPageContent(pageData);
+        console.log("database data");
         return setLoading(false);
       } catch (error) {
         setLoading(false);

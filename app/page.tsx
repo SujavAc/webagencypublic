@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import Page from '../dynamicRoute/page';
+import Page from "../dynamicRoute/page";
 
 export const metadata: Metadata = {
   title: "ATech Web Agency",
@@ -8,17 +8,6 @@ export const metadata: Metadata = {
   // other metadata
 };
 
-export const dynamicParams = true;
-
-export const generateStaticParams = async() => {
-  return [{
-    slug: []
-  }]
-};
-
-
 export default function Home() {
-  return (
-    <Page />
-  );
+  return <Page />;
 }

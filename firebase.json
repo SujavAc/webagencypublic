@@ -1,11 +1,15 @@
 {
   "hosting": {
     "site": "webagencypublic",
-    "source": "build",
+    "public": ".next",
     "rewrites": [
       {
-        "source": "**",
-        "destination": "/index.html"
+        "destination":"/[...slug]",
+        "regex":"^/(.+?)(?:/)?$"
+      },
+      {
+        "destination":"/",
+        "regex":"^/(?:/)?$"
       }
     ],
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],

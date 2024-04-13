@@ -77,6 +77,7 @@ export const getData = async (
       ...doc.data(),
     }));
     hasMore = data.length === limitN ? true : false;
+    console.log("");
 
     return { data, lastVisibleDoc, hasMore, error };
   } catch (e) {
