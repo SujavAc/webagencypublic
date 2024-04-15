@@ -1,5 +1,8 @@
 export const FooterConfig = {
-    paragraph: { type: "text" },
+  paragraph: { type: "text" },
+  logoImageUrl: {
+    type: "text",
+  },
   links: {
     type: "array",
     arrayFields: {
@@ -7,17 +10,17 @@ export const FooterConfig = {
       menuData: {
         type: "array",
         arrayFields: {
-            label: { type: "text" },
-            href: { type: "text" },
-            newTab: {
-                type: "radio",
-                options: [
-                    { label: "False", value: false },
-                    { label: "True", value: true },
-                ],
-            },
-        }
-      }
+          label: { type: "text" },
+          href: { type: "text" },
+          newTab: {
+            type: "radio",
+            options: [
+              { label: "False", value: false },
+              { label: "True", value: true },
+            ],
+          },
+        },
+      },
     },
   },
 };

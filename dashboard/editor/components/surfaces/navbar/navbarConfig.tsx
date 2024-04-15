@@ -7,38 +7,41 @@ export const NavbarConfig = {
       newTab: {
         type: "radio",
         options: [
-            { label: "False", value: false },
-            { label: "True", value: true },
+          { label: "False", value: false },
+          { label: "True", value: true },
         ],
       },
       submenu: {
         type: "array",
         arrayFields: {
-            title: { type: "text" },
-            path: { type: "text" },
-            newTab: {
+          title: { type: "text" },
+          path: { type: "text" },
+          newTab: {
+            type: "radio",
+            options: [
+              { label: "False", value: false },
+              { label: "True", value: true },
+            ],
+          },
+          submenu: {
+            type: "array",
+            arrayFields: {
+              title: { type: "text" },
+              path: { type: "text" },
+              newTab: {
                 type: "radio",
                 options: [
-                    { label: "False", value: false },
-                    { label: "True", value: true },
+                  { label: "False", value: false },
+                  { label: "True", value: true },
                 ],
+              },
             },
-            submenu: {
-                type: "array",
-                arrayFields: {
-                    title: { type: "text" },
-                    path: { type: "text" },
-                    newTab: {
-                        type: "radio",
-                        options: [
-                            { label: "False", value: false },
-                            { label: "True", value: true },
-                        ],
-                    },
-                }
-            }
-        }
-      }
+          },
+        },
+      },
+    },
+    logoImageUrl: {
+      type: "text",
     },
   },
 };

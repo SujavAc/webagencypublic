@@ -10,10 +10,11 @@ import { Menu } from "@/types/menu";
 
 interface HeaderProps {
   menuData: Menu[];
+  logoImageUrl: string;
 }
 
 const Header = (props: HeaderProps) => {
-  const { menuData } = props;
+  const { menuData, logoImageUrl } = props;
   // Navbar toggle
   const [navbarOpen, setNavbarOpen] = useState(false);
   const navbarToggleHandler = () => {
@@ -66,14 +67,14 @@ const Header = (props: HeaderProps) => {
                 } `}
               >
                 <Image
-                  src="/images/logo/logo-2.svg"
+                  src={logoImageUrl || "/images/logo/logo-2.svg"}
                   alt="logo"
                   width={100}
                   height={10}
                   className="dark:hidden"
                 />
                 <Image
-                  src="/images/logo/logo.svg"
+                  src={logoImageUrl || "/images/logo/logo.svg"}
                   alt="logo"
                   width={100}
                   height={30}
