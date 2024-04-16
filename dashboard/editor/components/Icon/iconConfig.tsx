@@ -1,6 +1,7 @@
-import flex from "../../css/flex.json";
+import { FlexProperties } from "../../css/flex";
 
 export const IconConfig = {
+  className: { type: "textarea" },
   name: {
     type: "text",
   },
@@ -32,7 +33,7 @@ export const IconConfig = {
   sx: {
     type: "object",
     objectFields: {
-      ...flex,
+      ...FlexProperties(),
     },
   },
 };

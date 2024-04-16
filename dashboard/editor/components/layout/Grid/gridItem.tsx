@@ -7,13 +7,13 @@ interface GridLayoutProps extends GridProps {
 }
 
 export default function GridItem(props: GridLayoutProps) {
-  const { noOfItems, ...rest } = props;
+  const { noOfItems } = props;
   return (
     <>
       {noOfItems &&
-        noOfItems?.map((item, index) => (
-          <Grid {...rest} item key={`Grid item-${index + 1}`}>
-            <DropZone zone={`Grid item-${index}`} />
+        noOfItems?.map(({ title, ...rest }, index) => (
+          <Grid {...rest} item key={`Grid item-${title || ""}-${index + 1}`}>
+            <DropZone zone={`Grid item-${title || ""}-${index + 1}`} />
           </Grid>
         ))}
     </>

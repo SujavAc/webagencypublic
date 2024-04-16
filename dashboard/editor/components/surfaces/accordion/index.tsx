@@ -12,6 +12,7 @@ interface IAccordionProps {
 
 interface IAccordionItem {
   heading: string;
+  className: string;
   headingIcon: string;
   defaultOpen: boolean;
 }
@@ -39,6 +40,7 @@ export default function AccordionComponent(props: IAccordionProps) {
             expanded={expanded === item?.heading || item?.defaultOpen}
             key={item?.heading}
             onChange={handleChange(item?.heading)}
+            className={item?.className}
           >
             <AccordionSummary
               expandIcon={

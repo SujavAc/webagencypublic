@@ -1,6 +1,7 @@
-import flex from "../../../css/flex.json";
+import { FlexProperties } from "@/dashboard/editor/css/flex";
 
 export const ButtonWrapperConfig = {
+  className: { type: "textarea" },
   disabled: {
     type: "radio",
     options: [
@@ -60,7 +61,7 @@ export const ButtonWrapperConfig = {
   sx: {
     type: "object",
     objectFields: {
-      ...flex,
+      ...FlexProperties(),
     },
   },
 };

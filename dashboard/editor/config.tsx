@@ -14,7 +14,6 @@ import TypographyComponenet from "./components/dataDisplay/typography";
 import { TypographyConfig } from "./components/dataDisplay/typography/typographyConfig";
 import DividerComponent from "./components/dataDisplay/divider";
 import { DividerConfig } from "./components/dataDisplay/divider/dividerConfig";
-import flex from "./css/flex.json";
 import ButtonWrapper from "./components/inputs/button";
 import { ButtonWrapperConfig } from "./components/inputs/button/ButtonWrapperConfig";
 import Avatars from "./components/dataDisplay/avatar";
@@ -33,10 +32,12 @@ import AccordionComponent from "./components/surfaces/accordion";
 import { AccordionConfig } from "./components/surfaces/accordion/accordionConfig";
 import GridItem from "./components/layout/Grid/gridItem";
 import TabsComponent from "./components/layout/Tab";
+import SectionTitleComponent from "./components/builtInComponent/sectionTitle";
+import SingleFeature from "./components/builtInComponent/singleFeature/SingleFeature";
 import Video from "./components/builtInComponent/video";
 import Hero from "./components/builtInComponent/Hero";
-import SingleFeature from "./components/builtInComponent/singleFeature/SingleFeature";
-import SectionTitleComponent from "./components/builtInComponent/sectionTitle";
+import { FlexProperties } from "./css/flex";
+import { GridConfig } from "./components/layout/Grid/gridConfig";
 
 // Create Puck component config
 export const puckEditorConfig = {
@@ -90,7 +91,7 @@ export const puckEditorConfig = {
           min: 1,
           max: 5,
         },
-
+        className: { type: "textarea" },
         elevation: { type: "number" },
         square: {
           type: "radio",
@@ -109,30 +110,35 @@ export const puckEditorConfig = {
         sx: {
           type: "object",
           objectFields: {
-            ...flex,
+            ...FlexProperties(),
           },
         },
       },
-      render: ({ noOfItems, ...rest }) => {
-        return <PaperWrapper noOfItems={noOfItems} {...rest} />;
+      defaultProps: {
+        elevation: 5,
+        variant: "elevation",
+        sx: {
+          p: 2,
+        },
+      },
+      render: ({ noOfItems, sx, ...rest }) => {
+        return <PaperWrapper sx={sx} {...rest} noOfItems={noOfItems} />;
       },
     },
     GridLayout: {
       label: "Grid Container",
       fields: {
-        columnSpacing: { type: "number" },
-        rowSpacing: { type: "number" },
-        spacing: { type: "number" },
-        wrap: flex.flexWrap,
-        sx: {
-          type: "object",
-          objectFields: {
-            ...flex,
-          },
-        },
+        className: GridConfig.className,
+        columnSpacing: GridConfig.columnSpacing,
+        rowSpacing: GridConfig.rowSpacing,
+        spacing: GridConfig.spacing,
+        wrap: GridConfig.wrap,
+        direction: FlexProperties().flexDirection,
+        justifyContent: FlexProperties().justifyContent,
+        alignItems: FlexProperties().alignItems,
       },
-      render: ({ ...rest }) => {
-        return <GridLayout {...rest} />;
+      render: (fields) => {
+        return <GridLayout {...fields} />;
       },
     },
     GridItem: {
@@ -142,22 +148,33 @@ export const puckEditorConfig = {
           type: "array",
           arrayFields: {
             title: { type: "text" },
-          },
-        },
-        sx: {
-          type: "object",
-          objectFields: {
-            ...flex,
+            xs: GridConfig.xs,
+            sm: GridConfig.sm,
+            md: GridConfig.md,
+            lg: GridConfig.lg,
+            sx: GridConfig.sx,
           },
         },
       },
-      render: ({ noOfItems, ...rest }) => {
-        return <GridItem noOfItems={noOfItems} {...rest} />;
+      defaultProps: {
+        noOfItems: [
+          {
+            title: "item",
+            sx: 12,
+            sm: 6,
+            md: 4,
+            lg: 3,
+          },
+        ],
+      },
+      render: ({ noOfItems }) => {
+        return <GridItem noOfItems={noOfItems} />;
       },
     },
     Container: {
       label: "Container",
       fields: {
+        className: { type: "textarea" },
         fixed: {
           type: "radio",
           options: [
@@ -186,7 +203,7 @@ export const puckEditorConfig = {
         sx: {
           type: "object",
           objectFields: {
-            ...flex,
+            ...FlexProperties(),
           },
         },
       },
@@ -206,6 +223,7 @@ export const puckEditorConfig = {
       label: "Tab Container",
       fields: {
         defaultTab: { type: "text" },
+        className: { type: "textarea" },
         tabComponentName: { type: "text" },
         tab: {
           type: "array",
@@ -251,7 +269,7 @@ export const puckEditorConfig = {
         sx: {
           type: "object",
           objectFields: {
-            ...flex,
+            ...FlexProperties(),
           },
         },
       },
@@ -262,29 +280,28 @@ export const puckEditorConfig = {
     StackLayout: {
       label: "Stack Container",
       fields: {
+        className: { type: "textarea" },
         noOfItems: {
           type: "array",
           arrayFields: {
             title: { type: "text" },
           },
-          min: 1,
-          max: 5,
         },
         stackProps: {
           type: "object",
           objectFields: {
             direction: {
-              ...flex.flexDirection,
+              ...FlexProperties().flexDirection,
             },
-            alignItems: flex.alignItems,
-            justifyContent: flex.justifyContent,
+            alignItems: FlexProperties().alignItems,
+            justifyContent: FlexProperties().justifyContent,
             spacing: {
               type: "number",
             },
             sx: {
               type: "object",
               objectFields: {
-                ...flex,
+                ...FlexProperties(),
               },
             },
           },
@@ -456,7 +473,7 @@ export const puckEditorConfig = {
         sx: {
           type: "object",
           objectFields: {
-            ...flex,
+            ...FlexProperties(),
           },
         },
       },

@@ -12,7 +12,7 @@ const pagesReducer = (state = initialState, action: any) => {
         ...state,
         pagesData:
           state.pagesData && state.pagesData?.length > 0
-            ? [...state.pagesData, action?.payload]
+            ? [...state.pagesData, ...action?.payload]
             : action?.payload,
         error: false,
       };
@@ -30,7 +30,7 @@ const pagesReducer = (state = initialState, action: any) => {
       };
     case "UPDATE_SINGLE_PAGES_DATA":
       const index = state.pagesData.findIndex(
-        (contactData) => contactData.id === action?.payload?.id,
+        (contactData) => contactData.id === action?.payload?.id
       );
       let updateData;
       if (index !== -1) {
@@ -46,7 +46,7 @@ const pagesReducer = (state = initialState, action: any) => {
       return {
         ...state,
         pagesData: state.pagesData.filter(
-          (data) => data.id !== action?.payload,
+          (data) => data.id !== action?.payload
         ),
         error: false,
       };

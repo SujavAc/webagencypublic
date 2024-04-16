@@ -20,8 +20,10 @@ const Page = () => {
   const [loading, setLoading] = useState(true);
   const pageData = useAppSelector((state) => state.pages.pagesData);
   const dispatch = useAppDispatch();
+
   const pageContentDataFromStore =
-    pageData && slug && pageData?.filter((data) => data?.pageName === slug);
+    pageData &&
+    pageData?.filter((data) => data?.pageName === (slug || "homepage"));
 
   useEffect(() => {
     const fetchPageContent = async (route: string) => {
@@ -41,7 +43,7 @@ const Page = () => {
           }
         );
         const pageData = data[0];
-        dispatch({ type: "Get_PAGES_DATA", payload: data });
+        dispatch({ type: "ADD_PAGES_DATA", payload: data });
         dispatch({
           type: "LAST_PAGES_DOCUMENT_READ_DATA",
           payload: lastVisibleDoc,

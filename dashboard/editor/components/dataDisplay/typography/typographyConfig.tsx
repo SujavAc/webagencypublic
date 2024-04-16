@@ -1,6 +1,7 @@
 import { SpacedInput } from "@/dashboard/editor/editorFields";
 
 export const TypographyConfig = {
+  className: { type: "textarea" },
   text: {
     type: "text",
   },

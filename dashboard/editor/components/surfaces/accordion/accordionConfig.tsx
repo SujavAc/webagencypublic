@@ -2,6 +2,7 @@ export const AccordionConfig = {
   noOfItems: {
     type: "array",
     arrayFields: {
+      className: { type: "textarea" },
       heading: {
         type: "text",
       },

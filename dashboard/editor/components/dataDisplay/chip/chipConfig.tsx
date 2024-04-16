@@ -1,4 +1,5 @@
 export const ChipConfig = {
+  className: { type: "textarea" },
   clickable: {
     type: "radio",
     options: [

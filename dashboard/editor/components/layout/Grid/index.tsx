@@ -4,7 +4,7 @@ import { DropZone } from "@measured/puck";
 
 export default function GridContainer(props: GridProps) {
   return (
-    <Grid {...props} container>
+    <Grid container {...props}>
       <DropZone zone={`Grid container`} />
     </Grid>
   );

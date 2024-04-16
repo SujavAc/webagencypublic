@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { UserType, useUserAuth } from "@/database/authentication/authContext";
 import ThemeToggler from "../../../../../components/Header/ThemeToggler";
 
@@ -20,6 +20,7 @@ const Header = (props: HeaderProps) => {
   const navbarToggleHandler = () => {
     setNavbarOpen(!navbarOpen);
   };
+  const navRef = useRef(null);
   const { user } = useUserAuth();
   const isAdminUser = user.uid && user.userRole === UserType.ADMIN;
 
@@ -33,8 +34,19 @@ const Header = (props: HeaderProps) => {
     }
   };
   useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navRef.current && !navRef.current.contains(event.target)) {
+        setNavbarOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
     window.addEventListener("scroll", handleStickyNavbar);
-  });
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleStickyNavbar);
+    };
+  }, []);
 
   // submenu handler
   const [openIndex, setOpenIndex] = useState(-1);
@@ -107,6 +119,7 @@ const Header = (props: HeaderProps) => {
                   />
                 </button>
                 <nav
+                  ref={navRef}
                   id="navbarCollapse"
                   className={`navbar absolute right-0 z-30 w-[250px] rounded border-[.5px] border-body-color/50 bg-white px-6 py-4 duration-300 dark:border-body-color/20 dark:bg-dark lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${
                     navbarOpen
@@ -120,6 +133,7 @@ const Header = (props: HeaderProps) => {
                         {menuItem?.path ? (
                           <Link
                             href={menuItem?.path || ""}
+                            onClick={navbarToggleHandler}
                             className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${
                               usePathName === menuItem.path
                                 ? "text-primary dark:text-white"

@@ -1,6 +1,7 @@
 import { SpacedInput } from "@/dashboard/editor/editorFields";
 
 export const AvatarConfig = {
+  className: { type: "textarea" },
   alt: {
     type: "custom",
     render: ({ onChange, value }) => (

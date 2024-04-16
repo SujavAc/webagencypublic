@@ -9,6 +9,7 @@ import {
   ToggleButtonGroup,
   ToggleButton,
   InputLabel,
+  Tooltip,
 } from "@mui/material";
 import MaterialUIICon from "../components/Icon";
 
@@ -40,15 +41,18 @@ export const SpacedInput = ({ type, ...props }) => {
           <InputLabel id="demo-simple-togglebutton-label" sx={{ pb: 1 }}>
             {props?.label}
           </InputLabel>
+
           <ToggleButtonGroup {...props}>
             {props.options.map((option, index) => (
-              <ToggleButton
-                value={option?.value}
-                aria-label={option?.value}
-                key={index}
-              >
-                {option?.label || <MaterialUIICon name={option?.icon} />}
-              </ToggleButton>
+              <Tooltip title={option?.label || option?.icon} arrow key={index}>
+                <ToggleButton
+                  value={option?.value}
+                  aria-label={option?.value}
+                  key={index}
+                >
+                  {option?.label || <MaterialUIICon name={option?.icon} />}
+                </ToggleButton>
+              </Tooltip>
             ))}
           </ToggleButtonGroup>
         </>
