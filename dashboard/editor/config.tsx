@@ -38,6 +38,10 @@ import Video from "./components/builtInComponent/video";
 import Hero from "./components/builtInComponent/Hero";
 import { FlexProperties } from "./css/flex";
 import { GridConfig } from "./components/layout/Grid/gridConfig";
+import CrudTable from "./components/table/CrudTable";
+import { crudTableConfig } from "./components/table/CrudTable/crudTableConfig";
+import { editorFormConfig } from "./components/table/editorForm/editorFormConfig";
+import EditorForm from "./components/table/editorForm";
 
 // Create Puck component config
 export const puckEditorConfig = {
@@ -76,6 +80,14 @@ export const puckEditorConfig = {
     },
     Surface: {
       components: ["Navbar", "Footer", "Accordion"],
+      defaultExpanded: false, // Collapse this category by default
+    },
+    Database: {
+      components: ["Table"],
+      defaultExpanded: false, // Collapse this category by default
+    },
+    Form: {
+      components: ["Form"],
       defaultExpanded: false, // Collapse this category by default
     },
   },
@@ -560,6 +572,42 @@ export const puckEditorConfig = {
       },
       render: (fields) => {
         return <AccordionComponent {...fields} />;
+      },
+    },
+
+    // Database Tables
+    Table: {
+      fields: {
+        ...crudTableConfig,
+      },
+      render: (fields) => {
+        return <CrudTable {...fields} />;
+      },
+    },
+
+    // Forms
+    Form: {
+      fields: {
+        ...editorFormConfig,
+      },
+      defaultProps: {
+        formData: [
+          {
+            name: "test",
+            helperText: "",
+            type: "input",
+            rules: {
+              required: false,
+            },
+            fieldProps: {
+              label: "",
+              variant: "outlined",
+            },
+          },
+        ],
+      },
+      render: (fields) => {
+        return <EditorForm {...fields} />;
       },
     },
   },

@@ -7,6 +7,7 @@ import sectionTitleReducer from "./component/sectionTitleReducer";
 import featuresReducer from "./component/featureReducer";
 import pagesReducer from "./pages/pageReducer";
 import componentReducer from "./component/componentReducer";
+import TableReducer from "./editor/tableReducer";
 
 const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ const store = configureStore({
     features: featuresReducer,
     pages: pagesReducer,
     component: componentReducer,
+    tableData: TableReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

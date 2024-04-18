@@ -7,6 +7,6 @@ export type IFormBUilderProps = {
     storeValueAs?: string;
   }
   
-interface IIFormBUilderFieldName {
-    name: string;
+export interface IIFormBUilderFieldName {
+    name?: string;
   }
