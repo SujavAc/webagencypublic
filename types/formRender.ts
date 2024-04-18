@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 
-interface IFormRender {
+export interface IFormRender {
     name: string;
     helperText?: string;
     type: string;

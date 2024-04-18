@@ -1,4 +1,4 @@
-import PurifyText from "@/dashboard/editor/common/PurifyText";
+import PurifyText from "@/dashboard/editor/components/common/PurifyText";
 
 const SectionTitleComponent = ({
   title,

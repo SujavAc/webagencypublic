@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Hero } from "@/types/hero";
-import PurifyText from "../../../common/PurifyText";
+import PurifyText from "../../common/PurifyText";
 
 const Hero = (props: Hero) => {
   const { title, description, buttons, bottomLeftSvg, rightTopSvg } = props;

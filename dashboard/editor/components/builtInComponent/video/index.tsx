@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import ModalVideo from "react-modal-video";
 import { Video } from "@/types/video";
-import PurifyText from "@/dashboard/editor/common/PurifyText";
+import PurifyText from "@/dashboard/editor/components/common/PurifyText";
 
 const Video = (props: Video) => {
   const { iframeId, channel, preImageUrl, playButtinSVG } = props;
