@@ -30,20 +30,29 @@ const EditorForm = (props: EditorFormProps) => {
 
   const handleSubmit = async (data) => {
     if (databasePath && data) {
-      delete data.array;
+      delete data?.array;
       const { error } = await addDocument(databasePath, data);
-      console.log(data);
       if (error) {
-        console.log(error);
-        return dispatch({
+        dispatch({
           type: "SET_NOTISTACKMESSAGE_DATA",
           payload: { message: "Something went wrong", variant: "error" },
         });
+        return { error: true, success: false };
       }
-      return dispatch({
+      dispatch({
         type: "SET_NOTISTACKMESSAGE_DATA",
         payload: { message: "Success", variant: "success" },
       });
+      return { error: false, success: true };
+    } else {
+      dispatch({
+        type: "SET_NOTISTACKMESSAGE_DATA",
+        payload: {
+          message: "Raised an issue to IT Department",
+          variant: "info",
+        },
+      });
+      return { error: true, success: false };
     }
   };
 

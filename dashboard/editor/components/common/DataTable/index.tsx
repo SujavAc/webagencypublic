@@ -48,7 +48,7 @@ function DataTable({
   const { TblContainer, TblHead, TblPagination, recordsAfterPagingAndSorting } =
     useTable(records, headCells, filterFn);
 
-  const handleSearch = (data) => {
+  const handleSearch = async (data) => {
     const { search } = data;
     setFilterFn({
       fn: (items) => {
@@ -58,10 +58,11 @@ function DataTable({
             (x: any) =>
               x?.[headCells[0]?.id]
                 ?.toLowerCase()
-                .includes(search?.toLowerCase()),
+                .includes(search?.toLowerCase())
           );
       },
     });
+    return { error: true, success: false };
   };
 
   return (
