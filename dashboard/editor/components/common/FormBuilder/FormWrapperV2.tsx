@@ -13,7 +13,7 @@ interface IFormWrapperProps {
   formRendererProps?: FormRenderProps;
   formBuilderProps?: IFormBUilderProps;
   storeValueAs?: string;
-  onSubmit?: (data: any) => void;
+  onSubmit?: (data: any) => Promise<{ error: boolean; success: boolean }>;
   defaultValues?: any;
   formFieldDirection?: string;
 }
@@ -27,12 +27,21 @@ const FormWrapperV2 = (props: IFormWrapperProps) => {
     defaultValues,
     formFieldDirection,
   } = props;
-  const { handleSubmit, formState, control, watch } = FormControl(
+  const { handleSubmit, formState, control, watch, reset } = FormControl(
     defaultValues || {}
   );
 
+  const formSubmitHandler = async (data) => {
+    if (onSubmit) {
+      const { error } = await onSubmit(data);
+      if (!error) {
+        return reset();
+      }
+    }
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(formSubmitHandler)}>
       <StackLayout
         noOfItems={[
           formRendererProps && (

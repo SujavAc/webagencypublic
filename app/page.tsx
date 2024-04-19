@@ -1,12 +1,29 @@
-import { Metadata } from "next";
+import { Metadata, ResolvingMetadata } from "next";
 import Page from "../dynamicRoute/page";
+import { generateCommonMetadata, getItem } from "@/seo";
 
-export const metadata: Metadata = {
-  title: "ATech Web Agency",
-  description:
-    "Our specialized website design and development services are tailored to enhance your professional image and stimulate increased business growth.",
-  // other metadata
+type Props = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 };
+
+export const revalidate = 3600;
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+  const path = params?.slug;
+  const pageName = path ? path : "homepage";
+
+  const { data } = pageName ? await getItem(pageName) : null;
+  const pageData = data[0];
+  if (!pageData || !pageData?.root) {
+    return;
+  }
+  return generateCommonMetadata(pageName, pageData?.root);
+}
 
 export default function Home() {
   return <Page />;

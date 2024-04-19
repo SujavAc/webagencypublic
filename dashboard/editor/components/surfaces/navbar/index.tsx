@@ -22,7 +22,7 @@ const Header = (props: HeaderProps) => {
   };
   const navRef = useRef(null);
   const { user } = useUserAuth();
-  const isAdminUser = user.uid && user.userRole === UserType.ADMIN;
+  const isAdminUser = user?.uid && user?.userRole === UserType.ADMIN;
 
   // Sticky Navbar
   const [sticky, setSticky] = useState(false);
