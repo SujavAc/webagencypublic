@@ -3,14 +3,17 @@
 import ErrorPage from "@/components/Error";
 import { puckEditorConfig } from "@/dashboard/editor/config";
 import { Preview } from "@/dashboard/editor/preview";
+import { useUserAuth } from "@/database/authentication/authContext";
 import { getData } from "@/database/paginateData";
+import { getItem } from "@/seo";
 import { useAppSelector, useAppDispatch } from "@/store/hook";
 import { Backdrop, Box, CircularProgress } from "@mui/material";
 import { circularProgressClasses } from "@mui/material/CircularProgress";
-import { useParams } from "next/navigation";
+import { useParams, redirect } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const Page = () => {
+  const { user } = useUserAuth();
   const pathname = useParams();
   const slugArray = Array.isArray(pathname?.slug)
     ? pathname?.slug
@@ -20,6 +23,8 @@ const Page = () => {
   const [loading, setLoading] = useState(true);
   const pageData = useAppSelector((state) => state.pages.pagesData);
   const dispatch = useAppDispatch();
+
+  const authRequiredRoute = ["dashboard", "dashboard/"];
 
   const pageContentDataFromStore =
     pageData &&
@@ -33,15 +38,7 @@ const Page = () => {
           console.log("local data");
           return setPageContent(pageContentDataFromStore[0]);
         }
-        const { data, lastVisibleDoc, hasMore, error } = await getData(
-          "pages",
-          1,
-          {
-            key: "pageName",
-            filterOperation: "==",
-            value: route,
-          }
-        );
+        const { data, lastVisibleDoc, hasMore } = await getItem(route);
         const pageData = data[0];
         dispatch({ type: "ADD_PAGES_DATA", payload: data });
         dispatch({
@@ -60,7 +57,11 @@ const Page = () => {
         console.error("Error fetching blog content:", error);
       }
     };
-    if (slug) {
+    if (slug && authRequiredRoute?.includes(slug) && !user?.uid) {
+      redirect("/signin");
+      setLoading(false);
+      // Render the default homepage
+    } else if (slug) {
       setLoading(true);
       fetchPageContent(slug);
     } else {
