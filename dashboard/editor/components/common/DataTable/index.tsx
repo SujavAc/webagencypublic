@@ -62,7 +62,7 @@ function DataTable({
           );
       },
     });
-    return { error: false, success: true };
+    return { error: true, success: true };
   };
 
   return (
