@@ -4,6 +4,7 @@ import { DropZone } from "@measured/puck";
 
 interface FooterProps {
   paragraph: string;
+  companyName: string;
   logoImageUrl: string;
   links: LinkColumn[];
 }
@@ -20,12 +21,12 @@ interface Menu {
 }
 
 const Footer = (props: FooterProps) => {
-  const { paragraph, links, logoImageUrl } = props;
+  const { paragraph, links, logoImageUrl, companyName } = props;
 
   return (
     <>
       <footer
-        className="wow fadeInUp dark:bg-gray-dark relative z-1 bg-white pt-16 md:pt-20 lg:pt-24"
+        className="wow fadeInUp z-1 relative bg-white pt-16 dark:bg-gray-dark md:pt-20 lg:pt-24"
         data-wow-delay=".1s"
       >
         <div className="container">
@@ -49,7 +50,7 @@ const Footer = (props: FooterProps) => {
                   />
                 </Link>
                 {paragraph && (
-                  <p className="dark:text-body-color-dark mb-9 text-base leading-relaxed text-body-color">
+                  <p className="mb-9 text-base leading-relaxed text-body-color dark:text-body-color-dark">
                     {paragraph}
                   </p>
                 )}
@@ -70,7 +71,7 @@ const Footer = (props: FooterProps) => {
                         <li key={idx}>
                           <a
                             href={linkData?.href}
-                            className="dark:text-body-color-dark mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:hover:text-primary"
+                            className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                           >
                             {linkData?.label}
                           </a>
@@ -83,7 +84,7 @@ const Footer = (props: FooterProps) => {
             <div className="h-px w-full bg-gradient-to-r from-transparent via-[#D2D8E183] to-transparent dark:via-[#959CB183]"></div>
             <div className="py-8">
               <p className="text-center text-base text-body-color dark:text-white">
-                © {new Date().getFullYear()}, A-Tech Web Agency, All Rights
+                © {new Date().getFullYear()}, {companyName}, All Rights
                 Reserved{" "}
               </p>
             </div>

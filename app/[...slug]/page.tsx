@@ -1,9 +1,7 @@
 // pages/[...slug].js
-import { getData } from "@/database/paginateData";
 import Page from "@/dynamicRoute/page";
 import { generateCommonMetadata, getItem } from "@/seo";
 import { Metadata, ResolvingMetadata } from "next";
-import { cache } from "react";
 
 type Props = {
   params: { slug: string | [] };
@@ -28,7 +26,11 @@ export async function generateMetadata(
   if (!pageData || !pageData?.root) {
     return;
   }
-  return generateCommonMetadata(slug, pageData?.root);
+  const pagesWithoutMetaData = ["footor", "header", "dashboard"];
+
+  return pagesWithoutMetaData.includes(slug)
+    ? {}
+    : generateCommonMetadata(slug, pageData?.root);
 }
 
 const DPage = () => {

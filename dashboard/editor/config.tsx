@@ -42,6 +42,8 @@ import CrudTable from "./components/table/CrudTable";
 import { crudTableConfig } from "./components/table/CrudTable/crudTableConfig";
 import { editorFormConfig } from "./components/table/editorForm/editorFormConfig";
 import EditorForm from "./components/table/editorForm";
+import SiginInForm from "./components/common/Forms/FormLists/signin";
+import VideoPlayer from "./components/builtInComponent/video/customVideo";
 
 // Create Puck component config
 export const puckEditorConfig = {
@@ -75,7 +77,7 @@ export const puckEditorConfig = {
       defaultExpanded: false, // Collapse this category by default
     },
     AssetsComponent: {
-      components: ["Image"],
+      components: ["Image", "CustomVideo"],
       defaultExpanded: false, // Collapse this category by default
     },
     Surface: {
@@ -83,7 +85,7 @@ export const puckEditorConfig = {
       defaultExpanded: false, // Collapse this category by default
     },
     Database: {
-      components: ["Table"],
+      components: ["Table", "SignInForm"],
       defaultExpanded: false, // Collapse this category by default
     },
     Form: {
@@ -532,6 +534,47 @@ export const puckEditorConfig = {
         return <ImageComponent {...fields} />;
       },
     },
+    CustomVideo: {
+      fields: {
+        src: { type: "text" },
+        poster: { type: "text" },
+        controls: {
+          type: "radio",
+          options: [
+            { label: "False", value: false },
+            { label: "True", value: true },
+          ],
+        },
+        autoPlay: {
+          type: "radio",
+          options: [
+            { label: "False", value: false },
+            { label: "True", value: true },
+          ],
+        },
+        loop: {
+          type: "radio",
+          options: [
+            { label: "False", value: false },
+            { label: "True", value: true },
+          ],
+        },
+        muted: {
+          type: "radio",
+          options: [
+            { label: "False", value: false },
+            { label: "True", value: true },
+          ],
+        },
+      },
+      defaultProps: {
+        autoplay: true,
+        loop: true,
+      },
+      render: (fields) => {
+        return <VideoPlayer {...fields} />;
+      },
+    },
 
     // surfaces
     Navbar: {
@@ -582,6 +625,14 @@ export const puckEditorConfig = {
       },
       render: (fields) => {
         return <CrudTable {...fields} />;
+      },
+    },
+    SignInForm: {
+      fields: {
+        title: { type: "text" },
+      },
+      render: (fields) => {
+        return <SiginInForm {...fields} />;
       },
     },
 

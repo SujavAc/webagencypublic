@@ -2,11 +2,6 @@ import { Metadata, ResolvingMetadata } from "next";
 import { cache } from "react";
 import { getData } from "./database/paginateData";
 
-type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
 export const getItem = cache(async (pageName: string) => {
   const { data, lastVisibleDoc, hasMore } = await getData("pages", 1, {
     key: "pageName",
