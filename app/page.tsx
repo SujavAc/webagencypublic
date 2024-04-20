@@ -22,7 +22,11 @@ export async function generateMetadata(
   if (!pageData || !pageData?.root) {
     return;
   }
-  return generateCommonMetadata(pageName, pageData?.root);
+  const pagesWithoutMetaData = ["footor", "header", "dashboard"];
+
+  return pagesWithoutMetaData.includes(pageName)
+    ? {}
+    : generateCommonMetadata(pageName, pageData?.root);
 }
 
 export default function Home() {

@@ -24,7 +24,6 @@ const SiginInForm = (props: ISignInFormProps) => {
   const { enqueueSnackbar } = useSnackbar();
   const { logIn } = useUserAuth();
   const theme = useTheme();
-  const reduxState = useAppSelector((state) => state);
 
   const { control, handleSubmit, formState } = useForm({
     defaultValues: {

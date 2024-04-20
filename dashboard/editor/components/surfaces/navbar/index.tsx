@@ -11,18 +11,20 @@ import { Menu } from "@/types/menu";
 interface HeaderProps {
   menuData: Menu[];
   logoImageUrl: string;
+  isAuthemticationRequired: boolean;
 }
 
 const Header = (props: HeaderProps) => {
-  const { menuData, logoImageUrl } = props;
+  const { menuData, logoImageUrl, isAuthemticationRequired } = props;
   // Navbar toggle
   const [navbarOpen, setNavbarOpen] = useState(false);
   const navbarToggleHandler = () => {
     setNavbarOpen(!navbarOpen);
   };
+
   const navRef = useRef(null);
   const { user } = useUserAuth();
-  const isAdminUser = user?.uid && user?.userRole === UserType.ADMIN;
+  const isAdminUser = user.uid && user.userRole === UserType.ADMIN;
 
   // Sticky Navbar
   const [sticky, setSticky] = useState(false);
@@ -33,6 +35,7 @@ const Header = (props: HeaderProps) => {
       setSticky(false);
     }
   };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (navRef.current && !navRef.current.contains(event.target)) {
@@ -99,6 +102,7 @@ const Header = (props: HeaderProps) => {
                 <button
                   onClick={navbarToggleHandler}
                   id="navbarToggler"
+                  ref={navRef}
                   aria-label="Mobile Menu"
                   className="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
                 >
@@ -119,7 +123,6 @@ const Header = (props: HeaderProps) => {
                   />
                 </button>
                 <nav
-                  ref={navRef}
                   id="navbarCollapse"
                   className={`navbar absolute right-0 z-30 w-[250px] rounded border-[.5px] border-body-color/50 bg-white px-6 py-4 duration-300 dark:border-body-color/20 dark:bg-dark lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${
                     navbarOpen
@@ -133,9 +136,8 @@ const Header = (props: HeaderProps) => {
                         {menuItem?.path ? (
                           <Link
                             href={menuItem?.path || ""}
-                            onClick={navbarToggleHandler}
                             className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${
-                              usePathName === menuItem.path
+                              usePathName === `${menuItem.path}/`
                                 ? "text-primary dark:text-white"
                                 : "text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             }`}
@@ -174,50 +176,58 @@ const Header = (props: HeaderProps) => {
                                   {submenuItem?.title}
                                 </Link>
                               ))}
-                              {isAdminUser && (
-                                <Link
-                                  href={"/dashboard"}
-                                  className="block rounded py-2.5 text-sm text-dark hover:text-primary dark:text-white/70 dark:hover:text-white lg:px-3"
-                                >
-                                  Dashboard
-                                </Link>
-                              )}
-                              {!isAdminUser && (
-                                <Link
-                                  href={"/signin"}
-                                  className="block rounded py-2.5 text-sm text-dark hover:text-primary dark:text-white/70 dark:hover:text-white lg:px-3"
-                                >
-                                  SignIn
-                                </Link>
+                              {isAuthemticationRequired && (
+                                <>
+                                  {isAdminUser && (
+                                    <Link
+                                      href={"/dashboard/"}
+                                      className="block rounded py-2.5 text-sm text-dark hover:text-primary dark:text-white/70 dark:hover:text-white lg:px-3"
+                                    >
+                                      Dashboard
+                                    </Link>
+                                  )}
+                                  {!isAdminUser && (
+                                    <Link
+                                      href={"/signin/"}
+                                      className="block rounded py-2.5 text-sm text-dark hover:text-primary dark:text-white/70 dark:hover:text-white lg:px-3"
+                                    >
+                                      SignIn
+                                    </Link>
+                                  )}
+                                </>
                               )}
                             </div>
                           </>
                         )}
                       </li>
                     ))}
-                    {isAdminUser && (
-                      <Link
-                        href={"/dashboard"}
-                        className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${
-                          usePathName === "/dashboard"
-                            ? "text-primary dark:text-white"
-                            : "text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                        }`}
-                      >
-                        Dashboard
-                      </Link>
-                    )}
-                    {!isAdminUser && (
-                      <Link
-                        href={"/signin"}
-                        className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${
-                          usePathName === "/signin"
-                            ? "text-primary dark:text-white"
-                            : "text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                        }`}
-                      >
-                        SignIn
-                      </Link>
+                    {isAuthemticationRequired && (
+                      <>
+                        {isAdminUser && (
+                          <Link
+                            href={"/dashboard"}
+                            className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${
+                              usePathName === "/dashboard/"
+                                ? "text-primary dark:text-white"
+                                : "text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                            }`}
+                          >
+                            Dashboard
+                          </Link>
+                        )}
+                        {!isAdminUser && (
+                          <Link
+                            href={"/signin"}
+                            className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${
+                              usePathName === "/signin/"
+                                ? "text-primary dark:text-white"
+                                : "text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                            }`}
+                          >
+                            SignIn
+                          </Link>
+                        )}
+                      </>
                     )}
                   </ul>
                 </nav>

@@ -1,5 +1,7 @@
 const initialState = {
   pagesData: [],
+  headerData: [],
+  footerData: [],
   lastDocumentRead: "",
   hasMoreDoc: false,
   error: false,
@@ -65,6 +67,18 @@ const pagesReducer = (state = initialState, action: any) => {
       return {
         ...state,
         hasMoreDoc: true,
+        error: false,
+      };
+    case "ADD_HEADER_DATA":
+      return {
+        ...state,
+        headerData: action?.payload,
+        error: false,
+      };
+    case "ADD_FOOTER_DATA":
+      return {
+        ...state,
+        footerData: action?.payload,
         error: false,
       };
     default:

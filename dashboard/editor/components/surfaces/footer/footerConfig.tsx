@@ -1,5 +1,6 @@
 export const FooterConfig = {
   paragraph: { type: "text" },
+  companyName: { type: "text" },
   logoImageUrl: {
     type: "text",
   },
