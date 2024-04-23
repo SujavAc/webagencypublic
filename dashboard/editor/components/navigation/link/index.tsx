@@ -1,16 +1,19 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from "react";
 import { DropZone } from "@measured/puck";
-import Link, { LinkProps } from "@mui/material/Link";
+import NextLink from "next/link";
+import { Link as MUILink, LinkProps as MUILinkProps } from "@mui/material";
 
-interface LinksProps extends LinkProps {
+export interface LinksProps extends MUILinkProps {
   linkLabel: string;
 }
 export default function Links(props: LinksProps) {
-  const { linkLabel, ...rest } = props;
+  const { linkLabel, href, ...rest } = props;
   return (
-    <Link {...rest}>
-      {linkLabel ? linkLabel : <DropZone zone="Link Zone" />}
-    </Link>
+    <NextLink href={href} rel="noopener" target={rest?.target}>
+      <MUILink {...rest} component="span">
+        {linkLabel ? linkLabel : <DropZone zone="Link Zone" />}
+      </MUILink>
+    </NextLink>
   );
 }

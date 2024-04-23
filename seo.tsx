@@ -24,7 +24,7 @@ export function generateCommonMetadata(pageName: string, rootData: IMetaData) {
     title: title || "HomePage",
     description: description || "Meta description",
     alternates: {
-      canonical: "/",
+      canonical: domain || "/",
     },
     openGraph: {
       type: "website",

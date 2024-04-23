@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { DropZone } from "@measured/puck";
+import PurifyText from "../../common/PurifyText";
 
 interface FooterProps {
   paragraph: string;
   companyName: string;
-  logoImageUrl: string;
+  logoImageUrl?: string;
+  logoImageSvg?: string;
   links: LinkColumn[];
 }
 
@@ -21,7 +22,7 @@ interface Menu {
 }
 
 const Footer = (props: FooterProps) => {
-  const { paragraph, links, logoImageUrl, companyName } = props;
+  const { paragraph, links, logoImageUrl, companyName, logoImageSvg } = props;
 
   return (
     <>
@@ -33,22 +34,30 @@ const Footer = (props: FooterProps) => {
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4 md:w-1/2 lg:w-4/12 xl:w-5/12">
               <div className="mb-12 max-w-[360px] lg:mb-16">
-                <Link href="/" className="mb-8 inline-block max-w-[160px]">
-                  <Image
-                    src={logoImageUrl || "/images/logo/logo-2.svg"}
-                    alt="logo"
-                    className="dark:hidden"
-                    width={100}
-                    height={30}
-                  />
-                  <Image
-                    src={logoImageUrl || "/images/logo/logo.svg"}
-                    alt="logo"
-                    className="hidden dark:block"
-                    width={140}
-                    height={30}
-                  />
-                </Link>
+                {logoImageSvg && (
+                  <Link href="/" className="mb-8 inline-block max-w-[160px]">
+                    <PurifyText text={logoImageSvg} />
+                  </Link>
+                )}
+                {logoImageUrl && (
+                  <Link href="/" className="mb-8 inline-block max-w-[160px]">
+                    <Image
+                      src={logoImageUrl || "/images/logo/logo-2.svg"}
+                      alt="logo"
+                      className="dark:hidden"
+                      width={100}
+                      height={30}
+                    />
+                    <Image
+                      src={logoImageUrl || "/images/logo/logo.svg"}
+                      alt="logo"
+                      className="hidden dark:block"
+                      width={140}
+                      height={30}
+                    />
+                  </Link>
+                )}
+
                 {paragraph && (
                   <p className="mb-9 text-base leading-relaxed text-body-color dark:text-body-color-dark">
                     {paragraph}

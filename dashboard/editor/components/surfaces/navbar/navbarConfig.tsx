@@ -40,8 +40,18 @@ export const NavbarConfig = {
         },
       },
     },
-    logoImageUrl: {
-      type: "text",
-    },
+  },
+  logoImageUrl: {
+    type: "text",
+  },
+  logoImageSvg: {
+    type: "textarea",
+  },
+  isAuthemticationRequired: {
+    type: "radio",
+    options: [
+      { label: "False", value: false },
+      { label: "True", value: true },
+    ],
   },
 };

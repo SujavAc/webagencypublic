@@ -44,6 +44,11 @@ import { editorFormConfig } from "./components/table/editorForm/editorFormConfig
 import EditorForm from "./components/table/editorForm";
 import SiginInForm from "./components/common/Forms/FormLists/signin";
 import VideoPlayer from "./components/builtInComponent/video/customVideo";
+import { CustomHtmlConfig } from "./components/builtInComponent/customHTML/customHtmlConfig";
+import CustomHtml from "./components/builtInComponent/customHTML";
+import { googleMapConfig } from "./components/builtInComponent/GoogleMap/googleMapConfig";
+import Map from "./components/builtInComponent/GoogleMap";
+import { SectionTitleConfig } from "./components/builtInComponent/sectionTitle/sectionTitleConfig";
 
 // Create Puck component config
 export const puckEditorConfig = {
@@ -65,7 +70,15 @@ export const puckEditorConfig = {
       defaultExpanded: false, // Collapse this category by default
     },
     Content: {
-      components: ["Hero", "SectionTitle", "Feature", "Video", "Icon"],
+      components: [
+        "Hero",
+        "SectionTitle",
+        "Feature",
+        "Video",
+        "Icon",
+        "CustomHTML",
+        "Map",
+      ],
       defaultExpanded: false, // Collapse this category by default
     },
     Navigation: {
@@ -400,26 +413,7 @@ export const puckEditorConfig = {
     SectionTitle: {
       label: "Section Title Component",
       fields: {
-        title: {
-          type: "text",
-        },
-        paragraph: {
-          type: "textarea",
-        },
-        width: {
-          type: "text",
-        },
-        mb: {
-          type: "number",
-        },
-        align: {
-          type: "radio",
-          options: [
-            { label: "Left", value: "text-left" },
-            { label: "Center", value: "text-center" },
-            { label: "Right", value: "text-end" },
-          ],
-        },
+        ...SectionTitleConfig,
       },
       render: (fields) => {
         return <SectionTitleComponent {...fields} />;
@@ -469,6 +463,34 @@ export const puckEditorConfig = {
       },
       render: (fields) => {
         return <MaterialUIICon {...fields} />;
+      },
+    },
+    CustomHTML: {
+      fields: {
+        ...CustomHtmlConfig,
+      },
+      render: (fields) => {
+        return <CustomHtml {...fields} />;
+      },
+    },
+    Map: {
+      fields: {
+        ...googleMapConfig,
+        sectionTitleProps: {
+          type: "object",
+          objectFields: {
+            ...SectionTitleConfig,
+          },
+        },
+        linkOnInfoBox: {
+          type: "object",
+          objectFields: {
+            ...LinkConfig,
+          },
+        },
+      },
+      render: (fields) => {
+        return <Map {...fields} />;
       },
     },
 
@@ -534,6 +556,7 @@ export const puckEditorConfig = {
         return <ImageComponent {...fields} />;
       },
     },
+
     CustomVideo: {
       fields: {
         src: { type: "text" },
@@ -659,6 +682,58 @@ export const puckEditorConfig = {
       },
       render: (fields) => {
         return <EditorForm {...fields} />;
+      },
+    },
+  },
+
+  // root configuration
+  root: {
+    fields: {
+      title: { type: "text" }, // We need to redefine the `title` field if we want to retain it
+      description: { type: "textarea" },
+      domain: { type: "text" },
+      openGraph: {
+        type: "object",
+        objectFields: {
+          title: { type: "text" },
+          description: { type: "textarea" },
+          url: { type: "text" },
+          siteName: { type: "text" },
+          images: { type: "textarea" },
+        },
+      },
+      icons: {
+        type: "object",
+        objectFields: {
+          icon: { type: "text" },
+          shortcut: { type: "text" },
+          apple: { type: "text" },
+        },
+        other: {
+          type: "object",
+          objectFields: {
+            rel: { type: "text" },
+            url: { type: "text" },
+          },
+        },
+      },
+      twitter: {
+        type: "object",
+        objectFields: {
+          card: { type: "text" },
+          title: { type: "text" },
+          description: { type: "textarea" },
+          siteId: { type: "text" },
+          creator: { type: "text" },
+          creatorId: { type: "text" },
+          images: {
+            type: "object",
+            objectFields: {
+              url: { type: "text" },
+              alt: { type: "text" },
+            },
+          },
+        },
       },
     },
   },

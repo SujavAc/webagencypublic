@@ -7,15 +7,18 @@ import { UserType, useUserAuth } from "@/database/authentication/authContext";
 import ThemeToggler from "../../../../../components/Header/ThemeToggler";
 
 import { Menu } from "@/types/menu";
+import PurifyText from "../../common/PurifyText";
 
 interface HeaderProps {
   menuData: Menu[];
   logoImageUrl: string;
+  logoImageSvg: string;
   isAuthemticationRequired: boolean;
 }
 
 const Header = (props: HeaderProps) => {
-  const { menuData, logoImageUrl, isAuthemticationRequired } = props;
+  const { menuData, logoImageUrl, logoImageSvg, isAuthemticationRequired } =
+    props;
   // Navbar toggle
   const [navbarOpen, setNavbarOpen] = useState(false);
   const navbarToggleHandler = () => {
@@ -39,6 +42,7 @@ const Header = (props: HeaderProps) => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (navRef.current && !navRef.current.contains(event.target)) {
+        console.log("true");
         setNavbarOpen(false);
       }
     };
@@ -75,27 +79,39 @@ const Header = (props: HeaderProps) => {
         <div className="container">
           <div className="relative -mx-4 flex items-center justify-between">
             <div className="max-w-full px-4 xl:mr-12">
-              <Link
-                href="/"
-                className={`header-logo block w-full ${
-                  sticky ? "py-5 lg:py-2" : "py-2"
-                } `}
-              >
-                <Image
-                  src={logoImageUrl || "/images/logo/logo-2.svg"}
-                  alt="logo"
-                  width={100}
-                  height={10}
-                  className="dark:hidden"
-                />
-                <Image
-                  src={logoImageUrl || "/images/logo/logo.svg"}
-                  alt="logo"
-                  width={100}
-                  height={30}
-                  className="hidden dark:block"
-                />
-              </Link>
+              {logoImageSvg && (
+                <Link
+                  href="/"
+                  className={`header-logo block w-full ${
+                    sticky ? "py-5 lg:py-2" : "py-2"
+                  } `}
+                >
+                  <PurifyText text={logoImageSvg} />
+                </Link>
+              )}
+              {logoImageUrl && (
+                <Link
+                  href="/"
+                  className={`header-logo block w-full ${
+                    sticky ? "py-5 lg:py-2" : "py-2"
+                  } `}
+                >
+                  <Image
+                    src={logoImageUrl || "/images/logo/logo-2.svg"}
+                    alt="logo"
+                    width={100}
+                    height={10}
+                    className="dark:hidden"
+                  />
+                  <Image
+                    src={logoImageUrl || "/images/logo/logo.svg"}
+                    alt="logo"
+                    width={100}
+                    height={30}
+                    className="hidden dark:block"
+                  />
+                </Link>
+              )}
             </div>
             <div className="flex w-full items-center justify-between px-4">
               <div>

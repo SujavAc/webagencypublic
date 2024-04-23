@@ -4,6 +4,9 @@ export const FooterConfig = {
   logoImageUrl: {
     type: "text",
   },
+  logoImageSvg: {
+    type: "textarea",
+  },
   links: {
     type: "array",
     arrayFields: {
