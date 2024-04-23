@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { DropZone } from "@measured/puck";
+import PurifyText from "../../common/PurifyText";
 
 interface FooterProps {
   paragraph: string;
-  logoImageUrl: string;
+  companyName: string;
+  logoImageUrl?: string;
+  logoImageSvg?: string;
   links: LinkColumn[];
 }
 
@@ -20,36 +22,44 @@ interface Menu {
 }
 
 const Footer = (props: FooterProps) => {
-  const { paragraph, links, logoImageUrl } = props;
+  const { paragraph, links, logoImageUrl, companyName, logoImageSvg } = props;
 
   return (
     <>
       <footer
-        className="wow fadeInUp dark:bg-gray-dark relative z-1 bg-white pt-16 md:pt-20 lg:pt-24"
+        className="wow fadeInUp z-1 relative bg-white pt-16 dark:bg-gray-dark md:pt-20 lg:pt-24"
         data-wow-delay=".1s"
       >
         <div className="container">
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4 md:w-1/2 lg:w-4/12 xl:w-5/12">
               <div className="mb-12 max-w-[360px] lg:mb-16">
-                <Link href="/" className="mb-8 inline-block max-w-[160px]">
-                  <Image
-                    src={logoImageUrl || "/images/logo/logo-2.svg"}
-                    alt="logo"
-                    className="dark:hidden"
-                    width={100}
-                    height={30}
-                  />
-                  <Image
-                    src={logoImageUrl || "/images/logo/logo.svg"}
-                    alt="logo"
-                    className="hidden dark:block"
-                    width={140}
-                    height={30}
-                  />
-                </Link>
+                {logoImageSvg && (
+                  <Link href="/" className="mb-8 inline-block max-w-[160px]">
+                    <PurifyText text={logoImageSvg} />
+                  </Link>
+                )}
+                {logoImageUrl && (
+                  <Link href="/" className="mb-8 inline-block max-w-[160px]">
+                    <Image
+                      src={logoImageUrl || "/images/logo/logo-2.svg"}
+                      alt="logo"
+                      className="dark:hidden"
+                      width={100}
+                      height={30}
+                    />
+                    <Image
+                      src={logoImageUrl || "/images/logo/logo.svg"}
+                      alt="logo"
+                      className="hidden dark:block"
+                      width={140}
+                      height={30}
+                    />
+                  </Link>
+                )}
+
                 {paragraph && (
-                  <p className="dark:text-body-color-dark mb-9 text-base leading-relaxed text-body-color">
+                  <p className="mb-9 text-base leading-relaxed text-body-color dark:text-body-color-dark">
                     {paragraph}
                   </p>
                 )}
@@ -70,7 +80,7 @@ const Footer = (props: FooterProps) => {
                         <li key={idx}>
                           <a
                             href={linkData?.href}
-                            className="dark:text-body-color-dark mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:hover:text-primary"
+                            className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                           >
                             {linkData?.label}
                           </a>
@@ -83,7 +93,7 @@ const Footer = (props: FooterProps) => {
             <div className="h-px w-full bg-gradient-to-r from-transparent via-[#D2D8E183] to-transparent dark:via-[#959CB183]"></div>
             <div className="py-8">
               <p className="text-center text-base text-body-color dark:text-white">
-                © {new Date().getFullYear()}, A-Tech Web Agency, All Rights
+                © {new Date().getFullYear()}, {companyName}, All Rights
                 Reserved{" "}
               </p>
             </div>

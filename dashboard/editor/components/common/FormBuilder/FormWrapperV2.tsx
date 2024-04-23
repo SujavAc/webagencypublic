@@ -62,20 +62,29 @@ const FormWrapperV2 = (props: IFormWrapperProps) => {
           ),
           <ButtonComponent
             key="button"
-            variant="outlined"
+            variant="contained"
+            startIcon="AdsClick"
             type="submit"
             disabled={Object.keys(formState.errors).length >= 1}
           >
             Submit
           </ButtonComponent>,
+          <ButtonComponent
+            key="clearbutton"
+            startIcon="Clear"
+            variant="outlined"
+            onClick={() => reset()}
+          >
+            Clear
+          </ButtonComponent>,
         ]}
         stackProps={{
           direction: formFieldDirection || "column",
           justifyContent: "stretch",
-          alignItems: formFieldDirection ? "flex-start" : "stretch",
+          alignItems: formFieldDirection === "row" ? "flex-start" : "stretch",
           alignContent: "flex-start",
-          spacing: 2,
-          sx: { padding: "24px 0px" },
+          flexWrap: formFieldDirection === "row" ?? "wrap",
+          sx: { padding: "24px 0px", gap: 2 },
         }}
       />
     </form>

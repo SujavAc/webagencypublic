@@ -4,7 +4,6 @@ import ErrorPage from "@/components/Error";
 import { puckEditorConfig } from "@/dashboard/editor/config";
 import { Preview } from "@/dashboard/editor/preview";
 import { useUserAuth } from "@/database/authentication/authContext";
-import { getData } from "@/database/paginateData";
 import { getItem } from "@/seo";
 import { useAppSelector, useAppDispatch } from "@/store/hook";
 import { Backdrop, Box, CircularProgress } from "@mui/material";
@@ -20,8 +19,12 @@ const Page = () => {
     : [pathname?.slug];
   const slug = decodeURI(slugArray?.join("/"));
   const [pageContent, setPageContent] = useState(null);
+  const [headerContent, setHeaderContent] = useState(null);
+  const [footerContent, setFooterContent] = useState(null);
   const [loading, setLoading] = useState(true);
   const pageData = useAppSelector((state) => state.pages.pagesData);
+  const headerData = useAppSelector((state) => state.pages.headerData);
+  const footerData = useAppSelector((state) => state.pages.footerData);
   const dispatch = useAppDispatch();
 
   const authRequiredRoute = ["dashboard", "dashboard/"];
@@ -30,15 +33,40 @@ const Page = () => {
     pageData &&
     pageData?.filter((data) => data?.pageName === (slug || "homepage"));
 
+  const getHeaderData = async () => {
+    if (headerData && headerData?.length < 1) {
+      const { data } = await getItem("header");
+      console.log("database header data");
+      setHeaderContent(data[0]);
+      return dispatch({ type: "ADD_HEADER_DATA", payload: data });
+    }
+    console.log("local header data");
+    return setHeaderContent(headerData[0]);
+  };
+
+  const getFooterData = async () => {
+    if (footerData && footerData?.length < 1) {
+      const { data } = await getItem("footer");
+      console.log("database footer data");
+      setFooterContent(data[0]);
+      return dispatch({ type: "ADD_FOOTER_DATA", payload: data });
+    }
+    console.log("local footer data");
+    return setFooterContent(footerData[0]);
+  };
+
   useEffect(() => {
     const fetchPageContent = async (route: string) => {
       try {
+        await getHeaderData();
+        await getFooterData();
         if (pageContentDataFromStore && pageContentDataFromStore?.length > 0) {
           setLoading(false);
           console.log("local data");
           return setPageContent(pageContentDataFromStore[0]);
         }
         const { data, lastVisibleDoc, hasMore } = await getItem(route);
+
         const pageData = data[0];
         dispatch({ type: "ADD_PAGES_DATA", payload: data });
         dispatch({
@@ -115,7 +143,11 @@ const Page = () => {
             </Box>
           </Backdrop>
         ) : (
-          <Preview config={puckEditorConfig} data={pageContent} />
+          <>
+            <Preview config={puckEditorConfig} data={headerContent} />
+            <Preview config={puckEditorConfig} data={pageContent} />
+            <Preview config={puckEditorConfig} data={footerContent} />
+          </>
         )}
       </div>
     </section>

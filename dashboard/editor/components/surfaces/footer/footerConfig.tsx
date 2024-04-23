@@ -1,7 +1,11 @@
 export const FooterConfig = {
   paragraph: { type: "text" },
+  companyName: { type: "text" },
   logoImageUrl: {
     type: "text",
+  },
+  logoImageSvg: {
+    type: "textarea",
   },
   links: {
     type: "array",

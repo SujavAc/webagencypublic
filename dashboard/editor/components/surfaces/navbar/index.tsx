@@ -7,22 +7,27 @@ import { UserType, useUserAuth } from "@/database/authentication/authContext";
 import ThemeToggler from "../../../../../components/Header/ThemeToggler";
 
 import { Menu } from "@/types/menu";
+import PurifyText from "../../common/PurifyText";
 
 interface HeaderProps {
   menuData: Menu[];
   logoImageUrl: string;
+  logoImageSvg: string;
+  isAuthemticationRequired: boolean;
 }
 
 const Header = (props: HeaderProps) => {
-  const { menuData, logoImageUrl } = props;
+  const { menuData, logoImageUrl, logoImageSvg, isAuthemticationRequired } =
+    props;
   // Navbar toggle
   const [navbarOpen, setNavbarOpen] = useState(false);
   const navbarToggleHandler = () => {
     setNavbarOpen(!navbarOpen);
   };
+
   const navRef = useRef(null);
   const { user } = useUserAuth();
-  const isAdminUser = user?.uid && user?.userRole === UserType.ADMIN;
+  const isAdminUser = user.uid && user.userRole === UserType.ADMIN;
 
   // Sticky Navbar
   const [sticky, setSticky] = useState(false);
@@ -33,9 +38,11 @@ const Header = (props: HeaderProps) => {
       setSticky(false);
     }
   };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (navRef.current && !navRef.current.contains(event.target)) {
+        console.log("true");
         setNavbarOpen(false);
       }
     };
@@ -72,33 +79,46 @@ const Header = (props: HeaderProps) => {
         <div className="container">
           <div className="relative -mx-4 flex items-center justify-between">
             <div className="max-w-full px-4 xl:mr-12">
-              <Link
-                href="/"
-                className={`header-logo block w-full ${
-                  sticky ? "py-5 lg:py-2" : "py-2"
-                } `}
-              >
-                <Image
-                  src={logoImageUrl || "/images/logo/logo-2.svg"}
-                  alt="logo"
-                  width={100}
-                  height={10}
-                  className="dark:hidden"
-                />
-                <Image
-                  src={logoImageUrl || "/images/logo/logo.svg"}
-                  alt="logo"
-                  width={100}
-                  height={30}
-                  className="hidden dark:block"
-                />
-              </Link>
+              {logoImageSvg && (
+                <Link
+                  href="/"
+                  className={`header-logo block w-full ${
+                    sticky ? "py-5 lg:py-2" : "py-2"
+                  } `}
+                >
+                  <PurifyText text={logoImageSvg} />
+                </Link>
+              )}
+              {logoImageUrl && (
+                <Link
+                  href="/"
+                  className={`header-logo block w-full ${
+                    sticky ? "py-5 lg:py-2" : "py-2"
+                  } `}
+                >
+                  <Image
+                    src={logoImageUrl || "/images/logo/logo-2.svg"}
+                    alt="logo"
+                    width={100}
+                    height={10}
+                    className="dark:hidden"
+                  />
+                  <Image
+                    src={logoImageUrl || "/images/logo/logo.svg"}
+                    alt="logo"
+                    width={100}
+                    height={30}
+                    className="hidden dark:block"
+                  />
+                </Link>
+              )}
             </div>
             <div className="flex w-full items-center justify-between px-4">
               <div>
                 <button
                   onClick={navbarToggleHandler}
                   id="navbarToggler"
+                  ref={navRef}
                   aria-label="Mobile Menu"
                   className="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
                 >
@@ -119,7 +139,6 @@ const Header = (props: HeaderProps) => {
                   />
                 </button>
                 <nav
-                  ref={navRef}
                   id="navbarCollapse"
                   className={`navbar absolute right-0 z-30 w-[250px] rounded border-[.5px] border-body-color/50 bg-white px-6 py-4 duration-300 dark:border-body-color/20 dark:bg-dark lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${
                     navbarOpen
@@ -133,9 +152,8 @@ const Header = (props: HeaderProps) => {
                         {menuItem?.path ? (
                           <Link
                             href={menuItem?.path || ""}
-                            onClick={navbarToggleHandler}
                             className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${
-                              usePathName === menuItem.path
+                              usePathName === `${menuItem.path}/`
                                 ? "text-primary dark:text-white"
                                 : "text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             }`}
@@ -174,50 +192,58 @@ const Header = (props: HeaderProps) => {
                                   {submenuItem?.title}
                                 </Link>
                               ))}
-                              {isAdminUser && (
-                                <Link
-                                  href={"/dashboard"}
-                                  className="block rounded py-2.5 text-sm text-dark hover:text-primary dark:text-white/70 dark:hover:text-white lg:px-3"
-                                >
-                                  Dashboard
-                                </Link>
-                              )}
-                              {!isAdminUser && (
-                                <Link
-                                  href={"/signin"}
-                                  className="block rounded py-2.5 text-sm text-dark hover:text-primary dark:text-white/70 dark:hover:text-white lg:px-3"
-                                >
-                                  SignIn
-                                </Link>
+                              {isAuthemticationRequired && (
+                                <>
+                                  {isAdminUser && (
+                                    <Link
+                                      href={"/dashboard/"}
+                                      className="block rounded py-2.5 text-sm text-dark hover:text-primary dark:text-white/70 dark:hover:text-white lg:px-3"
+                                    >
+                                      Dashboard
+                                    </Link>
+                                  )}
+                                  {!isAdminUser && (
+                                    <Link
+                                      href={"/signin/"}
+                                      className="block rounded py-2.5 text-sm text-dark hover:text-primary dark:text-white/70 dark:hover:text-white lg:px-3"
+                                    >
+                                      SignIn
+                                    </Link>
+                                  )}
+                                </>
                               )}
                             </div>
                           </>
                         )}
                       </li>
                     ))}
-                    {isAdminUser && (
-                      <Link
-                        href={"/dashboard"}
-                        className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${
-                          usePathName === "/dashboard"
-                            ? "text-primary dark:text-white"
-                            : "text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                        }`}
-                      >
-                        Dashboard
-                      </Link>
-                    )}
-                    {!isAdminUser && (
-                      <Link
-                        href={"/signin"}
-                        className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${
-                          usePathName === "/signin"
-                            ? "text-primary dark:text-white"
-                            : "text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                        }`}
-                      >
-                        SignIn
-                      </Link>
+                    {isAuthemticationRequired && (
+                      <>
+                        {isAdminUser && (
+                          <Link
+                            href={"/dashboard"}
+                            className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${
+                              usePathName === "/dashboard/"
+                                ? "text-primary dark:text-white"
+                                : "text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                            }`}
+                          >
+                            Dashboard
+                          </Link>
+                        )}
+                        {!isAdminUser && (
+                          <Link
+                            href={"/signin"}
+                            className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${
+                              usePathName === "/signin/"
+                                ? "text-primary dark:text-white"
+                                : "text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                            }`}
+                          >
+                            SignIn
+                          </Link>
+                        )}
+                      </>
                     )}
                   </ul>
                 </nav>
