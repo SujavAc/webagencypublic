@@ -2,6 +2,12 @@
   "boxShadow": {
     "type": "text"
   },
+  "backgroundColor": {
+    "type": "text"
+  },
+  "color": {
+    "type": "text"
+  },
   "width": {
     "type": "text"
   },

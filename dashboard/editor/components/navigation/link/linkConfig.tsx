@@ -12,6 +12,7 @@ export const LinkConfig = {
       { label: "Primary", value: "primary" },
       { label: "Secondary", value: "secondary" },
       { label: "Error", value: "error" },
+      { label: "Success", value: "success" },
     ],
   },
   underline: {

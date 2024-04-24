@@ -17,11 +17,6 @@ export const MenuConfig = {
       icon: { type: "text" },
       href: { type: "text" },
     },
-    defaultItemProps: {
-      icon: "",
-      label: "",
-      href: "",
-    },
   },
   anchorOrigin: {
     type: "object",

@@ -42,7 +42,6 @@ const Header = (props: HeaderProps) => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (navRef.current && !navRef.current.contains(event.target)) {
-        console.log("true");
         setNavbarOpen(false);
       }
     };

@@ -164,6 +164,22 @@ export const puckEditorConfig = {
         justifyContent: FlexProperties().justifyContent,
         alignItems: FlexProperties().alignItems,
       },
+      defaultProps: {
+        columnSpacing: {
+          xs: 2,
+          sm: 2,
+          md: 4,
+          lg: 4,
+        },
+        rowSpacing: {
+          xs: 2,
+          sm: 2,
+          md: 4,
+          lg: 4,
+        },
+        spacing: 2,
+        wrap: "nowrap",
+      },
       render: (fields) => {
         return <GridLayout {...fields} />;
       },
@@ -187,10 +203,36 @@ export const puckEditorConfig = {
         noOfItems: [
           {
             title: "item",
-            sx: 12,
+            xs: 12,
             sm: 6,
             md: 4,
             lg: 3,
+            sx: {
+              display: {
+                xs: "flex",
+                sm: "flex",
+                md: "flex",
+                lg: "flex",
+              },
+              flexDirection: {
+                xs: "column",
+                sm: "column",
+                md: "row",
+                lg: "row",
+              },
+              flexWrap: {
+                xs: "wrap",
+                sm: "wrap",
+                md: "nowrap",
+                lg: "nowrap",
+              },
+              gap: {
+                xs: 2,
+                sm: 2,
+                md: 3,
+                lg: 3,
+              }
+            },
           },
         ],
       },
@@ -241,6 +283,34 @@ export const puckEditorConfig = {
     Box: {
       fields: {
         ...BoxConfig,
+      },
+      defaultProps: {
+        sx: {
+          display: {
+            xs: "flex",
+            sm: "flex",
+            md: "flex",
+            lg: "flex",
+          },
+          flexDirection: {
+            xs: "column",
+            sm: "column",
+            md: "row",
+            lg: "row",
+          },
+          flexWrap: {
+            xs: "wrap",
+            sm: "wrap",
+            md: "nowrap",
+            lg: "nowrap",
+          },
+          gap: {
+            xs: 2,
+            sm: 2,
+            md: 3,
+            lg: 3,
+          }
+        },
       },
       render: (fields) => {
         return <BoxContainer {...fields} />;
@@ -334,6 +404,63 @@ export const puckEditorConfig = {
           },
         },
       },
+      defaultProps: {
+        noOfItems: [
+          {title: "item1"}
+        ],
+        stackProps: {
+          direction: {
+            xs: "column",
+            sm: "column",
+            md: "row",
+            lg: "row",
+          },
+          alignItems: {
+            xs: "flex-start",
+            sm: "flex-start",
+            md: "center",
+            lg: "center",
+          },
+          justifyContent: {
+            xs: "flex-start",
+            sm: "flex-start",
+            md: "center",
+            lg: "center",
+          },
+          spacing: {
+            xs: 2,
+            sm: 2,
+            md: 3,
+            lg: 3,
+          },
+          sx: {
+            display: {
+              xs: "flex",
+              sm: "flex",
+              md: "flex",
+              lg: "flex",
+            },
+            flexDirection: {
+              xs: "column",
+              sm: "column",
+              md: "row",
+              lg: "row",
+            },
+            flexWrap: {
+              xs: "wrap",
+              sm: "wrap",
+              md: "nowrap",
+              lg: "nowrap",
+            },
+            gap: {
+              xs: 2,
+              sm: 2,
+              md: 3,
+              lg: 3,
+            }
+          },
+        },
+      },
       render: ({ noOfItems, stackProps }) => {
         return <StackLayout stackProps={stackProps} noOfItems={noOfItems} />;
       },
@@ -343,6 +470,15 @@ export const puckEditorConfig = {
     Button: {
       fields: {
         ...ButtonWrapperConfig,
+      },
+      defaultProps: {
+        disabled: false,
+        disableElevation: false,
+        fullWidth: false,
+        href: "",
+        variant: "contained",
+        color: "primary",
+        size: "medium",
       },
       render: (fields) => {
         return <ButtonWrapper {...fields} />;
@@ -355,6 +491,25 @@ export const puckEditorConfig = {
       fields: {
         ...MenuConfig,
       },
+      defaultProps: {
+        buttonMenu: true,
+        buttonLabel: "test button",
+        menuItems: [
+          {
+            icon: "",
+            label: "",
+            href: "",
+          }
+        ],
+        anchorOrigin: {
+          vertical: "left",
+          horizontal: "bottom",
+        },
+        transformOrigin: {
+          vertical: "left",
+          horizontal: "bottom",
+        }
+      },
       render: (fields) => {
         return <MenuComponent {...fields} />;
       },
@@ -362,6 +517,14 @@ export const puckEditorConfig = {
     Link: {
       fields: {
         ...LinkConfig,
+      },
+      defaultProps: {
+        linkLabel: "test button",
+        href: "/",
+        color: "primary",
+        underline: "always",
+        variant: "button",
+        target: "_self",
       },
       render: (fields) => {
         return <Links {...fields} />;
@@ -489,6 +652,29 @@ export const puckEditorConfig = {
           },
         },
       },
+      defaultProps: {
+        value: {
+          lat: -27.4459816,
+          lng: 152.9218581
+        },
+        height: 500,
+        zoomLevel: 15,
+        openInfoBox: false,
+        sectionTitleProps: {
+          title: "Please customise your info box title",
+          paragraph: "Please customise your info box paragraph",
+          width: "100%",
+          md: "16px",
+          align: "left",
+        },
+        linkOnInfoBox : {
+          linkLabel: "Get Direction",
+          href: "/",
+          color: "primary",
+          underline: "always",
+          variant: "button"
+        }
+      },
       render: (fields) => {
         return <Map {...fields} />;
       },
@@ -506,12 +692,6 @@ export const puckEditorConfig = {
     Typography: {
       fields: {
         ...TypographyConfig,
-        sx: {
-          type: "object",
-          objectFields: {
-            ...FlexProperties(),
-          },
-        },
       },
       render: (fields) => {
         return <TypographyComponenet {...fields} />;
@@ -593,6 +773,7 @@ export const puckEditorConfig = {
       defaultProps: {
         autoplay: true,
         loop: true,
+        muted: true,
       },
       render: (fields) => {
         return <VideoPlayer {...fields} />;

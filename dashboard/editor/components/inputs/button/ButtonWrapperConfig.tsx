@@ -1,4 +1,5 @@
 import { FlexProperties } from "@/dashboard/editor/css/flex";
+import SpacingProperties from "@/dashboard/editor/css/spacing.json";
 
 export const ButtonWrapperConfig = {
   className: { type: "textarea" },
@@ -29,7 +30,7 @@ export const ButtonWrapperConfig = {
   variant: {
     type: "select",
     options: [
-      { value: "filled", label: "Filled" },
+      { value: "contained", label: "Contained" },
       { value: "outlined", label: "Outlined" },
       { value: "standard", label: "Standard" },
     ],
@@ -61,7 +62,7 @@ export const ButtonWrapperConfig = {
   sx: {
     type: "object",
     objectFields: {
-      ...FlexProperties(),
+      ...SpacingProperties
     },
   },
 };
