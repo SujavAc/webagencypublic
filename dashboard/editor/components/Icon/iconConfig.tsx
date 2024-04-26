@@ -1,4 +1,4 @@
-import { FlexProperties } from "../../css/flex";
+import Spacing from "../../css/spacing.json";
 
 export const IconConfig = {
   className: { type: "textarea" },
@@ -33,7 +33,7 @@ export const IconConfig = {
   sx: {
     type: "object",
     objectFields: {
-      ...FlexProperties(),
+      ...Spacing,
     },
   },
 };

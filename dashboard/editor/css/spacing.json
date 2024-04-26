@@ -440,5 +440,165 @@
         "type": "number"
       }
     }
+  },
+  "boxShadow": {
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "text"
+      },
+      "sm": {
+        "type": "text"
+      },
+      "md": {
+        "type": "text"
+      },
+      "lg": {
+        "type": "text"
+      }
+    }
+  },
+  "backgroundColor": {
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "text"
+      },
+      "sm": {
+        "type": "text"
+      },
+      "md": {
+        "type": "text"
+      },
+      "lg": {
+        "type": "text"
+      }
+    }
+  },
+  "color": {
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "text"
+      },
+      "sm": {
+        "type": "text"
+      },
+      "md": {
+        "type": "text"
+      },
+      "lg": {
+        "type": "text"
+      }
+    }
+  },
+  "width": {
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
+  },
+  "minWidth": {
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
+  },
+  "maxWidth": {
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
+  },
+  "height": {
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
+  },
+  "maxHeight": {
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
+  },
+  "minHeight": {
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
+  },
+  "boxSizing": {
+    "type": "select",
+    "options": [
+      { "label": "Content Box", "value": "content-box" },
+      { "label": "Border Box", "value": "border-box" }
+    ]
   }
 }

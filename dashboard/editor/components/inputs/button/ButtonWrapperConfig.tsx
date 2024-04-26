@@ -1,9 +1,15 @@
-import { FlexProperties } from "@/dashboard/editor/css/flex";
 import SpacingProperties from "@/dashboard/editor/css/spacing.json";
 
 export const ButtonWrapperConfig = {
   className: { type: "textarea" },
   disabled: {
+    type: "radio",
+    options: [
+      { label: "False", value: false },
+      { label: "True", value: true },
+    ],
+  },
+  iconButton: {
     type: "radio",
     options: [
       { label: "False", value: false },
@@ -62,7 +68,7 @@ export const ButtonWrapperConfig = {
   sx: {
     type: "object",
     objectFields: {
-      ...SpacingProperties
+      ...SpacingProperties,
     },
   },
 };

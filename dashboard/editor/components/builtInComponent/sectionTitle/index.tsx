@@ -5,7 +5,7 @@ const SectionTitleComponent = ({
   paragraph,
   width = "570px",
   align,
-  mb = "100px",
+  mb = "50px",
 }: {
   title: string;
   paragraph?: string;

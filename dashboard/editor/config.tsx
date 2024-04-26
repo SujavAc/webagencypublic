@@ -49,6 +49,13 @@ import CustomHtml from "./components/builtInComponent/customHTML";
 import { googleMapConfig } from "./components/builtInComponent/GoogleMap/googleMapConfig";
 import Map from "./components/builtInComponent/GoogleMap";
 import { SectionTitleConfig } from "./components/builtInComponent/sectionTitle/sectionTitleConfig";
+import { CarouselConfig } from "./components/layout/Carousel/CarouselConfig";
+import Carousel from "./components/layout/Carousel";
+import CarouselItem from "./components/layout/Carousel/CarouselItem";
+import { SocialShare } from "./components/builtInComponent/SocialShare";
+import { SocialShareConfig } from "./components/builtInComponent/SocialShare/socialShareConfig";
+import CopyTextComponent from "./components/builtInComponent/Copy";
+import { CopyConfig } from "./components/builtInComponent/Copy/copyConfig";
 
 // Create Puck component config
 export const puckEditorConfig = {
@@ -62,6 +69,8 @@ export const puckEditorConfig = {
         "StackLayout",
         "Box",
         "Tabs",
+        "Carousel",
+        "CarouselItem",
       ],
       defaultExpanded: false, // Collapse this category by default
     },
@@ -78,6 +87,8 @@ export const puckEditorConfig = {
         "Icon",
         "CustomHTML",
         "Map",
+        "Share",
+        "CopyText",
       ],
       defaultExpanded: false, // Collapse this category by default
     },
@@ -231,7 +242,7 @@ export const puckEditorConfig = {
                 sm: 2,
                 md: 3,
                 lg: 3,
-              }
+              },
             },
           },
         ],
@@ -309,7 +320,7 @@ export const puckEditorConfig = {
             sm: 2,
             md: 3,
             lg: 3,
-          }
+          },
         },
       },
       render: (fields) => {
@@ -405,9 +416,7 @@ export const puckEditorConfig = {
         },
       },
       defaultProps: {
-        noOfItems: [
-          {title: "item1"}
-        ],
+        noOfItems: [{ title: "item1" }],
         stackProps: {
           direction: {
             xs: "column",
@@ -457,12 +466,35 @@ export const puckEditorConfig = {
               sm: 2,
               md: 3,
               lg: 3,
-            }
+            },
           },
         },
       },
       render: ({ noOfItems, stackProps }) => {
         return <StackLayout stackProps={stackProps} noOfItems={noOfItems} />;
+      },
+    },
+    Carousel: {
+      fields: {
+        ...CarouselConfig,
+      },
+      defaultProps: {
+        className: "",
+        options: {
+          label: "custom carousel",
+          type: "loop",
+          perPage: 2,
+          rewind: true,
+        },
+      },
+      render: (fields) => {
+        return <Carousel {...fields} />;
+      },
+    },
+    CarouselItem: {
+      fields: {},
+      render: (fields) => {
+        return <CarouselItem {...fields} />;
       },
     },
 
@@ -499,7 +531,7 @@ export const puckEditorConfig = {
             icon: "",
             label: "",
             href: "",
-          }
+          },
         ],
         anchorOrigin: {
           vertical: "left",
@@ -508,7 +540,7 @@ export const puckEditorConfig = {
         transformOrigin: {
           vertical: "left",
           horizontal: "bottom",
-        }
+        },
       },
       render: (fields) => {
         return <MenuComponent {...fields} />;
@@ -655,7 +687,7 @@ export const puckEditorConfig = {
       defaultProps: {
         value: {
           lat: -27.4459816,
-          lng: 152.9218581
+          lng: 152.9218581,
         },
         height: 500,
         zoomLevel: 15,
@@ -667,16 +699,49 @@ export const puckEditorConfig = {
           md: "16px",
           align: "left",
         },
-        linkOnInfoBox : {
+        linkOnInfoBox: {
           linkLabel: "Get Direction",
           href: "/",
           color: "primary",
           underline: "always",
-          variant: "button"
-        }
+          variant: "button",
+        },
       },
       render: (fields) => {
         return <Map {...fields} />;
+      },
+    },
+    Share: {
+      fields: {
+        ...SocialShareConfig,
+      },
+      defaultProps: {
+        customIcon: false,
+        enableShareCount: true,
+        platform: "FacebookShareButton",
+        socialPlatformIconProps: { round: true, size: 64 },
+        socialPlatformDataProps: {
+          url: "test",
+          quote: "don;t know",
+          hashtag: "test hashtag",
+        },
+      },
+      render: (fields) => {
+        return <SocialShare {...fields} />;
+      },
+    },
+    CopyText: {
+      fields: {
+        ...CopyConfig,
+      },
+      defaultProps: {
+        textToCopy: "Copy Text",
+        iconButton: true,
+        color: "primary",
+        size: "medium",
+      },
+      render: (fields) => {
+        return <CopyTextComponent {...fields} />;
       },
     },
 
