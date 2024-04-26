@@ -64,6 +64,7 @@ const FormWrapperV2 = (props: IFormWrapperProps) => {
             key="button"
             variant="outlined"
             type="submit"
+            startIcon="AdsClick"
             disabled={Object.keys(formState.errors).length >= 1}
           >
             Submit
@@ -71,6 +72,7 @@ const FormWrapperV2 = (props: IFormWrapperProps) => {
           <ButtonComponent
             key="clearbutton"
             variant="outlined"
+            startIcon="Clear"
             onClick={() => reset()}
           >
             Clear

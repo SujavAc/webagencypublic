@@ -8,10 +8,12 @@ interface StackLayoutProps {
 }
 
 export default function StackLayout(props: StackLayoutProps) {
-  const { id, noOfItems, stackProps, ...rest } = props;
+  const { id, noOfItems, stackProps } = props;
   return (
     <div id={id}>
-      <Stack {...rest}>{noOfItems && noOfItems?.map((item) => item)}</Stack>
+      <Stack {...stackProps}>
+        {noOfItems && noOfItems?.map((item) => item)}
+      </Stack>
     </div>
   );
 }
