@@ -1,6 +1,7 @@
 import SpacingProperties from "@/dashboard/editor/css/spacing.json";
 
 export const ButtonWrapperConfig = {
+  id: { type: "text" },
   className: { type: "textarea" },
   disabled: {
     type: "radio",

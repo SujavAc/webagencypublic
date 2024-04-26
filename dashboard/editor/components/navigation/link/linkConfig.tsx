@@ -1,4 +1,5 @@
 export const LinkConfig = {
+  id: { type: "text" },
   linkLabel: {
     type: "text",
   },

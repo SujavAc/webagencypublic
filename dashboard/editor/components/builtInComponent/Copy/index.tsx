@@ -15,7 +15,7 @@ const CopyTextComponent = (props: CopyTextProps) => {
       .then(() => {
         setCopied(true);
         console.log(textToCopy);
-        setTimeout(() => setCopied(false), 2000); // Reset copied state after 2 seconds
+        setTimeout(() => setCopied(false), 1000); // Reset copied state after 1 seconds
       })
       .catch((err) => console.error("Failed to copy:", err));
   };

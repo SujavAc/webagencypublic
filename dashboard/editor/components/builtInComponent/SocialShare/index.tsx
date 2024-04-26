@@ -56,7 +56,7 @@ export const SocialShare = (props: SocialShareProps) => {
   return (
     <Button {...socialPlatformDataProps}>
       {customIcon ? (
-        <DropZone zone={`Share Zone wrapper`} />
+        <DropZone zone={`Share Zone wrapper`} style={{ width: "200px" }} />
       ) : (
         SocialShareIconMap({
           platformButton: platform,

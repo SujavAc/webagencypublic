@@ -6,6 +6,7 @@ import { useAppDispatch } from "@/store/hook";
 import addDocument from "@/database/operation/action";
 
 interface EditorFormProps {
+  id: string;
   databasePath: string;
   formTitle: string;
   storeValueAs?: string;
@@ -17,6 +18,7 @@ interface EditorFormProps {
 
 const EditorForm = (props: EditorFormProps) => {
   const {
+    id,
     databasePath,
     formTitle,
     defaultValues,
@@ -58,6 +60,7 @@ const EditorForm = (props: EditorFormProps) => {
 
   return (
     <FormBuilder
+      id={id}
       title={formTitle}
       onSubmit={handleSubmit}
       formData={formData}

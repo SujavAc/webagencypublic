@@ -3,6 +3,7 @@ import SpacingProperties from "../../../css/spacing.json";
 import TypographyProperties from "../../../css/typography.json";
 
 export const TypographyConfig = {
+  id: { type: "text" },
   className: { type: "textarea" },
   text: {
     type: "text",
@@ -67,7 +68,7 @@ export const TypographyConfig = {
       // Add more options as needed
     ],
   },
-   sx: {
+  sx: {
     type: "object",
     objectFields: {
       color: {
@@ -81,7 +82,7 @@ export const TypographyConfig = {
         ],
       },
       ...SpacingProperties,
-      ...TypographyProperties
+      ...TypographyProperties,
     },
   },
 };

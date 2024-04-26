@@ -2,6 +2,7 @@ import { IIFormBUilderFieldName } from "./formBuilder";
 import { FormRenderProps, IFormRender } from "./formRender";
 
 export type FormProps = {
+    id?: string;
     title: string;
     storeValueAs: string;
     defaultValues?: any;

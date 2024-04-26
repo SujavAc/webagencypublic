@@ -1,9 +1,6 @@
 import { useEffect } from "react";
 
 export const ManageScroll = (props) => {
-  const path = window?.location?.hash;
-  const id = path?.replace("#", "");
-
   const findElementById = (id, interval = 1000, maxAttempts = 10, callback) => {
     let attempts = 0;
 
@@ -26,6 +23,8 @@ export const ManageScroll = (props) => {
   };
 
   useEffect(() => {
+    const path = window?.location?.hash;
+    const id = path?.replace("#", "");
     findElementById(id, 1000, 10, (element) => {
       // Do something with the found element, such as scrolling to it
       const header = document?.getElementsByTagName("header");
@@ -36,6 +35,6 @@ export const ManageScroll = (props) => {
         behavior: "smooth",
       });
     });
-  }, [id, path]);
+  }, []);
   return <>{props?.children}</>;
 };

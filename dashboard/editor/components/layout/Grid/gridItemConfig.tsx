@@ -1,20 +1,20 @@
 import { FlexProperties } from "@/dashboard/editor/css/flex";
 import Spacing from "@/dashboard/editor/css/spacing.json";
 
-export const AccordionConfig = {
+export const GridItemConfig = {
+  id: { type: "text" },
   className: { type: "textarea" },
-  heading: {
-    type: "text",
+  xs: {
+    type: "number",
   },
-  headingIcon: {
-    type: "text",
+  sm: {
+    type: "number",
   },
-  defaultOpen: {
-    type: "radio",
-    options: [
-      { label: "False", value: false },
-      { label: "True", value: true },
-    ],
+  md: {
+    type: "number",
+  },
+  lg: {
+    type: "number",
   },
   sx: {
     type: "object",

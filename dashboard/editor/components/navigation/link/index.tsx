@@ -10,7 +10,7 @@ export interface LinksProps extends MUILinkProps {
 export default function Links(props: LinksProps) {
   const { linkLabel, href, ...rest } = props;
   return (
-    <NextLink href={href} rel="noopener" target={rest?.target}>
+    <NextLink href={href || ""} rel="noopener" target={rest?.target}>
       <MUILink {...rest} component="span">
         {linkLabel ? linkLabel : <DropZone zone="Link Zone" />}
       </MUILink>

@@ -1,4 +1,5 @@
 export const CarouselConfig = {
+  id: { type: "text" },
   className: { type: "textarea" },
   options: {
     type: "object",

@@ -1,10 +1,17 @@
-import * as React from 'react';
-import Stack from '@mui/material/Stack';
+import * as React from "react";
+import { Stack, StackProps } from "@mui/material";
 
-export default function StackLayout({noOfItems, stackProps}) {
+interface StackLayoutProps {
+  id?: string;
+  noOfItems?: any;
+  stackProps?: StackProps;
+}
+
+export default function StackLayout(props: StackLayoutProps) {
+  const { id, noOfItems, stackProps, ...rest } = props;
   return (
-    <Stack {...stackProps}>
-        {noOfItems && noOfItems?.map((item) => item)}
-    </Stack>
+    <div id={id}>
+      <Stack {...rest}>{noOfItems && noOfItems?.map((item) => item)}</Stack>
+    </div>
   );
 }

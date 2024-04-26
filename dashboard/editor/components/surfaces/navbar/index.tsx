@@ -10,6 +10,7 @@ import { Menu } from "@/types/menu";
 import PurifyText from "../../common/PurifyText";
 
 interface HeaderProps {
+  id: string;
   menuData: Menu[];
   logoImageUrl: string;
   logoImageSvg: string;
@@ -17,7 +18,7 @@ interface HeaderProps {
 }
 
 const Header = (props: HeaderProps) => {
-  const { menuData, logoImageUrl, logoImageSvg, isAuthemticationRequired } =
+  const { id, menuData, logoImageUrl, logoImageSvg, isAuthemticationRequired } =
     props;
   // Navbar toggle
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -74,6 +75,7 @@ const Header = (props: HeaderProps) => {
             ? "fixed z-[9999] bg-white !bg-opacity-80 shadow-sticky backdrop-blur-sm transition dark:bg-gray-dark dark:shadow-sticky-dark"
             : "absolute bg-transparent"
         }`}
+        id={id}
       >
         <div className="container">
           <div className="relative -mx-4 flex items-center justify-between">

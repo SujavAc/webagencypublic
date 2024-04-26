@@ -1,19 +1,22 @@
 import { FlexProperties } from "@/dashboard/editor/css/flex";
 import Spacing from "@/dashboard/editor/css/spacing.json";
 
-export const AccordionConfig = {
+export const PaperConfig = {
+  id: { type: "text" },
   className: { type: "textarea" },
-  heading: {
-    type: "text",
-  },
-  headingIcon: {
-    type: "text",
-  },
-  defaultOpen: {
+  elevation: { type: "number" },
+  square: {
     type: "radio",
     options: [
       { label: "False", value: false },
       { label: "True", value: true },
+    ],
+  },
+  variant: {
+    type: "select",
+    options: [
+      { label: "Elevation", value: "elevation" },
+      { label: "Outlined", value: "outlined" },
     ],
   },
   sx: {

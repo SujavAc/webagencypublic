@@ -2,11 +2,11 @@
 import { DropZone } from "@measured/puck";
 import React, { useRef } from "react";
 
-const VideoPlayer = ({ ...rest }) => {
+const VideoPlayer = ({ id, ...rest }) => {
   const videoRef = useRef(null);
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden" id={id}>
       <video ref={videoRef} className={`w-full`} {...rest} />
       <div className={`w-full`}>
         {!rest?.controls && (

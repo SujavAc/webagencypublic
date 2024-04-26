@@ -5,6 +5,7 @@ import FormWrapperV2 from "../../common/FormBuilder/FormWrapperV2";
 
 const FormBuilder = (props: FormProps) => {
   const {
+    id,
     title,
     onSubmit,
     defaultValues,
@@ -15,7 +16,7 @@ const FormBuilder = (props: FormProps) => {
   } = props;
 
   return (
-    <>
+    <div id={id}>
       <Typography variant="h6"> {title} </Typography>
       <FormWrapperV2
         formBuilderProps={{
@@ -29,7 +30,7 @@ const FormBuilder = (props: FormProps) => {
         onSubmit={onSubmit}
         defaultValues={defaultValues}
       />
-    </>
+    </div>
   );
 };
 export default FormBuilder;

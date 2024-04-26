@@ -1,4 +1,5 @@
 export const crudTableConfig = {
+  id: { type: "text" },
   databasePath: {
     type: "text",
   },

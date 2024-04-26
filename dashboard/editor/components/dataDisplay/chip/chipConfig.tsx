@@ -1,6 +1,7 @@
 import Spacing from "../../../css/spacing.json";
 
 export const ChipConfig = {
+  id: { type: "text" },
   className: { type: "textarea" },
   clickable: {
     type: "radio",

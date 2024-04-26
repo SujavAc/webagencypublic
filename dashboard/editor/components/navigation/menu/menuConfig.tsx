@@ -1,4 +1,5 @@
 export const MenuConfig = {
+  id: { type: "text" },
   className: { type: "textarea" },
   buttonMenu: {
     type: "radio",

@@ -1,4 +1,5 @@
 export const editorFormConfig = {
+  id: { type: "text" },
   databasePath: {
     type: "text",
   },

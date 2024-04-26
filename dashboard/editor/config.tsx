@@ -37,7 +37,7 @@ import SingleFeature from "./components/builtInComponent/singleFeature/SingleFea
 import Video from "./components/builtInComponent/video";
 import Hero from "./components/builtInComponent/Hero";
 import { FlexProperties } from "./css/flex";
-import { GridConfig } from "./components/layout/Grid/gridConfig";
+import { GridContainerConfig } from "./components/layout/Grid/gridContainerConfig";
 import CrudTable from "./components/table/CrudTable";
 import { crudTableConfig } from "./components/table/CrudTable/crudTableConfig";
 import { editorFormConfig } from "./components/table/editorForm/editorFormConfig";
@@ -56,6 +56,11 @@ import { SocialShare } from "./components/builtInComponent/SocialShare";
 import { SocialShareConfig } from "./components/builtInComponent/SocialShare/socialShareConfig";
 import CopyTextComponent from "./components/builtInComponent/Copy";
 import { CopyConfig } from "./components/builtInComponent/Copy/copyConfig";
+import { ContainerConfig } from "./components/layout/Container/containerConfig";
+import { PaperConfig } from "./components/layout/Paper/paperConfig";
+import { StackConfig } from "./components/layout/Stack/stackConfig";
+import GridContainer from "./components/layout/Grid";
+import { GridItemConfig } from "./components/layout/Grid/gridItemConfig";
 
 // Create Puck component config
 export const puckEditorConfig = {
@@ -121,36 +126,7 @@ export const puckEditorConfig = {
     PaperWrapper: {
       label: "Paper Container",
       fields: {
-        noOfItems: {
-          type: "array",
-          arrayFields: {
-            title: { type: "text" },
-          },
-          min: 1,
-          max: 5,
-        },
-        className: { type: "textarea" },
-        elevation: { type: "number" },
-        square: {
-          type: "radio",
-          options: [
-            { label: "False", value: false },
-            { label: "True", value: true },
-          ],
-        },
-        variant: {
-          type: "select",
-          options: [
-            { label: "Elevation", value: "elevation" },
-            { label: "Outlined", value: "outlined" },
-          ],
-        },
-        sx: {
-          type: "object",
-          objectFields: {
-            ...FlexProperties(),
-          },
-        },
+        ...PaperConfig,
       },
       defaultProps: {
         elevation: 5,
@@ -159,21 +135,14 @@ export const puckEditorConfig = {
           p: 2,
         },
       },
-      render: ({ noOfItems, sx, ...rest }) => {
-        return <PaperWrapper sx={sx} {...rest} noOfItems={noOfItems} />;
+      render: (fields) => {
+        return <PaperWrapper {...fields} />;
       },
     },
     GridLayout: {
       label: "Grid Container",
       fields: {
-        className: GridConfig.className,
-        columnSpacing: GridConfig.columnSpacing,
-        rowSpacing: GridConfig.rowSpacing,
-        spacing: GridConfig.spacing,
-        wrap: GridConfig.wrap,
-        direction: FlexProperties().flexDirection,
-        justifyContent: FlexProperties().justifyContent,
-        alignItems: FlexProperties().alignItems,
+        ...GridContainerConfig,
       },
       defaultProps: {
         columnSpacing: {
@@ -188,104 +157,62 @@ export const puckEditorConfig = {
           md: 4,
           lg: 4,
         },
-        spacing: 2,
-        wrap: "nowrap",
+        spacing: {
+          xs: 2,
+          sm: 2,
+          md: 4,
+          lg: 4,
+        },
       },
       render: (fields) => {
-        return <GridLayout {...fields} />;
+        return <GridContainer {...fields} />;
       },
     },
     GridItem: {
       label: "Grid Item",
       fields: {
-        noOfItems: {
-          type: "array",
-          arrayFields: {
-            title: { type: "text" },
-            xs: GridConfig.xs,
-            sm: GridConfig.sm,
-            md: GridConfig.md,
-            lg: GridConfig.lg,
-            sx: GridConfig.sx,
+        ...GridItemConfig,
+      },
+      defaultProps: {
+        xs: 12,
+        sm: 6,
+        md: 4,
+        lg: 3,
+        sx: {
+          display: {
+            xs: "flex",
+            sm: "flex",
+            md: "flex",
+            lg: "flex",
+          },
+          flexDirection: {
+            xs: "column",
+            sm: "column",
+            md: "row",
+            lg: "row",
+          },
+          flexWrap: {
+            xs: "wrap",
+            sm: "wrap",
+            md: "nowrap",
+            lg: "nowrap",
+          },
+          gap: {
+            xs: 2,
+            sm: 2,
+            md: 3,
+            lg: 3,
           },
         },
       },
-      defaultProps: {
-        noOfItems: [
-          {
-            title: "item",
-            xs: 12,
-            sm: 6,
-            md: 4,
-            lg: 3,
-            sx: {
-              display: {
-                xs: "flex",
-                sm: "flex",
-                md: "flex",
-                lg: "flex",
-              },
-              flexDirection: {
-                xs: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-              },
-              flexWrap: {
-                xs: "wrap",
-                sm: "wrap",
-                md: "nowrap",
-                lg: "nowrap",
-              },
-              gap: {
-                xs: 2,
-                sm: 2,
-                md: 3,
-                lg: 3,
-              },
-            },
-          },
-        ],
-      },
-      render: ({ noOfItems }) => {
-        return <GridItem noOfItems={noOfItems} />;
+      render: (fields) => {
+        return <GridItem {...fields} />;
       },
     },
     Container: {
       label: "Container",
       fields: {
-        className: { type: "textarea" },
-        fixed: {
-          type: "radio",
-          options: [
-            { label: "False", value: false },
-            { label: "True", value: true },
-          ],
-        },
-        maxWidth: {
-          type: "select",
-          options: [
-            { label: "XS", value: "xs" },
-            { label: "SM", value: "sm" },
-            { label: "MD", value: "md" },
-            { label: "LG", value: "lg" },
-            { label: "XL", value: "xl" },
-            { label: "None", value: false },
-          ],
-        },
-        disableGutters: {
-          type: "radio",
-          options: [
-            { label: "False", value: false },
-            { label: "True", value: true },
-          ],
-        },
-        sx: {
-          type: "object",
-          objectFields: {
-            ...FlexProperties(),
-          },
-        },
+        ...ContainerConfig,
       },
       render: (fields) => {
         return <ContainerLayout {...fields} />;
@@ -388,90 +315,62 @@ export const puckEditorConfig = {
     StackLayout: {
       label: "Stack Container",
       fields: {
-        className: { type: "textarea" },
-        noOfItems: {
-          type: "array",
-          arrayFields: {
-            title: { type: "text" },
-          },
-        },
-        stackProps: {
-          type: "object",
-          objectFields: {
-            direction: {
-              ...FlexProperties().flexDirection,
-            },
-            alignItems: FlexProperties().alignItems,
-            justifyContent: FlexProperties().justifyContent,
-            spacing: {
-              type: "number",
-            },
-            sx: {
-              type: "object",
-              objectFields: {
-                ...FlexProperties(),
-              },
-            },
-          },
-        },
+        ...StackConfig,
       },
       defaultProps: {
-        noOfItems: [{ title: "item1" }],
-        stackProps: {
-          direction: {
+        direction: {
+          xs: "column",
+          sm: "column",
+          md: "row",
+          lg: "row",
+        },
+        alignItems: {
+          xs: "flex-start",
+          sm: "flex-start",
+          md: "center",
+          lg: "center",
+        },
+        justifyContent: {
+          xs: "flex-start",
+          sm: "flex-start",
+          md: "center",
+          lg: "center",
+        },
+        spacing: {
+          xs: 2,
+          sm: 2,
+          md: 3,
+          lg: 3,
+        },
+        sx: {
+          display: {
+            xs: "flex",
+            sm: "flex",
+            md: "flex",
+            lg: "flex",
+          },
+          flexDirection: {
             xs: "column",
             sm: "column",
             md: "row",
             lg: "row",
           },
-          alignItems: {
-            xs: "flex-start",
-            sm: "flex-start",
-            md: "center",
-            lg: "center",
+          flexWrap: {
+            xs: "wrap",
+            sm: "wrap",
+            md: "nowrap",
+            lg: "nowrap",
           },
-          justifyContent: {
-            xs: "flex-start",
-            sm: "flex-start",
-            md: "center",
-            lg: "center",
-          },
-          spacing: {
+          gap: {
             xs: 2,
             sm: 2,
             md: 3,
             lg: 3,
           },
-          sx: {
-            display: {
-              xs: "flex",
-              sm: "flex",
-              md: "flex",
-              lg: "flex",
-            },
-            flexDirection: {
-              xs: "column",
-              sm: "column",
-              md: "row",
-              lg: "row",
-            },
-            flexWrap: {
-              xs: "wrap",
-              sm: "wrap",
-              md: "nowrap",
-              lg: "nowrap",
-            },
-            gap: {
-              xs: 2,
-              sm: 2,
-              md: 3,
-              lg: 3,
-            },
-          },
         },
       },
-      render: ({ noOfItems, stackProps }) => {
-        return <StackLayout stackProps={stackProps} noOfItems={noOfItems} />;
+      render: (fields) => {
+        return <StackLayout {...fields} />;
       },
     },
     Carousel: {
@@ -567,6 +466,9 @@ export const puckEditorConfig = {
     Hero: {
       label: "Hero Component",
       fields: {
+        id: {
+          type: "text",
+        },
         title: {
           type: "text",
         },
@@ -617,6 +519,9 @@ export const puckEditorConfig = {
     Feature: {
       label: "Feature Component",
       fields: {
+        id: {
+          type: "text",
+        },
         icon: {
           type: "textarea",
         },
@@ -634,6 +539,9 @@ export const puckEditorConfig = {
     Video: {
       label: "Video Component",
       fields: {
+        id: {
+          type: "text",
+        },
         iframeId: {
           type: "text",
         },
@@ -723,8 +631,8 @@ export const puckEditorConfig = {
         socialPlatformDataProps: {
           url: window?.location?.href || "url",
           title: window?.document?.title || "title",
-          quote: "don;t know",
-          hashtag: "test hashtag",
+          quote: "don't know",
+          hashtag: "hashtag",
         },
       },
       render: (fields) => {
@@ -805,6 +713,7 @@ export const puckEditorConfig = {
 
     CustomVideo: {
       fields: {
+        id: { type: "text" },
         src: { type: "text" },
         poster: { type: "text" },
         controls: {
