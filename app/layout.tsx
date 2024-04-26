@@ -12,6 +12,7 @@ import store from "@/store/reducer/rootReducer";
 import MySnackbarStack from "@/components/Snackbar";
 import { UserAuthContextProvider } from "@/database/authentication/authContext";
 import "react-quill/dist/quill.snow.css";
+import { ManageScroll } from "@/utils/anchorScroll";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,18 +31,20 @@ export default function RootLayout({
 
       <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>
         <ReduxProvider store={store}>
-          <Providers>
-            <MUIThemeProvider>
-              <UserAuthContextProvider>
-                <MySnackbarStack>
-                  <AppRouterCacheProvider options={{ key: "css" }}>
-                    {children}
-                    <ScrollToTop />
-                  </AppRouterCacheProvider>
-                </MySnackbarStack>
-              </UserAuthContextProvider>
-            </MUIThemeProvider>
-          </Providers>
+          <ManageScroll>
+            <Providers>
+              <MUIThemeProvider>
+                <UserAuthContextProvider>
+                  <MySnackbarStack>
+                    <AppRouterCacheProvider options={{ key: "css" }}>
+                      {children}
+                      <ScrollToTop />
+                    </AppRouterCacheProvider>
+                  </MySnackbarStack>
+                </UserAuthContextProvider>
+              </MUIThemeProvider>
+            </Providers>
+          </ManageScroll>
         </ReduxProvider>
       </body>
     </html>

@@ -721,7 +721,8 @@ export const puckEditorConfig = {
         platform: "FacebookShareButton",
         socialPlatformIconProps: { round: true, size: 64 },
         socialPlatformDataProps: {
-          url: "test",
+          url: window?.location?.href || "url",
+          title: window?.document?.title || "title",
           quote: "don;t know",
           hashtag: "test hashtag",
         },
@@ -735,7 +736,7 @@ export const puckEditorConfig = {
         ...CopyConfig,
       },
       defaultProps: {
-        textToCopy: "Copy Text",
+        textToCopy: window?.location?.href || window?.document?.title || "text",
         iconButton: true,
         color: "primary",
         size: "medium",

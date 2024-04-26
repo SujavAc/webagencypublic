@@ -1,4 +1,4 @@
-import PurifyText from "@/dashboard/editor/components/common/PurifyText";
+import PurifyText from "../../common/PurifyText";
 
 const SectionTitleComponent = ({
   title,
@@ -6,15 +6,17 @@ const SectionTitleComponent = ({
   width = "570px",
   align,
   mb = "50px",
+  id,
 }: {
   title: string;
   paragraph?: string;
   width?: string;
   align?: string;
   mb?: string;
+  id?: string;
 }) => {
   return (
-    <div className="container">
+    <div className="container" id={id}>
       <div
         className={`wow fadeInUp w-full ${align}`}
         data-wow-delay=".1s"
