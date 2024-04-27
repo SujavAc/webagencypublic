@@ -8,6 +8,7 @@ export interface MapData {
 }
 
 export interface MapProps {
+  id?: string;
   height: number;
   value?: MapData;
   zoomLevel?: number;

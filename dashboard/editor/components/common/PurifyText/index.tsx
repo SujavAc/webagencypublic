@@ -3,7 +3,7 @@ import DOMPurify from "dompurify";
 
 interface PurifyTextProps {
   text?: string;
-  trim?: number;
+  id?: string;
 }
 function CreateMarkup(html: any) {
   return {
@@ -12,7 +12,7 @@ function CreateMarkup(html: any) {
 }
 
 export default function PurifyText(props: PurifyTextProps) {
-  const { text } = props;
+  const { text, id } = props;
   if (!text) {
     return null;
   }
@@ -20,6 +20,7 @@ export default function PurifyText(props: PurifyTextProps) {
     <div
       dangerouslySetInnerHTML={CreateMarkup(text)}
       className="fill-current text-base font-medium leading-relaxed sm:text-lg sm:leading-relaxed"
+      id={id}
     ></div>
   );
 }

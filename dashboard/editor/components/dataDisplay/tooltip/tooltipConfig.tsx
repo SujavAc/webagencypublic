@@ -1,6 +1,7 @@
 import { FlexProperties } from "@/dashboard/editor/css/flex";
 
 export const ToolTipConfig = {
+  id: { type: "text" },
   className: { type: "textarea" },
   title: {
     type: "text",

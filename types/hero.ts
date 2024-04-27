@@ -1,7 +1,7 @@
 import { Link } from "@/types/Link";
 
 export type Hero = {
-  id: number;
+  id: string;
   title: string;
   description: string;
   path: string;

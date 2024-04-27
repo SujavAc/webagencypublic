@@ -1,4 +1,7 @@
+import Spacing from "../../../css/spacing.json";
+
 export const ChipConfig = {
+  id: { type: "text" },
   className: { type: "textarea" },
   clickable: {
     type: "radio",
@@ -50,5 +53,11 @@ export const ChipConfig = {
       { value: "outlined", label: "Outlined" },
       // Add more options as needed
     ],
+  },
+  sx: {
+    type: "object",
+    objectFields: {
+      ...Spacing,
+    },
   },
 };

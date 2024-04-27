@@ -1,4 +1,5 @@
 export const NavbarConfig = {
+  id: { type: "text" },
   menuData: {
     type: "array",
     arrayFields: {

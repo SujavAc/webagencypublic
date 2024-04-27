@@ -3,6 +3,7 @@ import Link from "next/link";
 import PurifyText from "../../common/PurifyText";
 
 interface FooterProps {
+  id: string;
   paragraph: string;
   companyName: string;
   logoImageUrl?: string;
@@ -22,13 +23,15 @@ interface Menu {
 }
 
 const Footer = (props: FooterProps) => {
-  const { paragraph, links, logoImageUrl, companyName, logoImageSvg } = props;
+  const { id, paragraph, links, logoImageUrl, companyName, logoImageSvg } =
+    props;
 
   return (
     <>
       <footer
         className="wow fadeInUp z-1 relative bg-white pt-16 dark:bg-gray-dark md:pt-20 lg:pt-24"
         data-wow-delay=".1s"
+        id={id}
       >
         <div className="container">
           <div className="-mx-4 flex flex-wrap">
@@ -78,12 +81,12 @@ const Footer = (props: FooterProps) => {
                     <ul>
                       {link?.menuData?.map((linkData, idx) => (
                         <li key={idx}>
-                          <a
+                          <Link
                             href={linkData?.href}
                             className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                           >
                             {linkData?.label}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>

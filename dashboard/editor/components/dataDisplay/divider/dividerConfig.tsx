@@ -1,4 +1,5 @@
 export const DividerConfig = {
+  id: { type: "text" },
   className: { type: "textarea" },
   orientation: {
     type: "select",

@@ -1,4 +1,5 @@
 export const googleMapConfig = {
+  id: { type: "text" },
   value: {
     type: "object",
     objectFields: {

@@ -1,80 +1,604 @@
 {
   "margin": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "marginTop": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "marginRight": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "marginBottom": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "marginLeft": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "marginX": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "marginY": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "marginInline": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "marginInlineStart": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "marginInlineEnd": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "marginBlock": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "marginBlockStart": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "marginBlockEnd": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "padding": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "paddingTop": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "paddingRight": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "paddingBottom": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "paddingLeft": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "paddingX": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "paddingY": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "paddingInline": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "paddingInlineStart": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "paddingInlineEnd": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "paddingBlock": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "paddingBlockStart": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
   },
   "paddingBlockEnd": {
-    "type": "number"
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
+  },
+  "boxShadow": {
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "text"
+      },
+      "sm": {
+        "type": "text"
+      },
+      "md": {
+        "type": "text"
+      },
+      "lg": {
+        "type": "text"
+      }
+    }
+  },
+  "backgroundColor": {
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "text"
+      },
+      "sm": {
+        "type": "text"
+      },
+      "md": {
+        "type": "text"
+      },
+      "lg": {
+        "type": "text"
+      }
+    }
+  },
+  "color": {
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "text"
+      },
+      "sm": {
+        "type": "text"
+      },
+      "md": {
+        "type": "text"
+      },
+      "lg": {
+        "type": "text"
+      }
+    }
+  },
+  "width": {
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
+  },
+  "minWidth": {
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
+  },
+  "maxWidth": {
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
+  },
+  "height": {
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
+  },
+  "maxHeight": {
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
+  },
+  "minHeight": {
+    "type": "object",
+    "objectFields": {
+      "xs": {
+        "type": "number"
+      },
+      "sm": {
+        "type": "number"
+      },
+      "md": {
+        "type": "number"
+      },
+      "lg": {
+        "type": "number"
+      }
+    }
+  },
+  "boxSizing": {
+    "type": "select",
+    "options": [
+      { "label": "Content Box", "value": "content-box" },
+      { "label": "Border Box", "value": "border-box" }
+    ]
   }
 }

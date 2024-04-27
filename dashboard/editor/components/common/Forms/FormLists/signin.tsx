@@ -102,7 +102,7 @@ const SiginInForm = (props: ISignInFormProps) => {
             type="submit"
             disabled={Object.keys(formState.errors).length >= 1}
           >
-            Submit
+            Sign In
           </ButtonComponent>,
         ]}
         stackProps={{

@@ -3,11 +3,11 @@ import { Hero } from "@/types/hero";
 import PurifyText from "../../common/PurifyText";
 
 const Hero = (props: Hero) => {
-  const { title, description, buttons, bottomLeftSvg, rightTopSvg } = props;
+  const { id, title, description, buttons, bottomLeftSvg, rightTopSvg } = props;
   return (
     <>
       <section
-        id="home"
+        id={id}
         className="z-1 relative overflow-hidden bg-white pb-16 pt-[120px] dark:bg-gray-dark md:pb-[120px] md:pt-[150px] xl:pb-[160px] xl:pt-[180px] 2xl:pb-[200px] 2xl:pt-[210px]"
       >
         <div className="container">
