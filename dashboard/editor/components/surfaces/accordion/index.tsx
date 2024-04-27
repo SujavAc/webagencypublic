@@ -7,6 +7,10 @@ import { DropZone } from "@measured/puck";
 import MaterialUIICon from "../../Icon";
 
 interface IAccordionProps {
+  noOfItems: IAccordionItem[];
+}
+
+interface IAccordionItem {
   heading: string;
   className: string;
   headingIcon: string;
@@ -14,7 +18,7 @@ interface IAccordionProps {
 }
 
 export default function AccordionComponent(props: IAccordionProps) {
-  const { className, defaultOpen, heading, headingIcon, ...rest } = props;
+  const { noOfItems } = props;
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
   const handleChange =
@@ -22,29 +26,39 @@ export default function AccordionComponent(props: IAccordionProps) {
       setExpanded(isExpanded ? panel : false);
     };
 
+  React.useEffect(() => {
+    if (noOfItems && noOfItems?.length > 0) {
+      setExpanded(noOfItems[0]?.heading);
+    }
+  }, [noOfItems]);
+
   return (
     <div>
-      <Accordion
-        expanded={expanded === defaultOpen}
-        key={heading}
-        onChange={handleChange(heading)}
-        className={className}
-        {...rest}
-      >
-        <AccordionSummary
-          expandIcon={<MaterialUIICon name={headingIcon} color="primary" />}
-          aria-controls={heading}
-          id={heading}
-        >
-          {heading}
-        </AccordionSummary>
-        <AccordionDetails>
-          <DropZone zone={`Content ${heading} Zone`} />
-        </AccordionDetails>
-        <AccordionActions>
-          <DropZone zone={`Button ${heading} Zone`} />
-        </AccordionActions>
-      </Accordion>
+      {noOfItems &&
+        noOfItems.map((item, index) => (
+          <Accordion
+            expanded={expanded === item?.heading || item?.defaultOpen}
+            key={item?.heading}
+            onChange={handleChange(item?.heading)}
+            className={item?.className}
+          >
+            <AccordionSummary
+              expandIcon={
+                <MaterialUIICon name={item?.headingIcon} color="primary" />
+              }
+              aria-controls={item?.heading}
+              id={item?.heading}
+            >
+              {item?.heading}
+            </AccordionSummary>
+            <AccordionDetails>
+              <DropZone zone={`Content ${item?.heading || index} Zone`} />
+            </AccordionDetails>
+            <AccordionActions>
+              <DropZone zone={`Button ${item?.heading || index} Zone`} />
+            </AccordionActions>
+          </Accordion>
+        ))}
     </div>
   );
 }
