@@ -29,7 +29,9 @@ export default function RootLayout({
       */}
       <head />
 
-      <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>
+      <body
+        className={`animate-bounceIn bg-[#FCFCFC] dark:bg-black ${inter.className}`}
+      >
         <ReduxProvider store={store}>
           <ManageScroll>
             <Providers>
