@@ -65,7 +65,76 @@ const lightTheme = createTheme({
     tonalOffset: 0.2,
   },
   typography: {
-    fontFamily: roboto.style.fontFamily,
+    // fontFamily: roboto.style.fontFamily,
+    fontFamily: [
+      "Roboto", // Default font for Material Design
+      "-apple-system",
+      "BlinkMacSystemFont",
+      '"Segoe UI"',
+      "Arial",
+      "sans-serif",
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(","),
+    fontSize: 16, // Base font size
+    fontWeightRegular: 400, // Regular font weight
+    fontWeightMedium: 500, // Medium font weight
+    fontWeightBold: 700, // Bold font weight
+    h1: {
+      fontSize: "2.25rem", // 36px
+      fontWeight: 500,
+    },
+    h2: {
+      fontSize: "1.875rem", // 30px
+      fontWeight: 500,
+    },
+    h3: {
+      fontSize: "1.5rem", // 24px
+      fontWeight: 500,
+    },
+    h4: {
+      fontSize: "1.25rem", // 20px
+      fontWeight: 500,
+    },
+    h5: {
+      fontSize: "1.125rem", // 18px
+      fontWeight: 500,
+    },
+    h6: {
+      fontSize: "1rem", // 16px
+      fontWeight: 500,
+    },
+    subtitle1: {
+      fontSize: "1rem", // 16px
+      fontWeight: 400,
+    },
+    subtitle2: {
+      fontSize: "0.875rem", // 14px
+      fontWeight: 400,
+    },
+    body1: {
+      fontSize: "1rem", // 16px
+      fontWeight: 400,
+    },
+    body2: {
+      fontSize: "0.875rem", // 14px
+      fontWeight: 400,
+    },
+    button: {
+      fontSize: "0.875rem", // 14px
+      fontWeight: 500,
+      textTransform: "uppercase",
+    },
+    caption: {
+      fontSize: "0.75rem", // 12px
+      fontWeight: 400,
+    },
+    overline: {
+      fontSize: "0.625rem", // 10px
+      fontWeight: 400,
+      textTransform: "uppercase",
+    },
   },
   shape: {
     borderRadius: 4,
@@ -180,7 +249,76 @@ const darkTheme = createTheme({
     tonalOffset: 0.2,
   },
   typography: {
-    fontFamily: roboto.style.fontFamily,
+    // fontFamily: roboto.style.fontFamily,
+    fontFamily: [
+      "Roboto", // Default font for Material Design
+      "-apple-system",
+      "BlinkMacSystemFont",
+      '"Segoe UI"',
+      "Arial",
+      "sans-serif",
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(","),
+    fontSize: 16, // Base font size
+    fontWeightRegular: 400, // Regular font weight
+    fontWeightMedium: 500, // Medium font weight
+    fontWeightBold: 700, // Bold font weight
+    h1: {
+      fontSize: "2.25rem", // 36px
+      fontWeight: 500,
+    },
+    h2: {
+      fontSize: "1.875rem", // 30px
+      fontWeight: 500,
+    },
+    h3: {
+      fontSize: "1.5rem", // 24px
+      fontWeight: 500,
+    },
+    h4: {
+      fontSize: "1.25rem", // 20px
+      fontWeight: 500,
+    },
+    h5: {
+      fontSize: "1.125rem", // 18px
+      fontWeight: 500,
+    },
+    h6: {
+      fontSize: "1rem", // 16px
+      fontWeight: 500,
+    },
+    subtitle1: {
+      fontSize: "1rem", // 16px
+      fontWeight: 400,
+    },
+    subtitle2: {
+      fontSize: "0.875rem", // 14px
+      fontWeight: 400,
+    },
+    body1: {
+      fontSize: "1rem", // 16px
+      fontWeight: 400,
+    },
+    body2: {
+      fontSize: "0.875rem", // 14px
+      fontWeight: 400,
+    },
+    button: {
+      fontSize: "0.875rem", // 14px
+      fontWeight: 500,
+      textTransform: "uppercase",
+    },
+    caption: {
+      fontSize: "0.75rem", // 12px
+      fontWeight: 400,
+    },
+    overline: {
+      fontSize: "0.625rem", // 10px
+      fontWeight: 400,
+      textTransform: "uppercase",
+    },
   },
   shape: {
     borderRadius: 4,

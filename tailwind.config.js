@@ -68,6 +68,138 @@ module.exports = {
       dropShadow: {
         three: "0px 5px 15px rgba(6, 8, 15, 0.05)",
       },
+      keyframes: {
+        // Existing keyframes...
+        bounceIn: {
+          '0%': { opacity: '0', transform: 'scale(0.3)' },
+          '50%': { opacity: '1', transform: 'scale(1.05)' },
+          '70%': { transform: 'scale(0.9)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+        bounceInUp: {
+          '0%': { opacity: '0', transform: 'translateY(2000px)' },
+          '60%': { opacity: '1', transform: 'translateY(-30px)' },
+          '80%': { transform: 'translateY(10px)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+        bounceInDown: {
+          '0%': { opacity: '0', transform: 'translateY(-2000px)' },
+          '60%': { opacity: '1', transform: 'translateY(30px)' },
+          '80%': { transform: 'translateY(-10px)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+        bounceInLeft: {
+          '0%': { opacity: '0', transform: 'translateX(-2000px)' },
+          '60%': { opacity: '1', transform: 'translateX(30px)' },
+          '80%': { transform: 'translateX(-10px)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+        bounceInRight: {
+          '0%': { opacity: '0', transform: 'translateX(2000px)' },
+          '60%': { opacity: '1', transform: 'translateX(-30px)' },
+          '80%': { transform: 'translateX(10px)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+        rotateInUpLeft: {
+          '0%': { opacity: '0', transform: 'rotate(-90deg) translateX(-1000px) translateY(-1000px)' },
+          '100%': { opacity: '1', transform: 'rotate(0) translateX(0) translateY(0)' },
+        },
+        rotateInUpRight: {
+          '0%': { opacity: '0', transform: 'rotate(90deg) translateX(1000px) translateY(-1000px)' },
+          '100%': { opacity: '1', transform: 'rotate(0) translateX(0) translateY(0)' },
+        },
+        rotateInDownLeft: {
+          '0%': { opacity: '0', transform: 'rotate(90deg) translateX(-1000px) translateY(1000px)' },
+          '100%': { opacity: '1', transform: 'rotate(0) translateX(0) translateY(0)' },
+        },
+        rotateInDownRight: {
+          '0%': { opacity: '0', transform: 'rotate(-90deg) translateX(1000px) translateY(1000px)' },
+          '100%': { opacity: '1', transform: 'rotate(0) translateX(0) translateY(0)' },
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        fadeInUp: {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        // Add other keyframes here
+        slideInUp: {
+          '0%': { opacity: '0', transform: 'translateY(100%)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        // Add other keyframes here
+        rotateIn: {
+          '0%': { opacity: '0', transform: 'rotate(-200deg)' },
+          '100%': { opacity: '1', transform: 'rotate(0)' },
+        },
+        // Add other keyframes here
+        zoomIn: {
+          '0%': { opacity: '0', transform: 'scale(0)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+        // Add other keyframes here
+        flipInX: {
+          '0%': { opacity: '0', transform: 'perspective(400px) rotateX(90deg)' },
+          '100%': { opacity: '1', transform: 'perspective(400px) rotateX(0)' },
+        },
+        // Add other keyframes here
+        heartBeat: {
+          '0%': { transform: 'scale(1)' },
+          '14%': { transform: 'scale(1.3)' },
+          '28%': { transform: 'scale(1)' },
+          '42%': { transform: 'scale(1.3)' },
+          '70%': { transform: 'scale(1)' },
+        },
+        // Add other keyframes here
+        jello: {
+          '0%': { transform: 'scale(1,1)' },
+          '30%': { transform: 'skewX(-12.5deg) skewY(-12.5deg)' },
+          '40%': { transform: 'skewX(6.25deg) skewY(6.25deg)' },
+          '50%': { transform: 'skewX(-3.125deg) skewY(-3.125deg)' },
+          '60%': { transform: 'skewX(1.5625deg) skewY(1.5625deg)' },
+          '70%': { transform: 'skewX(-0.78125deg) skewY(-0.78125deg)' },
+          '80%': { transform: 'skewX(0.390625deg) skewY(0.390625deg)' },
+          '90%': { transform: 'skewX(-0.1953125deg) skewY(-0.1953125deg)' },
+          '100%': { transform: 'skewX(0deg) skewY(0deg)' },
+        },
+        // Add other keyframes here
+        pulse: {
+          '0%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.05)' },
+          '100%': { transform: 'scale(1)' },
+        },
+      },
+      animation: {
+        fadeIn: 'fadeIn 1s ease-out',
+        fadeInUp: 'fadeInUp 1s ease-out',
+        // Add other animations here
+        slideInUp: 'slideInUp 1s ease-out',
+        // Add other animations here
+        rotateIn: 'rotateIn 1s ease-out',
+        // Add other animations here
+        zoomIn: 'zoomIn 1s ease-out',
+        // Add other animations here
+        flipInX: 'flipInX 1s ease-out',
+        // Add other animations here
+        heartBeat: 'heartBeat 1s infinite',
+        // Add other animations here
+        jello: 'jello 1s infinite',
+        // Add other animations here
+        pulse: 'pulse 1s infinite',
+        // Add other animations here
+        // Existing animations...
+        bounceIn: 'bounceIn 5s ease-out',
+        bounceInUp: 'bounceInUp 1s ease-out',
+        bounceInDown: 'bounceInDown 1s ease-out',
+        bounceInLeft: 'bounceInLeft 1s ease-out',
+        bounceInRight: 'bounceInRight 1s ease-out',
+        rotateInUpLeft: 'rotateInUpLeft 1s ease-out',
+        rotateInUpRight: 'rotateInUpRight 1s ease-out',
+        rotateInDownLeft: 'rotateInDownLeft 1s ease-out',
+        rotateInDownRight: 'rotateInDownRight 1s ease-out',
+      },
     },
   },
   plugins: [],
