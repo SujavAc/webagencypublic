@@ -37,7 +37,7 @@ import SingleFeature from "./components/builtInComponent/singleFeature/SingleFea
 import Video from "./components/builtInComponent/video";
 import Hero from "./components/builtInComponent/Hero";
 import { FlexProperties } from "./css/flex";
-import { GridConfig } from "./components/layout/Grid/gridConfig";
+import { GridContainerConfig } from "./components/layout/Grid/gridContainerConfig";
 import CrudTable from "./components/table/CrudTable";
 import { crudTableConfig } from "./components/table/CrudTable/crudTableConfig";
 import { editorFormConfig } from "./components/table/editorForm/editorFormConfig";
@@ -49,6 +49,18 @@ import CustomHtml from "./components/builtInComponent/customHTML";
 import { googleMapConfig } from "./components/builtInComponent/GoogleMap/googleMapConfig";
 import Map from "./components/builtInComponent/GoogleMap";
 import { SectionTitleConfig } from "./components/builtInComponent/sectionTitle/sectionTitleConfig";
+import { CarouselConfig } from "./components/layout/Carousel/CarouselConfig";
+import Carousel from "./components/layout/Carousel";
+import CarouselItem from "./components/layout/Carousel/CarouselItem";
+import { SocialShare } from "./components/builtInComponent/SocialShare";
+import { SocialShareConfig } from "./components/builtInComponent/SocialShare/socialShareConfig";
+import CopyTextComponent from "./components/builtInComponent/Copy";
+import { CopyConfig } from "./components/builtInComponent/Copy/copyConfig";
+import { ContainerConfig } from "./components/layout/Container/containerConfig";
+import { PaperConfig } from "./components/layout/Paper/paperConfig";
+import { StackConfig } from "./components/layout/Stack/stackConfig";
+import GridContainer from "./components/layout/Grid";
+import { GridItemConfig } from "./components/layout/Grid/gridItemConfig";
 
 // Create Puck component config
 export const puckEditorConfig = {
@@ -62,6 +74,8 @@ export const puckEditorConfig = {
         "StackLayout",
         "Box",
         "Tabs",
+        "Carousel",
+        "CarouselItem",
       ],
       defaultExpanded: false, // Collapse this category by default
     },
@@ -78,6 +92,8 @@ export const puckEditorConfig = {
         "Icon",
         "CustomHTML",
         "Map",
+        "Share",
+        "CopyText",
       ],
       defaultExpanded: false, // Collapse this category by default
     },
@@ -110,36 +126,7 @@ export const puckEditorConfig = {
     PaperWrapper: {
       label: "Paper Container",
       fields: {
-        noOfItems: {
-          type: "array",
-          arrayFields: {
-            title: { type: "text" },
-          },
-          min: 1,
-          max: 5,
-        },
-        className: { type: "textarea" },
-        elevation: { type: "number" },
-        square: {
-          type: "radio",
-          options: [
-            { label: "False", value: false },
-            { label: "True", value: true },
-          ],
-        },
-        variant: {
-          type: "select",
-          options: [
-            { label: "Elevation", value: "elevation" },
-            { label: "Outlined", value: "outlined" },
-          ],
-        },
-        sx: {
-          type: "object",
-          objectFields: {
-            ...FlexProperties(),
-          },
-        },
+        ...PaperConfig,
       },
       defaultProps: {
         elevation: 5,
@@ -148,91 +135,84 @@ export const puckEditorConfig = {
           p: 2,
         },
       },
-      render: ({ noOfItems, sx, ...rest }) => {
-        return <PaperWrapper sx={sx} {...rest} noOfItems={noOfItems} />;
+      render: (fields) => {
+        return <PaperWrapper {...fields} />;
       },
     },
     GridLayout: {
       label: "Grid Container",
       fields: {
-        className: GridConfig.className,
-        columnSpacing: GridConfig.columnSpacing,
-        rowSpacing: GridConfig.rowSpacing,
-        spacing: GridConfig.spacing,
-        wrap: GridConfig.wrap,
-        direction: FlexProperties().flexDirection,
-        justifyContent: FlexProperties().justifyContent,
-        alignItems: FlexProperties().alignItems,
+        ...GridContainerConfig,
+      },
+      defaultProps: {
+        columnSpacing: {
+          xs: 2,
+          sm: 2,
+          md: 4,
+          lg: 4,
+        },
+        rowSpacing: {
+          xs: 2,
+          sm: 2,
+          md: 4,
+          lg: 4,
+        },
+        spacing: {
+          xs: 2,
+          sm: 2,
+          md: 4,
+          lg: 4,
+        },
       },
       render: (fields) => {
-        return <GridLayout {...fields} />;
+        return <GridContainer {...fields} />;
       },
     },
     GridItem: {
       label: "Grid Item",
       fields: {
-        noOfItems: {
-          type: "array",
-          arrayFields: {
-            title: { type: "text" },
-            xs: GridConfig.xs,
-            sm: GridConfig.sm,
-            md: GridConfig.md,
-            lg: GridConfig.lg,
-            sx: GridConfig.sx,
+        ...GridItemConfig,
+      },
+      defaultProps: {
+        xs: 12,
+        sm: 6,
+        md: 4,
+        lg: 3,
+        sx: {
+          display: {
+            xs: "flex",
+            sm: "flex",
+            md: "flex",
+            lg: "flex",
+          },
+          flexDirection: {
+            xs: "column",
+            sm: "column",
+            md: "row",
+            lg: "row",
+          },
+          flexWrap: {
+            xs: "wrap",
+            sm: "wrap",
+            md: "nowrap",
+            lg: "nowrap",
+          },
+          gap: {
+            xs: 2,
+            sm: 2,
+            md: 3,
+            lg: 3,
           },
         },
       },
-      defaultProps: {
-        noOfItems: [
-          {
-            title: "item",
-            sx: 12,
-            sm: 6,
-            md: 4,
-            lg: 3,
-          },
-        ],
-      },
-      render: ({ noOfItems }) => {
-        return <GridItem noOfItems={noOfItems} />;
+      render: (fields) => {
+        return <GridItem {...fields} />;
       },
     },
     Container: {
       label: "Container",
       fields: {
-        className: { type: "textarea" },
-        fixed: {
-          type: "radio",
-          options: [
-            { label: "False", value: false },
-            { label: "True", value: true },
-          ],
-        },
-        maxWidth: {
-          type: "select",
-          options: [
-            { label: "XS", value: "xs" },
-            { label: "SM", value: "sm" },
-            { label: "MD", value: "md" },
-            { label: "LG", value: "lg" },
-            { label: "XL", value: "xl" },
-            { label: "None", value: false },
-          ],
-        },
-        disableGutters: {
-          type: "radio",
-          options: [
-            { label: "False", value: false },
-            { label: "True", value: true },
-          ],
-        },
-        sx: {
-          type: "object",
-          objectFields: {
-            ...FlexProperties(),
-          },
-        },
+        ...ContainerConfig,
       },
       render: (fields) => {
         return <ContainerLayout {...fields} />;
@@ -241,6 +221,34 @@ export const puckEditorConfig = {
     Box: {
       fields: {
         ...BoxConfig,
+      },
+      defaultProps: {
+        sx: {
+          display: {
+            xs: "flex",
+            sm: "flex",
+            md: "flex",
+            lg: "flex",
+          },
+          flexDirection: {
+            xs: "column",
+            sm: "column",
+            md: "row",
+            lg: "row",
+          },
+          flexWrap: {
+            xs: "wrap",
+            sm: "wrap",
+            md: "nowrap",
+            lg: "nowrap",
+          },
+          gap: {
+            xs: 2,
+            sm: 2,
+            md: 3,
+            lg: 3,
+          },
+        },
       },
       render: (fields) => {
         return <BoxContainer {...fields} />;
@@ -307,35 +315,85 @@ export const puckEditorConfig = {
     StackLayout: {
       label: "Stack Container",
       fields: {
-        className: { type: "textarea" },
-        noOfItems: {
-          type: "array",
-          arrayFields: {
-            title: { type: "text" },
-          },
+        ...StackConfig,
+      },
+      defaultProps: {
+        direction: {
+          xs: "column",
+          sm: "column",
+          md: "row",
+          lg: "row",
         },
-        stackProps: {
-          type: "object",
-          objectFields: {
-            direction: {
-              ...FlexProperties().flexDirection,
-            },
-            alignItems: FlexProperties().alignItems,
-            justifyContent: FlexProperties().justifyContent,
-            spacing: {
-              type: "number",
-            },
-            sx: {
-              type: "object",
-              objectFields: {
-                ...FlexProperties(),
-              },
-            },
+        alignItems: {
+          xs: "flex-start",
+          sm: "flex-start",
+          md: "center",
+          lg: "center",
+        },
+        justifyContent: {
+          xs: "flex-start",
+          sm: "flex-start",
+          md: "center",
+          lg: "center",
+        },
+        spacing: {
+          xs: 2,
+          sm: 2,
+          md: 3,
+          lg: 3,
+        },
+        sx: {
+          display: {
+            xs: "flex",
+            sm: "flex",
+            md: "flex",
+            lg: "flex",
+          },
+          flexDirection: {
+            xs: "column",
+            sm: "column",
+            md: "row",
+            lg: "row",
+          },
+          flexWrap: {
+            xs: "wrap",
+            sm: "wrap",
+            md: "nowrap",
+            lg: "nowrap",
+          },
+          gap: {
+            xs: 2,
+            sm: 2,
+            md: 3,
+            lg: 3,
           },
         },
       },
-      render: ({ noOfItems, stackProps }) => {
-        return <StackLayout stackProps={stackProps} noOfItems={noOfItems} />;
+      render: (fields) => {
+        return <StackLayout {...fields} />;
+      },
+    },
+    Carousel: {
+      fields: {
+        ...CarouselConfig,
+      },
+      defaultProps: {
+        className: "",
+        options: {
+          label: "custom carousel",
+          type: "loop",
+          perPage: 2,
+          rewind: true,
+        },
+      },
+      render: (fields) => {
+        return <Carousel {...fields} />;
+      },
+    },
+    CarouselItem: {
+      fields: {},
+      render: (fields) => {
+        return <CarouselItem {...fields} />;
       },
     },
 
@@ -343,6 +401,15 @@ export const puckEditorConfig = {
     Button: {
       fields: {
         ...ButtonWrapperConfig,
+      },
+      defaultProps: {
+        disabled: false,
+        disableElevation: false,
+        fullWidth: false,
+        href: "",
+        variant: "contained",
+        color: "primary",
+        size: "medium",
       },
       render: (fields) => {
         return <ButtonWrapper {...fields} />;
@@ -355,6 +422,25 @@ export const puckEditorConfig = {
       fields: {
         ...MenuConfig,
       },
+      defaultProps: {
+        buttonMenu: true,
+        buttonLabel: "test button",
+        menuItems: [
+          {
+            icon: "",
+            label: "",
+            href: "",
+          },
+        ],
+        anchorOrigin: {
+          vertical: "left",
+          horizontal: "bottom",
+        },
+        transformOrigin: {
+          vertical: "left",
+          horizontal: "bottom",
+        },
+      },
       render: (fields) => {
         return <MenuComponent {...fields} />;
       },
@@ -362,6 +448,14 @@ export const puckEditorConfig = {
     Link: {
       fields: {
         ...LinkConfig,
+      },
+      defaultProps: {
+        linkLabel: "test button",
+        href: "/",
+        color: "primary",
+        underline: "always",
+        variant: "button",
+        target: "_self",
       },
       render: (fields) => {
         return <Links {...fields} />;
@@ -372,6 +466,9 @@ export const puckEditorConfig = {
     Hero: {
       label: "Hero Component",
       fields: {
+        id: {
+          type: "text",
+        },
         title: {
           type: "text",
         },
@@ -422,6 +519,9 @@ export const puckEditorConfig = {
     Feature: {
       label: "Feature Component",
       fields: {
+        id: {
+          type: "text",
+        },
         icon: {
           type: "textarea",
         },
@@ -439,6 +539,9 @@ export const puckEditorConfig = {
     Video: {
       label: "Video Component",
       fields: {
+        id: {
+          type: "text",
+        },
         iframeId: {
           type: "text",
         },
@@ -489,8 +592,65 @@ export const puckEditorConfig = {
           },
         },
       },
+      defaultProps: {
+        value: {
+          lat: -27.4459816,
+          lng: 152.9218581,
+        },
+        height: 500,
+        zoomLevel: 15,
+        openInfoBox: false,
+        sectionTitleProps: {
+          title: "Please customise your info box title",
+          paragraph: "Please customise your info box paragraph",
+          width: "100%",
+          md: "16px",
+          align: "left",
+        },
+        linkOnInfoBox: {
+          linkLabel: "Get Direction",
+          href: "/",
+          color: "primary",
+          underline: "always",
+          variant: "button",
+        },
+      },
       render: (fields) => {
         return <Map {...fields} />;
+      },
+    },
+    Share: {
+      fields: {
+        ...SocialShareConfig,
+      },
+      defaultProps: {
+        customIcon: false,
+        enableShareCount: true,
+        platform: "FacebookShareButton",
+        socialPlatformIconProps: { round: true, size: 64 },
+        socialPlatformDataProps: {
+          url: window?.location?.href || "url",
+          title: window?.document?.title || "title",
+          quote: "don't know",
+          hashtag: "hashtag",
+        },
+      },
+      render: (fields) => {
+        return <SocialShare {...fields} />;
+      },
+    },
+    CopyText: {
+      fields: {
+        ...CopyConfig,
+      },
+      defaultProps: {
+        textToCopy: window?.location?.href || window?.document?.title || "text",
+        iconButton: true,
+        color: "primary",
+        size: "medium",
+      },
+      render: (fields) => {
+        return <CopyTextComponent {...fields} />;
       },
     },
 
@@ -506,12 +666,6 @@ export const puckEditorConfig = {
     Typography: {
       fields: {
         ...TypographyConfig,
-        sx: {
-          type: "object",
-          objectFields: {
-            ...FlexProperties(),
-          },
-        },
       },
       render: (fields) => {
         return <TypographyComponenet {...fields} />;
@@ -559,6 +713,7 @@ export const puckEditorConfig = {
 
     CustomVideo: {
       fields: {
+        id: { type: "text" },
         src: { type: "text" },
         poster: { type: "text" },
         controls: {
@@ -593,6 +748,7 @@ export const puckEditorConfig = {
       defaultProps: {
         autoplay: true,
         loop: true,
+        muted: true,
       },
       render: (fields) => {
         return <VideoPlayer {...fields} />;

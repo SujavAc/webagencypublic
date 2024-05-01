@@ -1,4 +1,7 @@
 export const SectionTitleConfig = {
+  id: {
+    type: "text",
+  },
   title: {
     type: "text",
   },

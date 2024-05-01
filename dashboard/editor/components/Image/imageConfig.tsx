@@ -1,6 +1,7 @@
 import { Slider, FormLabel, FormHelperText } from "@mui/material";
 
 export const ImageConfig = {
+  id: { type: "text" },
   className: { type: "textarea" },
   src: {
     type: "text",

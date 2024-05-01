@@ -15,7 +15,7 @@ interface IFormWrapperProps {
   storeValueAs?: string;
   onSubmit?: (data: any) => void;
   defaultValues?: any;
-  formFieldDirection?: string;
+  formFieldDirection?: "column" | "row" | "row-reverse" | "column-reverse";
 }
 
 const FormWrapperV2 = (props: IFormWrapperProps) => {

@@ -12,6 +12,7 @@ type LatLng = google.maps.LatLngLiteral;
 
 export default function Map(props: MapProps) {
   const {
+    id,
     height,
     value,
     zoomLevel,
@@ -26,7 +27,7 @@ export default function Map(props: MapProps) {
   const center = useMemo<LatLng>(
     () =>
       valueData?.latLng || valueData?.latLng || { lat: -24.345, lng: 134.46 },
-    [valueData]
+    [valueData],
   );
 
   useEffect(() => {
@@ -42,7 +43,7 @@ export default function Map(props: MapProps) {
   const infoBoxOptions = { closeBoxURL: "", enableEventPropagation: true };
 
   return (
-    <div className="map">
+    <div className="map" id={id}>
       <LoadScript
         googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
       >

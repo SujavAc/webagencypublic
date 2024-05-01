@@ -10,6 +10,8 @@ import {
   ToggleButton,
   InputLabel,
   Tooltip,
+  Slider,
+  Box,
 } from "@mui/material";
 import MaterialUIICon from "../components/Icon";
 
@@ -25,7 +27,9 @@ export const SpacedInput = ({ type, ...props }) => {
       return <TextField type="text" {...props} />;
     case "color":
       return <TextField type="color" {...props} />;
-    case "array":
+    case "switch":
+      return <Switch {...props} />;
+    case "select":
       return (
         <Select {...props}>
           {props.options.map((option, index) => (
@@ -35,26 +39,44 @@ export const SpacedInput = ({ type, ...props }) => {
           ))}
         </Select>
       );
+    case "slider":
+      return (
+        <>
+          <Slider valueLabelDisplay="auto" {...props} />
+        </>
+      );
     case "togglebutton":
       return (
         <>
           <InputLabel id="demo-simple-togglebutton-label" sx={{ pb: 1 }}>
             {props?.label}
           </InputLabel>
-
-          <ToggleButtonGroup {...props}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: 0.5,
+            }}
+          >
             {props.options.map((option, index) => (
-              <Tooltip title={option?.label || option?.icon} arrow key={index}>
-                <ToggleButton
-                  value={option?.value}
-                  aria-label={option?.value}
+              <ToggleButtonGroup {...props} key={index}>
+                <Tooltip
+                  title={option?.label || option?.icon}
+                  arrow
                   key={index}
                 >
-                  {option?.label || <MaterialUIICon name={option?.icon} />}
-                </ToggleButton>
-              </Tooltip>
+                  <ToggleButton
+                    value={option?.value}
+                    aria-label={option?.value}
+                    key={index}
+                  >
+                    {option?.label || <MaterialUIICon name={option?.icon} />}
+                  </ToggleButton>
+                </Tooltip>
+              </ToggleButtonGroup>
             ))}
-          </ToggleButtonGroup>
+          </Box>
         </>
       );
     case "object":

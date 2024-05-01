@@ -1,17 +1,11 @@
 import * as React from "react";
-import Stack from "@mui/material/Stack";
+import { Stack, StackProps } from "@mui/material";
 import { DropZone } from "@measured/puck";
 
-export default function StackLayout({ noOfItems, stackProps, ...rest }) {
+export default function StackLayout(props: StackProps) {
   return (
-    <Stack {...stackProps} {...rest}>
-      {noOfItems &&
-        noOfItems?.map((item, index) => (
-          <DropZone
-            zone={`${item?.title}-${index}`}
-            key={`${item?.title}-${index}`}
-          />
-        ))}
+    <Stack {...props}>
+      <DropZone zone="stack item" />
     </Stack>
   );
 }

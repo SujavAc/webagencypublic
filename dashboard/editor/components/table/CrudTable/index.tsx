@@ -17,6 +17,7 @@ import DataTable from "../../common/DataTable";
 import ButtonComponent from "../../common/Inputs/Button";
 
 interface ICrudTable {
+  id: string;
   tableFor: string;
   databasePath: string;
   limit: number;
@@ -44,6 +45,7 @@ interface TableHeadCellsProps {
 
 const CrudTable = (props: ICrudTable) => {
   const {
+    id,
     databasePath,
     limit = 5,
     addData,
@@ -95,6 +97,7 @@ const CrudTable = (props: ICrudTable) => {
 
   return (
     <StackLayout
+      id={id}
       noOfItems={[
         <DataTable
           key="featuresDataTable"

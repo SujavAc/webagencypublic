@@ -5,14 +5,14 @@ import { useState } from "react";
 
 import ModalVideo from "react-modal-video";
 import { Video } from "@/types/video";
-import PurifyText from "@/dashboard/editor/components/common/PurifyText";
+import PurifyText from "../../common/PurifyText";
 
 const Video = (props: Video) => {
-  const { iframeId, channel, preImageUrl, playButtinSVG } = props;
+  const { id, iframeId, channel, preImageUrl, playButtinSVG } = props;
   const [isOpen, setOpen] = useState(false);
 
   return (
-    <section className="relative z-10 py-16 md:py-20 lg:py-28">
+    <section className="relative z-10 py-16 md:py-20 lg:py-28" id={id}>
       <div className="container">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">

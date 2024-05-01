@@ -1,4 +1,5 @@
 export const FooterConfig = {
+  id: { type: "text" },
   paragraph: { type: "text" },
   companyName: { type: "text" },
   logoImageUrl: {

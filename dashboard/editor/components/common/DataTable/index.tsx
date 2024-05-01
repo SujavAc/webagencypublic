@@ -58,7 +58,7 @@ function DataTable({
             (x: any) =>
               x?.[headCells[0]?.id]
                 ?.toLowerCase()
-                .includes(search?.toLowerCase())
+                .includes(search?.toLowerCase()),
           );
       },
     });

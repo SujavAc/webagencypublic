@@ -1,4 +1,5 @@
 export const MenuConfig = {
+  id: { type: "text" },
   className: { type: "textarea" },
   buttonMenu: {
     type: "radio",
@@ -16,11 +17,6 @@ export const MenuConfig = {
       label: { type: "text" },
       icon: { type: "text" },
       href: { type: "text" },
-    },
-    defaultItemProps: {
-      icon: "",
-      label: "",
-      href: "",
     },
   },
   anchorOrigin: {

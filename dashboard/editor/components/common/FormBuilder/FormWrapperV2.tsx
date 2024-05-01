@@ -15,7 +15,7 @@ interface IFormWrapperProps {
   storeValueAs?: string;
   onSubmit?: (data: any) => Promise<{ error: boolean; success: boolean }>;
   defaultValues?: any;
-  formFieldDirection?: string;
+  formFieldDirection?: "column" | "row" | "row-reverse" | "column-reverse";
 }
 
 const FormWrapperV2 = (props: IFormWrapperProps) => {
@@ -62,28 +62,28 @@ const FormWrapperV2 = (props: IFormWrapperProps) => {
           ),
           <ButtonComponent
             key="button"
-            variant="contained"
-            startIcon="AdsClick"
+            variant="outlined"
             type="submit"
+            startIcon="AdsClick"
             disabled={Object.keys(formState.errors).length >= 1}
           >
             Submit
           </ButtonComponent>,
           <ButtonComponent
             key="clearbutton"
-            startIcon="Clear"
             variant="outlined"
+            startIcon="Clear"
             onClick={() => reset()}
           >
             Clear
           </ButtonComponent>,
         ]}
         stackProps={{
-          direction: formFieldDirection || "column",
+          direction: formFieldDirection ? formFieldDirection : "column",
           justifyContent: "stretch",
           alignItems: formFieldDirection === "row" ? "flex-start" : "stretch",
           alignContent: "flex-start",
-          flexWrap: formFieldDirection === "row" ?? "wrap",
+          flexWrap: formFieldDirection === "row" ? "wrap" : "nowrap",
           sx: { padding: "24px 0px", gap: 2 },
         }}
       />
