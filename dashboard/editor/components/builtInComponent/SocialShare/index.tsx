@@ -1,5 +1,5 @@
 import { DropZone } from "@measured/puck";
-import { SocialShareButtomMap } from "./shareButtonMap";
+import { SocialShareButtonMap } from "./shareButtonMap";
 import { SocialShareIconMap } from "./shareIconMap";
 import { SocialShareCountMap } from "./shareCountMap";
 
@@ -52,22 +52,24 @@ export const SocialShare = (props: SocialShareProps) => {
     socialPlatformDataProps,
     socialPlatformIconProps,
   } = props;
-  const Button = SocialShareButtomMap({ platformButton: platform });
+  const Button = SocialShareButtonMap({ platformButton: platform });
   return (
-    <Button {...socialPlatformDataProps}>
-      {customIcon ? (
-        <DropZone zone={`Share Zone wrapper`} style={{ width: "200px" }} />
-      ) : (
-        SocialShareIconMap({
-          platformButton: platform,
-          ...socialPlatformIconProps,
-        })
-      )}
-      {enableShareCount &&
-        SocialShareCountMap({
-          platformCount: platform,
-          url: socialPlatformDataProps?.url,
-        })}
-    </Button>
+    Button && (
+      <Button {...socialPlatformDataProps}>
+        {customIcon ? (
+          <DropZone zone={`Share Zone wrapper`} style={{ width: "200px" }} />
+        ) : (
+          SocialShareIconMap({
+            platformButton: platform,
+            ...socialPlatformIconProps,
+          })
+        )}
+        {enableShareCount &&
+          SocialShareCountMap({
+            platformCount: platform,
+            url: socialPlatformDataProps?.url,
+          })}
+      </Button>
+    )
   );
 };

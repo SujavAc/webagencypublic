@@ -26,7 +26,7 @@ export interface SocialShareButtonMapProps {
   platformButton: string;
 }
 
-export const SocialShareButtomMap = (props: SocialShareButtonMapProps) => {
+export const SocialShareButtonMap = (props: SocialShareButtonMapProps) => {
   const { platformButton } = props;
   let ComponentButton = null;
 

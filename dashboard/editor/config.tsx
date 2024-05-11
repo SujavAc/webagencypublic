@@ -61,6 +61,9 @@ import { PaperConfig } from "./components/layout/Paper/paperConfig";
 import { StackConfig } from "./components/layout/Stack/stackConfig";
 import GridContainer from "./components/layout/Grid";
 import { GridItemConfig } from "./components/layout/Grid/gridItemConfig";
+import SiginUpForm from "./components/common/Forms/FormLists/signUp";
+import { CookieConsentConfig } from "./components/builtInComponent/cookie/cookieConsentConfig";
+import CookieConsent from "./components/builtInComponent/cookie";
 
 // Create Puck component config
 export const puckEditorConfig = {
@@ -94,6 +97,7 @@ export const puckEditorConfig = {
         "Map",
         "Share",
         "CopyText",
+        "CookieConsent",
       ],
       defaultExpanded: false, // Collapse this category by default
     },
@@ -114,11 +118,11 @@ export const puckEditorConfig = {
       defaultExpanded: false, // Collapse this category by default
     },
     Database: {
-      components: ["Table", "SignInForm"],
+      components: ["Table"],
       defaultExpanded: false, // Collapse this category by default
     },
     Form: {
-      components: ["Form"],
+      components: ["Form", "SignInForm", "SignUpForm"],
       defaultExpanded: false, // Collapse this category by default
     },
   },
@@ -653,6 +657,14 @@ export const puckEditorConfig = {
         return <CopyTextComponent {...fields} />;
       },
     },
+    CookieConsent: {
+      fields: {
+        ...CookieConsentConfig,
+      },
+      render: (fields) => {
+        return <CookieConsent {...fields} />;
+      },
+    },
 
     // Data Display
     Tooltip: {
@@ -812,6 +824,14 @@ export const puckEditorConfig = {
       },
       render: (fields) => {
         return <SiginInForm {...fields} />;
+      },
+    },
+    SignUpForm: {
+      fields: {
+        title: { type: "text" },
+      },
+      render: (fields) => {
+        return <SiginUpForm {...fields} />;
       },
     },
 
