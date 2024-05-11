@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { useSnackbar } from "notistack";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
@@ -42,6 +43,7 @@ const userAuthContext = createContext<any>({
   logIn: (email: string, password: string) => {},
   signUp: () => {},
   logOut: () => {},
+  resetPassword: () => {},
   loginWithGoogle: () => {},
   signUpWithGoogle: (type: UserType) => {},
 });
@@ -65,6 +67,9 @@ export function UserAuthContextProvider({
   }
   function signUp(email: string, password: string) {
     return createUserWithEmailAndPassword(auth, email, password);
+  }
+  function resetPassword(email: string) {
+    return sendPasswordResetEmail(auth, email);
   }
   function logOut() {
     const resData: notiStack = {
@@ -116,7 +121,9 @@ export function UserAuthContextProvider({
   }, []);
 
   return (
-    <userAuthContext.Provider value={{ user, logIn, signUp, logOut }}>
+    <userAuthContext.Provider
+      value={{ user, logIn, signUp, logOut, resetPassword }}
+    >
       {loading ? null : children}
     </userAuthContext.Provider>
   );

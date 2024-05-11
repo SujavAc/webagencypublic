@@ -8,17 +8,18 @@ import ThemeToggler from "../../../../../components/Header/ThemeToggler";
 
 import { Menu } from "@/types/menu";
 import PurifyText from "../../common/PurifyText";
+import ButtonWrapper from "../../common/Inputs/Button";
 
 interface HeaderProps {
   id: string;
   menuData: Menu[];
   logoImageUrl: string;
   logoImageSvg: string;
-  isAuthemticationRequired: boolean;
+  isAuthenticationRequired: boolean;
 }
 
 const Header = (props: HeaderProps) => {
-  const { id, menuData, logoImageUrl, logoImageSvg, isAuthemticationRequired } =
+  const { id, menuData, logoImageUrl, logoImageSvg, isAuthenticationRequired } =
     props;
   // Navbar toggle
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -27,7 +28,7 @@ const Header = (props: HeaderProps) => {
   };
 
   const navRef = useRef(null);
-  const { user } = useUserAuth();
+  const { user, logOut } = useUserAuth();
   const isAdminUser = user.uid && user.userRole === UserType.ADMIN;
 
   // Sticky Navbar
@@ -39,14 +40,12 @@ const Header = (props: HeaderProps) => {
       setSticky(false);
     }
   };
-
+  const handleClickOutside = (event) => {
+    if (navRef.current && navRef.current.contains(event.target)) {
+      setNavbarOpen(false);
+    }
+  };
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (navRef.current && !navRef.current.contains(event.target)) {
-        setNavbarOpen(false);
-      }
-    };
-
     document.addEventListener("mousedown", handleClickOutside);
     window.addEventListener("scroll", handleStickyNavbar);
     return () => {
@@ -54,6 +53,13 @@ const Header = (props: HeaderProps) => {
       window.removeEventListener("scroll", handleStickyNavbar);
     };
   }, []);
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [navRef]);
 
   // submenu handler
   const [openIndex, setOpenIndex] = useState(-1);
@@ -63,6 +69,7 @@ const Header = (props: HeaderProps) => {
     } else {
       setOpenIndex(index);
     }
+    setNavbarOpen(true);
   };
 
   const usePathName = usePathname();
@@ -119,7 +126,7 @@ const Header = (props: HeaderProps) => {
                 <button
                   onClick={navbarToggleHandler}
                   id="navbarToggler"
-                  ref={navRef}
+                  // ref={navRef}
                   aria-label="Mobile Menu"
                   className="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
                 >
@@ -146,6 +153,7 @@ const Header = (props: HeaderProps) => {
                       ? "visibility top-full opacity-100"
                       : "invisible top-[120%] opacity-0"
                   }`}
+                  ref={navRef}
                 >
                   <ul className="block lg:flex lg:space-x-12">
                     {menuData.map((menuItem, index) => (
@@ -188,12 +196,16 @@ const Header = (props: HeaderProps) => {
                                 <Link
                                   href={submenuItem?.path || ""}
                                   key={index}
-                                  className="block rounded py-2.5 text-sm text-dark hover:text-primary dark:text-white/70 dark:hover:text-white lg:px-3"
+                                  className={`block rounded py-2.5 text-sm lg:px-3 ${
+                                    usePathName === `${submenuItem.path}`
+                                      ? "text-primary dark:text-white"
+                                      : "text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                                  }`}
                                 >
                                   {submenuItem?.title}
                                 </Link>
                               ))}
-                              {isAuthemticationRequired && (
+                              {/* {isAuthenticationRequired && (
                                 <>
                                   {isAdminUser && (
                                     <Link
@@ -212,25 +224,48 @@ const Header = (props: HeaderProps) => {
                                     </Link>
                                   )}
                                 </>
-                              )}
+                              )} */}
                             </div>
                           </>
                         )}
                       </li>
                     ))}
-                    {isAuthemticationRequired && (
+                    {isAuthenticationRequired && (
                       <>
                         {isAdminUser && (
-                          <Link
-                            href={"/dashboard"}
-                            className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${
-                              usePathName === "/dashboard/"
-                                ? "text-primary dark:text-white"
-                                : "text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
-                            }`}
-                          >
-                            Dashboard
-                          </Link>
+                          <>
+                            <Link
+                              href={"/dashboard"}
+                              className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${
+                                usePathName === "/dashboard/"
+                                  ? "text-primary dark:text-white"
+                                  : "text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                              }`}
+                            >
+                              Dashboard
+                            </Link>
+                            {/* <ButtonWrapper
+                              variant="text"
+                              key="Dashboard"
+                              color={
+                                usePathName === "/dashboard/"
+                                  ? "primary"
+                                  : "inherit"
+                              }
+                              href={"/dashboard"}
+                            >
+                              Dashboard
+                            </ButtonWrapper> */}
+                            <ButtonWrapper
+                              variant="text"
+                              endIcon="Logout"
+                              key="logout"
+                              onClick={logOut}
+                              color="inherit"
+                            >
+                              logout
+                            </ButtonWrapper>
+                          </>
                         )}
                         {!isAdminUser && (
                           <Link

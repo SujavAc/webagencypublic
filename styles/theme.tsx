@@ -218,7 +218,7 @@ const darkTheme = createTheme({
     },
     action: {
       disabled: "rgba(255, 255, 255, 1)",
-      disabledBackground: "rgba(255, 255, 255, 1)",
+      disabledBackground: "rgba(255, 255, 255, 0.5)",
       disabledOpacity: 0.48,
     },
     error: {

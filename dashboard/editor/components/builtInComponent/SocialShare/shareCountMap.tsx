@@ -39,8 +39,10 @@ export const SocialShareCountMap = (props: SocialShareProps) => {
   }
 
   return (
-    <ComponentShareCount {...rest}>
-      {(shareCount) => <span className="wrapper">{shareCount}</span>}
-    </ComponentShareCount>
+    ComponentShareCount && (
+      <ComponentShareCount {...rest}>
+        {(shareCount) => <span className="wrapper">{shareCount}</span>}
+      </ComponentShareCount>
+    )
   );
 };

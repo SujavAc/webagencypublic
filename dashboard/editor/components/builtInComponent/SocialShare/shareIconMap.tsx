@@ -99,5 +99,5 @@ export const SocialShareIconMap = (props: SocialShareIconMapProps) => {
       ComponentButton = null;
   }
 
-  return <ComponentButton {...rest} />;
+  return ComponentButton && <ComponentButton {...rest} />;
 };

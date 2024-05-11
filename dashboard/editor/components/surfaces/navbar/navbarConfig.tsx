@@ -48,7 +48,7 @@ export const NavbarConfig = {
   logoImageSvg: {
     type: "textarea",
   },
-  isAuthemticationRequired: {
+  isAuthenticationRequired: {
     type: "radio",
     options: [
       { label: "False", value: false },
