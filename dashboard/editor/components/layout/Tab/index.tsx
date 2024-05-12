@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import TabContext from "@mui/lab/TabContext";
 import Tab from "@mui/material/Tab";
-import TabPanel, { TabPanelProps } from "@mui/lab/TabPanel";
+import { TabPanelProps } from "@mui/lab/TabPanel";
 import { Tabs, TabsOwnProps, useTheme } from "@mui/material";
 import { DropZone } from "@measured/puck";
 
@@ -19,6 +19,21 @@ function a11yProps(index: number, orientation: string) {
     id: `${orientation}-tab-${index}`,
     "aria-controls": `${orientation}-tabpanel-${index}`,
   };
+}
+
+interface CustomTabPanel extends TabPanelProps {
+  index: string;
+}
+
+function CustomTabPanel(props: CustomTabPanel) {
+  const { children, value, index, ...other } = props;
+  return (
+    <div role="tabpanel" {...other}>
+      <Box sx={{ p: 3, display: value === index ? "block" : "none" }}>
+        {children}
+      </Box>
+    </div>
+  );
 }
 
 export default function TabsComponent(props: TabsComponent) {
@@ -45,7 +60,6 @@ export default function TabsComponent(props: TabsComponent) {
           tabsProps?.orientation === "horizontal" ? "column" : "row",
       }}
     >
-      Don't use this component
       <TabContext value={value}>
         <Tabs
           onChange={handleChange}
@@ -71,7 +85,7 @@ export default function TabsComponent(props: TabsComponent) {
               />
             ))}
         </Tabs>
-        {tabPanel &&
+        {/* {tabPanel &&
           tabPanel.map((tabP, i) => (
             <TabPanel
               key={i}
@@ -88,6 +102,28 @@ export default function TabsComponent(props: TabsComponent) {
             >
               <DropZone zone={`panel-${i}-${tabP?.title}`} key={i} />
             </TabPanel>
+          ))} */}
+
+        {/* new changes for not removing children */}
+        {tabPanel &&
+          tabPanel.map((tabP, i) => (
+            <CustomTabPanel
+              key={i}
+              index={`${i}`}
+              {...tabP}
+              value={value}
+              id={`${tabsProps?.orientation}-tab-${i}`}
+              aria-labelledby={`${tabsProps?.orientation}-tabpanel-${i}`}
+              sx={{
+                padding: 2,
+                width:
+                  tabsProps?.orientation === "vertical"
+                    ? "calc(100% - 191px)"
+                    : "100%",
+              }}
+            >
+              <DropZone zone={`tab panel ${i} content`} key={i} />
+            </CustomTabPanel>
           ))}
       </TabContext>
     </Box>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Dialog,
   DialogActions,
@@ -37,17 +37,29 @@ const CookieConsent = (props: ICookieConsent) => {
     dialogTitle,
   } = props;
   const [open, setOpen] = useState(true);
-  const { addItemInLocalStorage } = useLocalStorage();
+  const { addItemInLocalStorage, getItemInLocalStorage } = useLocalStorage();
 
+  const cookieConsentData = getItemInLocalStorage("cookieConsent");
   const handleClose = () => {
     setOpen(false);
     addItemInLocalStorage("cookieConsent", "true");
   };
 
+  const handleDialogClose = () => {
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    if (cookieConsentData && cookieConsentData?.length > 0) {
+      const truthy = cookieConsentData[0].data === "true";
+      return setOpen(!truthy);
+    }
+  }, [cookieConsentData]);
+
   return (
     <Dialog
       open={open}
-      onClose={handleClose}
+      onClose={handleDialogClose}
       TransitionComponent={Transition[animationType]}
       id={id}
     >

@@ -10,6 +10,7 @@ const LocalStorageContext = createContext({
   deleteData: (key: string) => {},
   updateItemInLocalStorage: (key: string, data: any) => {},
   defaultActiveConfigData: {},
+  getItemInLocalStorage: (key: string) => [],
 });
 
 // Context provider component
@@ -78,6 +79,14 @@ export const LocalStorageProvider = ({ children }) => {
     return localStorage.setItem(key, JSON.stringify(data));
   };
 
+  const getItemInLocalStorage = (key = localStorageKey) => {
+    if (!key) {
+      return;
+    }
+    const item = localStorage.getItem(key);
+    return item && JSON.parse(item);
+  };
+
   const deleteDataFromList = (key = localStorageKey, fkey, fvalue) => {
     if (!fkey || !key || !fvalue) {
       return null;
@@ -135,6 +144,7 @@ export const LocalStorageProvider = ({ children }) => {
         deleteData,
         updateItemInLocalStorage,
         defaultActiveConfigData,
+        getItemInLocalStorage,
       }}
     >
       {children}
