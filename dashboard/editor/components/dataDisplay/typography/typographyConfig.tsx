@@ -73,7 +73,6 @@ export const TypographyConfig = {
       { label: "Primary", value: "primary" },
       { label: "Secondary", value: "secondary" },
       { label: "Error", value: "error" },
-      { label: "Success", value: "success" },
     ],
   },
 };

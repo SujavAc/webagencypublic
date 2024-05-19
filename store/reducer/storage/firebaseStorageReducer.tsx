@@ -85,8 +85,16 @@ const firebaseStorageReducer = (state: any = initialState, action: any) => {
         [action.payload.path]: {
           ...state[action.payload.path],
           storageFiles: state[action.payload.path].storageFiles.filter(
-            (stRef) => stRef?.name !== action.payload?.reference?.name,
+            (stRef) => stRef?.name !== action.payload?.reference?.name
           ),
+        },
+      };
+    case "LOADING_STORAGE_FILES":
+      return {
+        ...state,
+        [action.payload.path]: {
+          ...state[action.payload.path],
+          loading: action.payload.loading,
         },
       };
     default:

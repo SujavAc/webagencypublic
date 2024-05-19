@@ -63,6 +63,8 @@ import SiginUpForm from "./components/common/Forms/FormLists/signUp";
 import { CookieConsentConfig } from "./components/builtInComponent/cookie/cookieConsentConfig";
 import CookieConsent from "./components/builtInComponent/cookie";
 import { sxConfig } from "./css/sx";
+import { StorageConfig } from "./components/databaseComponent/storage/storageConfig";
+import FilesList from "./components/databaseComponent/storage";
 
 // Create Puck component config
 export const puckEditorConfig = {
@@ -117,7 +119,7 @@ export const puckEditorConfig = {
       defaultExpanded: false, // Collapse this category by default
     },
     Database: {
-      components: ["Table"],
+      components: ["Table", "StorageImageViewer"],
       defaultExpanded: false, // Collapse this category by default
     },
     Form: {
@@ -850,20 +852,17 @@ export const puckEditorConfig = {
         return <CrudTable {...fields} />;
       },
     },
-    SignInForm: {
+
+    StorageImageViewer: {
       fields: {
-        title: { type: "text" },
+        ...StorageConfig,
+      },
+      defaultProps: {
+        itemsPerPage: 5,
+        isGalleryView: true,
       },
       render: (fields) => {
-        return <SiginInForm {...fields} />;
-      },
-    },
-    SignUpForm: {
-      fields: {
-        title: { type: "text" },
-      },
-      render: (fields) => {
-        return <SiginUpForm {...fields} />;
+        return <FilesList {...fields} />;
       },
     },
 
@@ -890,6 +889,22 @@ export const puckEditorConfig = {
       },
       render: (fields) => {
         return <EditorForm {...fields} />;
+      },
+    },
+    SignInForm: {
+      fields: {
+        title: { type: "text" },
+      },
+      render: (fields) => {
+        return <SiginInForm {...fields} />;
+      },
+    },
+    SignUpForm: {
+      fields: {
+        title: { type: "text" },
+      },
+      render: (fields) => {
+        return <SiginUpForm {...fields} />;
       },
     },
   },

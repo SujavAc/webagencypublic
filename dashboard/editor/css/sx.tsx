@@ -19,7 +19,6 @@ export const sxConfig = {
     },
   },
   resolveData: async ({ props }) => {
-    console.log(props);
     return {
       props: {
         ...props,

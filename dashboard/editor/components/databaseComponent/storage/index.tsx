@@ -14,27 +14,49 @@ import CopyTextComponent from "../../builtInComponent/Copy";
 import ImageGallery, {
   IImagesProps,
 } from "../../builtInComponent/imageGallery";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import FormBuilder from "../../table/commonFormBuilder";
 import CommonTooltip from "../../common/dataDisplay/tooltip";
 
+interface IFileList {
+  addAddFirebaseStorageData?: (path: string, image: any, metadata: any) => void;
+  DeleteFirebaseStorageFile?: (reference: StorageReference) => void;
+  getStorageFile?: (
+    reference: string,
+    itemsPerPage: number,
+    nextPageToken?: string
+  ) => void;
+  getDownloadURL?: (reference: StorageReference) => void;
+  id?: string;
+  storagePath: string;
+  title: string;
+  itemsPerPage: number;
+  isGalleryView?: boolean;
+  allowFileUpload?: boolean;
+}
 const FilesList = ({
   addAddFirebaseStorageData,
   DeleteFirebaseStorageFile,
   getStorageFile,
   getDownloadURL,
+  title,
   storagePath,
   itemsPerPage,
-  isGalleryView,
-}) => {
+  isGalleryView = false,
+  allowFileUpload = false,
+}: IFileList) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const allStorageData = useAppSelector((state) => state.storageData);
 
-  const { storageFiles, nextPageToken, storageFileUrls } =
-    Object.keys(allStorageData).length > 0 && allStorageData[storagePath];
-
-  console.log(storageFiles);
+  // const { storageFiles, nextPageToken, storageFileUrls } =
+  //   Object.keys(allStorageData).length > 0 && allStorageData[storagePath];
+  const {
+    storageFiles = [],
+    nextPageToken = null,
+    storageFileUrls = {},
+    loading = true,
+  } = (allStorageData && allStorageData[storagePath]) || {};
   const storageFilesExist = storageFiles && storageFiles?.length > 0;
 
   useEffect(() => {
@@ -146,96 +168,106 @@ const FilesList = ({
     }
   };
 
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <Box
       sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: 2 }}
     >
-      <FormBuilder
-        id="Add files"
-        title="Add Files into storage"
-        formData={[
-          {
-            name: "files",
-            helperText: "Choose image",
-            type: "fileupload",
-            rules: {
-              required: true,
+      {allowFileUpload && (
+        <FormBuilder
+          id="Add files"
+          title="Add Files into storage"
+          formData={[
+            {
+              name: "files",
+              helperText: "Choose image",
+              type: "fileupload",
+              rules: {
+                required: true,
+              },
+              fieldProps: {
+                label: "Upload your image",
+                variant: "outlined",
+                multiple: true,
+                accept: "image/png, image/jpeg",
+              },
+              displayImages: true,
             },
-            fieldProps: {
-              label: "Upload your image",
-              variant: "outlined",
-              multiple: true,
-              accept: "image/png, image/jpeg",
-            },
-            displayImages: true,
-          },
-        ]}
-        onSubmit={handleMultipleFileUpload}
-        defaultValues={{ files: [] }}
-        formFieldDirection="row"
-      />
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 2,
-          width: "-webkit-fill-available",
-        }}
-      >
-        {storageFiles && storageFiles?.length > 0 && (
-          <ImageGallery
-            title="View Images"
-            images={storageFiles?.map((file: { name: string | number }) => ({
-              src: storageFileUrls && storageFileUrls[file?.name],
-              alt: file?.name,
-              file: file,
-            }))}
-            actionButtons={(image: IImagesProps) => (
-              <>
-                {image?.src && (
-                  <CopyTextComponent
-                    startIcon="ContentCopy"
-                    iconButton
-                    color="primary"
-                    textToCopy={`${image?.src}`}
-                  >
-                    Copy Url
-                  </CopyTextComponent>
-                )}
-                {!image?.src && (
-                  <CommonTooltip title="View Image">
-                    <ButtonWrapper
-                      startIcon="Visibility"
+          ]}
+          onSubmit={handleMultipleFileUpload}
+          defaultValues={{ files: [] }}
+          formFieldDirection="row"
+        />
+      )}
+      {isGalleryView && (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+            width: "-webkit-fill-available",
+          }}
+        >
+          {storageFiles && storageFiles?.length > 0 ? (
+            <ImageGallery
+              title={title || "View Images"}
+              images={storageFiles?.map((file: { name: string | number }) => ({
+                src: storageFileUrls && storageFileUrls[file?.name],
+                alt: file?.name,
+                file: file,
+              }))}
+              actionButtons={(image: IImagesProps) => (
+                <>
+                  {image?.src && (
+                    <CopyTextComponent
+                      startIcon="ContentCopy"
                       iconButton
                       color="primary"
-                      variant="outlined"
-                      onClick={() => handleClick(image?.file)}
+                      textToCopy={`${image?.src}`}
+                    >
+                      Copy Url
+                    </CopyTextComponent>
+                  )}
+                  {!image?.src && (
+                    <CommonTooltip title="View Image">
+                      <ButtonWrapper
+                        startIcon="Visibility"
+                        iconButton
+                        color="primary"
+                        variant="outlined"
+                        onClick={() => handleClick(image?.file)}
+                      />
+                    </CommonTooltip>
+                  )}
+                  <CommonTooltip title="Delete Image">
+                    <ButtonWrapper
+                      onClick={() => handleFileDelete(image?.file)}
+                      startIcon="Delete"
+                      iconButton
+                      size="small"
+                      color="error"
                     />
                   </CommonTooltip>
-                )}
-                <CommonTooltip title="Delete Image">
-                  <ButtonWrapper
-                    variant="outlined"
-                    onClick={() => handleFileDelete(image?.file)}
-                    size="small"
-                  >
-                    Delete
-                  </ButtonWrapper>
-                </CommonTooltip>
-              </>
-            )}
-          />
-        )}
-        <CommonTooltip title="Load more image">
-          <ButtonWrapper
-            variant="outlined"
-            onClick={() => loadMoreFiles()}
-            disabled={!nextPageToken}
-          >
-            Load More
-          </ButtonWrapper>
-        </CommonTooltip>
-      </Box>
+                </>
+              )}
+            />
+          ) : (
+            <Typography variant="caption"> No images found </Typography>
+          )}
+          <CommonTooltip title="Load more image">
+            <ButtonWrapper
+              variant="outlined"
+              onClick={() => loadMoreFiles()}
+              disabled={!nextPageToken}
+            >
+              Load More
+            </ButtonWrapper>
+          </CommonTooltip>
+        </Box>
+      )}
     </Box>
   );
 };
@@ -246,7 +278,7 @@ const mapDispatchToProps = (dispatch: any) => {
     getStorageFile: (
       reference: string,
       itemsPerPage: number,
-      nextPageToken?: string,
+      nextPageToken?: string
     ) => dispatch(getStorageFile(reference, itemsPerPage, nextPageToken)),
     DeleteFirebaseStorageFile: (reference: StorageReference) =>
       dispatch(DeleteFirebaseStorageFile(reference)),

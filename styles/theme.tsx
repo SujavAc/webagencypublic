@@ -184,7 +184,7 @@ const lightTheme = createTheme({
     MuiTypography: {
       styleOverrides: {
         button: {
-          fontSize: "1rem",
+          fontSize: "0.8rem",
         },
       },
     },
@@ -368,7 +368,7 @@ const darkTheme = createTheme({
     MuiTypography: {
       styleOverrides: {
         button: {
-          fontSize: "1rem",
+          fontSize: "0.8rem",
         },
       },
     },

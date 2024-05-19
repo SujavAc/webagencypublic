@@ -17,7 +17,7 @@ export const AddFirebaseStorage =
       const { downloadURL, ref } = await uploadFile(
         image,
         `${path}/${image?.name}`,
-        metadata,
+        metadata
       );
       const snackbarData = {
         message: "File uploaded successfully",
@@ -49,21 +49,29 @@ export const getStorageFile =
       return;
     }
     try {
+      dispatch({
+        type: "LOADING_STORAGE_FILES",
+        payload: { path, loading: true },
+      });
       const { filesList, nextPageTokenRef } = await fetchFiles(
         path,
         itemsPerPage,
-        nextPageToken,
+        nextPageToken
       );
       filesList?.items?.forEach(
-        async (file) => await dispatch(getDownloadURL(file)),
+        async (file) => await dispatch(getDownloadURL(file))
       );
       dispatch({
         type: "ADD_STORAGE_FILES",
         payload: { path, items: filesList?.items },
       });
-      return dispatch({
+      dispatch({
         type: "ADD_STORAGE_FILES_NEXT_PAGE_TOKEN",
         payload: { path, nextPageTokenRef },
+      });
+      return dispatch({
+        type: "LOADING_STORAGE_FILES",
+        payload: { path, loading: false },
       });
       // const snackbarErrorData = {
       //   message: "File loaded successfully",
