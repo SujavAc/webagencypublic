@@ -1,6 +1,6 @@
-import { DropZone } from "@measured/puck";
 import React, { useState } from "react";
-import ButtonWrapper, { ButtonWrapperProps } from "../../inputs/button";
+import ButtonWrapper, { ButtonWrapperProps } from "../../common/Inputs/Button";
+import CommonTooltip from "../../common/dataDisplay/tooltip";
 
 interface CopyTextProps extends ButtonWrapperProps {
   textToCopy: string;
@@ -14,7 +14,6 @@ const CopyTextComponent = (props: CopyTextProps) => {
       .writeText(textToCopy)
       .then(() => {
         setCopied(true);
-        console.log(textToCopy);
         setTimeout(() => setCopied(false), 1000); // Reset copied state after 1 seconds
       })
       .catch((err) => console.error("Failed to copy:", err));
@@ -22,7 +21,9 @@ const CopyTextComponent = (props: CopyTextProps) => {
 
   return (
     <div>
-      <ButtonWrapper {...rest} onClick={copyToClipboard} />
+      <CommonTooltip title="Copy">
+        <ButtonWrapper {...rest} onClick={copyToClipboard} />
+      </CommonTooltip>
       {copied && <span>Copied</span>}
     </div>
   );

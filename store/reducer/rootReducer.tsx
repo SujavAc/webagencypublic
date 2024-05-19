@@ -8,6 +8,7 @@ import featuresReducer from "./component/featureReducer";
 import pagesReducer from "./pages/pageReducer";
 import componentReducer from "./component/componentReducer";
 import TableReducer from "./editor/tableReducer";
+import firebaseStorageReducer from "./storage/firebaseStorageReducer";
 
 const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ const store = configureStore({
     pages: pagesReducer,
     component: componentReducer,
     tableData: TableReducer,
+    storageData: firebaseStorageReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

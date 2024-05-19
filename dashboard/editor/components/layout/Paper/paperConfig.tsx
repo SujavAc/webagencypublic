@@ -1,6 +1,3 @@
-import { FlexProperties } from "@/dashboard/editor/css/flex";
-import Spacing from "@/dashboard/editor/css/spacing.json";
-
 export const PaperConfig = {
   id: { type: "text" },
   className: { type: "textarea" },
@@ -18,12 +15,5 @@ export const PaperConfig = {
       { label: "Elevation", value: "elevation" },
       { label: "Outlined", value: "outlined" },
     ],
-  },
-  sx: {
-    type: "object",
-    objectFields: {
-      ...FlexProperties(),
-      ...Spacing,
-    },
   },
 };

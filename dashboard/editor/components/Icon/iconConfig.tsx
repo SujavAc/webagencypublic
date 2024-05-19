@@ -1,5 +1,3 @@
-import Spacing from "../../css/spacing.json";
-
 export const IconConfig = {
   id: { type: "text" },
   className: { type: "textarea" },
@@ -30,11 +28,5 @@ export const IconConfig = {
       { label: "Small", value: "small" },
       // Add more options as needed
     ],
-  },
-  sx: {
-    type: "object",
-    objectFields: {
-      ...Spacing,
-    },
   },
 };

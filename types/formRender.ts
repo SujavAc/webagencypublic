@@ -6,6 +6,7 @@ export interface IFormRender {
     type: string;
     rules?: IFormRules;
     fieldProps: IFieldProps;
+    displayImages?: boolean;
   }
   interface IFormRules {
     required?: boolean;
@@ -20,6 +21,8 @@ export interface IFormRender {
     multiline?: boolean;
     rows?: number;
     options?: IFieldOption[];
+    multiple?: boolean
+    accept?: string
   }
   
   interface IFieldOption {

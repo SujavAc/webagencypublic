@@ -1,5 +1,4 @@
 import ContainerLayout from "./components/layout/Container";
-import GridLayout from "./components/layout/Grid";
 import PaperWrapper from "./components/layout/Paper";
 import StackLayout from "./components/layout/Stack";
 import MenuComponent from "./components/navigation/menu";
@@ -36,7 +35,6 @@ import SectionTitleComponent from "./components/builtInComponent/sectionTitle";
 import SingleFeature from "./components/builtInComponent/singleFeature/SingleFeature";
 import Video from "./components/builtInComponent/video";
 import Hero from "./components/builtInComponent/Hero";
-import { FlexProperties } from "./css/flex";
 import { GridContainerConfig } from "./components/layout/Grid/gridContainerConfig";
 import CrudTable from "./components/table/CrudTable";
 import { crudTableConfig } from "./components/table/CrudTable/crudTableConfig";
@@ -64,6 +62,7 @@ import { GridItemConfig } from "./components/layout/Grid/gridItemConfig";
 import SiginUpForm from "./components/common/Forms/FormLists/signUp";
 import { CookieConsentConfig } from "./components/builtInComponent/cookie/cookieConsentConfig";
 import CookieConsent from "./components/builtInComponent/cookie";
+import { sxConfig } from "./css/sx";
 
 // Create Puck component config
 export const puckEditorConfig = {
@@ -131,6 +130,7 @@ export const puckEditorConfig = {
       label: "Paper Container",
       fields: {
         ...PaperConfig,
+        sx: sxConfig.sx,
       },
       defaultProps: {
         elevation: 5,
@@ -139,6 +139,7 @@ export const puckEditorConfig = {
           p: 2,
         },
       },
+      resolveData: sxConfig.resolveData,
       render: (fields) => {
         return <PaperWrapper {...fields} />;
       },
@@ -147,6 +148,7 @@ export const puckEditorConfig = {
       label: "Grid Container",
       fields: {
         ...GridContainerConfig,
+        sx: sxConfig.sx,
       },
       defaultProps: {
         columnSpacing: {
@@ -168,6 +170,7 @@ export const puckEditorConfig = {
           lg: 4,
         },
       },
+      resolveData: sxConfig.resolveData,
       render: (fields) => {
         return <GridContainer {...fields} />;
       },
@@ -176,6 +179,7 @@ export const puckEditorConfig = {
       label: "Grid Item",
       fields: {
         ...GridItemConfig,
+        sx: sxConfig.sx,
       },
       defaultProps: {
         xs: 12,
@@ -209,6 +213,7 @@ export const puckEditorConfig = {
           },
         },
       },
+      resolveData: sxConfig.resolveData,
       render: (fields) => {
         return <GridItem {...fields} />;
       },
@@ -217,7 +222,9 @@ export const puckEditorConfig = {
       label: "Container",
       fields: {
         ...ContainerConfig,
+        sx: sxConfig.sx,
       },
+      resolveData: sxConfig.resolveData,
       render: (fields) => {
         return <ContainerLayout {...fields} />;
       },
@@ -225,6 +232,7 @@ export const puckEditorConfig = {
     Box: {
       fields: {
         ...BoxConfig,
+        sx: sxConfig.sx,
       },
       defaultProps: {
         sx: {
@@ -252,8 +260,15 @@ export const puckEditorConfig = {
             md: 3,
             lg: 3,
           },
+          minHeight: {
+            xs: 50,
+            sm: 50,
+            md: 70,
+            lg: 70,
+          },
         },
       },
+      resolveData: sxConfig.resolveData,
       render: (fields) => {
         return <BoxContainer {...fields} />;
       },
@@ -305,13 +320,9 @@ export const puckEditorConfig = {
             value: { type: "text" },
           },
         },
-        sx: {
-          type: "object",
-          objectFields: {
-            ...FlexProperties(),
-          },
-        },
+        sx: sxConfig.sx,
       },
+      resolveData: sxConfig.resolveData,
       render: (fields) => {
         return <TabsComponent {...fields} />;
       },
@@ -320,6 +331,7 @@ export const puckEditorConfig = {
       label: "Stack Container",
       fields: {
         ...StackConfig,
+        sx: sxConfig.sx,
       },
       defaultProps: {
         direction: {
@@ -373,6 +385,7 @@ export const puckEditorConfig = {
           },
         },
       },
+      resolveData: sxConfig.resolveData,
       render: (fields) => {
         return <StackLayout {...fields} />;
       },
@@ -405,6 +418,7 @@ export const puckEditorConfig = {
     Button: {
       fields: {
         ...ButtonWrapperConfig,
+        sx: sxConfig.sx,
       },
       defaultProps: {
         disabled: false,
@@ -415,6 +429,7 @@ export const puckEditorConfig = {
         color: "primary",
         size: "medium",
       },
+      resolveData: sxConfig.resolveData,
       render: (fields) => {
         return <ButtonWrapper {...fields} />;
       },
@@ -425,6 +440,7 @@ export const puckEditorConfig = {
       label: "Menu Component",
       fields: {
         ...MenuConfig,
+        sx: sxConfig.sx,
       },
       defaultProps: {
         buttonMenu: true,
@@ -445,6 +461,7 @@ export const puckEditorConfig = {
           horizontal: "bottom",
         },
       },
+      resolveData: sxConfig.resolveData,
       render: (fields) => {
         return <MenuComponent {...fields} />;
       },
@@ -452,6 +469,7 @@ export const puckEditorConfig = {
     Link: {
       fields: {
         ...LinkConfig,
+        sx: sxConfig.sx,
       },
       defaultProps: {
         linkLabel: "test button",
@@ -461,6 +479,7 @@ export const puckEditorConfig = {
         variant: "button",
         target: "_self",
       },
+      resolveData: sxConfig.resolveData,
       render: (fields) => {
         return <Links {...fields} />;
       },
@@ -567,7 +586,9 @@ export const puckEditorConfig = {
     Icon: {
       fields: {
         ...IconConfig,
+        sx: sxConfig.sx,
       },
+      resolveData: sxConfig.resolveData,
       render: (fields) => {
         return <MaterialUIICon {...fields} />;
       },
@@ -670,7 +691,9 @@ export const puckEditorConfig = {
     Tooltip: {
       fields: {
         ...ToolTipConfig,
+        sx: sxConfig.sx,
       },
+      resolveData: sxConfig.resolveData,
       render: (fields) => {
         return <Tooltips {...fields} />;
       },
@@ -678,7 +701,9 @@ export const puckEditorConfig = {
     Typography: {
       fields: {
         ...TypographyConfig,
+        sx: sxConfig.sx,
       },
+      resolveData: sxConfig.resolveData,
       render: (fields) => {
         return <TypographyComponenet {...fields} />;
       },
@@ -686,6 +711,7 @@ export const puckEditorConfig = {
     Divider: {
       fields: {
         ...DividerConfig,
+        sx: sxConfig.sx,
       },
       render: (fields) => {
         return <DividerComponent {...fields} />;
@@ -694,7 +720,9 @@ export const puckEditorConfig = {
     Avatar: {
       fields: {
         ...AvatarConfig,
+        sx: sxConfig.sx,
       },
+      resolveData: sxConfig.resolveData,
       render: (fields) => {
         return <Avatars {...fields} />;
       },
@@ -702,7 +730,9 @@ export const puckEditorConfig = {
     Chip: {
       fields: {
         ...ChipConfig,
+        sx: sxConfig.sx,
       },
+      resolveData: sxConfig.resolveData,
       render: (fields) => {
         return <Chip {...fields} />;
       },
@@ -803,7 +833,9 @@ export const puckEditorConfig = {
     Accordion: {
       fields: {
         ...AccordionConfig,
+        sx: sxConfig.sx,
       },
+      resolveData: sxConfig.resolveData,
       render: (fields) => {
         return <AccordionComponent {...fields} />;
       },
@@ -914,3 +946,71 @@ export const puckEditorConfig = {
     },
   },
 };
+
+// import TestComp from "atecheditor";
+// import Header from "./components/surfaces/navbar";
+// import SiginInForm from "./components/common/Forms/FormLists/signin";
+// import { NavbarConfig } from "./components/surfaces/navbar/navbarConfig";
+
+// // // Create Puck component config
+// export const puckEditorConfig = () => {
+//   const { PuckEditorConfig } = TestComp;
+//   return {
+//     categories: {
+//       ...PuckEditorConfig.categories,
+//       Surface: {
+//         components: [
+//           ...PuckEditorConfig.categories.Surface.components,
+//           "Navbar",
+//         ],
+//         defaultExpanded: false, // Collapse this category by default
+//       },
+//       Database: {
+//         components: [
+//           ...PuckEditorConfig.categories.Database.components,
+//           "SignInForm",
+//         ],
+//         defaultExpanded: false, // Collapse this category by default
+//       },
+//     },
+//     components: {
+//       ...PuckEditorConfig.components,
+
+//       // surfaces
+//       Navbar: {
+//         fields: {
+//           ...NavbarConfig,
+//         },
+//         defaultProps: {
+//           menuData: [
+//             {
+//               title: "",
+//               path: "",
+//               newTab: "",
+//               subMenu: [
+//                 {
+//                   title: "",
+//                   path: "",
+//                   newTab: "",
+//                 },
+//               ],
+//             },
+//           ],
+//         },
+//         render: (fields) => {
+//           return <Header {...fields} />;
+//         },
+//       },
+
+//       SignInForm: {
+//         fields: {
+//           title: { type: "text" },
+//         },
+//         render: (fields) => {
+//           return <SiginInForm {...fields} />;
+//         },
+//       },
+//     },
+//     ...PuckEditorConfig.root,
+//   };
+// };

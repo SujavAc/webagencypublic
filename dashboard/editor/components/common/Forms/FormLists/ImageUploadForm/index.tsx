@@ -19,16 +19,25 @@ const ImageUploadForm = (props: ISignInFormProps) => {
       message: "Failed to upload files, please try again",
       variant: "error",
     };
-    uploadFile(data?.files, `Organisation Logo/${data?.files[0]?.name}`).then((downloadURL) => {
-        notiStackData.message = 'File uploaded successfully';
+    var eachfile = data?.files[0];
+    const imageName = eachfile?.name;
+    const metadata = {
+      contentType: eachfile?.type,
+      name: imageName,
+      size: eachfile?.size,
+    };
+    uploadFile(eachfile, `Organisation Logo/${data?.files[0]?.name}`, metadata)
+      .then((downloadURL) => {
+        notiStackData.message = "File uploaded successfully";
         notiStackData.variant = "success";
-    }).catch((e) => {
-        notiStackData.message = 'File uploaded successfully';
+      })
+      .catch((e) => {
+        notiStackData.message = "File uploaded successfully";
         notiStackData.variant = "success";
-        
-    }).finally(() => {
+      })
+      .finally(() => {
         enqueueSnackbar(notiStackData);
-    })
+      });
   };
 
   return (
@@ -38,7 +47,7 @@ const ImageUploadForm = (props: ISignInFormProps) => {
         formRendererProps={{
           formData: imageUploadFormData.formData,
         }}
-        storeValueAs= 'buttons'
+        storeValueAs="buttons"
         onSubmit={onSubmit}
       />
     </>

@@ -1,5 +1,3 @@
-import SpacingProperties from "@/dashboard/editor/css/spacing.json";
-
 export const ButtonWrapperConfig = {
   id: { type: "text" },
   className: { type: "textarea" },
@@ -65,11 +63,5 @@ export const ButtonWrapperConfig = {
       { label: "Small", value: "small" },
       // Add more options as needed
     ],
-  },
-  sx: {
-    type: "object",
-    objectFields: {
-      ...SpacingProperties,
-    },
   },
 };

@@ -1,5 +1,4 @@
 import { FlexProperties } from "@/dashboard/editor/css/flex";
-import Spacing from "@/dashboard/editor/css/spacing.json";
 
 export const StackConfig = {
   id: { type: "text" },
@@ -24,13 +23,6 @@ export const StackConfig = {
       lg: {
         type: "number",
       },
-    },
-  },
-  sx: {
-    type: "object",
-    objectFields: {
-      ...FlexProperties(),
-      ...Spacing,
     },
   },
 };

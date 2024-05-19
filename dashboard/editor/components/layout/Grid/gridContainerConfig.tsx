@@ -1,5 +1,4 @@
 import { FlexProperties } from "@/dashboard/editor/css/flex";
-import Spacing from "@/dashboard/editor/css/spacing.json";
 
 export const GridContainerConfig = {
   id: { type: "text" },
@@ -59,11 +58,4 @@ export const GridContainerConfig = {
     },
   },
   wrap: FlexProperties().flexWrap,
-  sx: {
-    type: "object",
-    objectFields: {
-      ...FlexProperties(),
-      ...Spacing,
-    },
-  },
 };

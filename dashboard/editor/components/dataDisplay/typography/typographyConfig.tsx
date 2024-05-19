@@ -1,6 +1,4 @@
 import { SpacedInput } from "@/dashboard/editor/editorFields";
-import SpacingProperties from "../../../css/spacing.json";
-import TypographyProperties from "../../../css/typography.json";
 
 export const TypographyConfig = {
   id: { type: "text" },
@@ -68,21 +66,14 @@ export const TypographyConfig = {
       // Add more options as needed
     ],
   },
-  sx: {
-    type: "object",
-    objectFields: {
-      color: {
-        type: "select",
-        options: [
-          { label: "Inherit", value: "inherit" },
-          { label: "Primary", value: "primary" },
-          { label: "Secondary", value: "secondary" },
-          { label: "Error", value: "error" },
-          { label: "Success", value: "success" },
-        ],
-      },
-      ...SpacingProperties,
-      ...TypographyProperties,
-    },
+  color: {
+    type: "select",
+    options: [
+      { label: "Inherit", value: "inherit" },
+      { label: "Primary", value: "primary" },
+      { label: "Secondary", value: "secondary" },
+      { label: "Error", value: "error" },
+      { label: "Success", value: "success" },
+    ],
   },
 };

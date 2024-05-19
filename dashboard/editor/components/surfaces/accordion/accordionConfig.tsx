@@ -1,6 +1,3 @@
-import { FlexProperties } from "@/dashboard/editor/css/flex";
-import Spacing from "@/dashboard/editor/css/spacing.json";
-
 export const AccordionConfig = {
   noOfItems: {
     type: "array",
@@ -19,13 +16,6 @@ export const AccordionConfig = {
           { label: "True", value: true },
         ],
       },
-    },
-  },
-  sx: {
-    type: "object",
-    objectFields: {
-      ...FlexProperties(),
-      ...Spacing,
     },
   },
 };

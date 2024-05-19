@@ -44,7 +44,6 @@ export const LocalStorageProvider = ({ children }) => {
           (eData) => eData.projectId === data?.projectId
         );
         let updateData = localValue;
-        console.log(index);
         if (index !== -1) {
           updateData[index] = { projectId: data?.projectId, data };
           setLocalValue(updateData);

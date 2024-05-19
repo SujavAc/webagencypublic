@@ -6,8 +6,8 @@ import NextLink from "next/link";
 import { IconButton } from "@mui/material";
 
 export interface ButtonWrapperProps extends ButtonProps {
-  endIcon: string;
-  startIcon: string;
+  endIcon?: string;
+  startIcon?: string;
   iconButton?: boolean;
 }
 export default function ButtonWrapper(props: ButtonWrapperProps) {

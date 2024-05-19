@@ -1,5 +1,3 @@
-import { FlexProperties } from "@/dashboard/editor/css/flex";
-
 export const ToolTipConfig = {
   id: { type: "text" },
   className: { type: "textarea" },
@@ -40,11 +38,5 @@ export const ToolTipConfig = {
       { label: "Top", value: "top" },
       // Add more options as needed
     ],
-  },
-  sx: {
-    type: "object",
-    objectFields: {
-      ...FlexProperties(),
-    },
   },
 };

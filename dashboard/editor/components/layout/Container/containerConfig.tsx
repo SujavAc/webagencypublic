@@ -1,6 +1,3 @@
-import { FlexProperties } from "@/dashboard/editor/css/flex";
-import Spacing from "@/dashboard/editor/css/spacing.json";
-
 export const ContainerConfig = {
   id: { type: "text" },
   className: { type: "textarea" },
@@ -28,12 +25,5 @@ export const ContainerConfig = {
       { label: "False", value: false },
       { label: "True", value: true },
     ],
-  },
-  sx: {
-    type: "object",
-    objectFields: {
-      ...FlexProperties(),
-      ...Spacing,
-    },
   },
 };
