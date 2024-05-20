@@ -1,17 +1,26 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
 import Menu, { MenuProps } from "@mui/material/Menu";
+import { MenuItemProps } from "@mui/material/MenuItem";
 import MenuItems, { Item } from "./menuItem";
+import ButtonWrapper, { ButtonWrapperProps } from "../../common/Inputs/Button";
 
 interface MenuComponentProps extends MenuProps {
   buttonMenu: boolean;
-  buttonLabel: string;
-  menuOpenBydefault: boolean;
+  buttonProps: ButtonWrapperProps;
+  buttonLabel?: string;
   menuItems: Item[];
+  menuItemsProps?: MenuItemProps;
 }
 
 export default function MenuComponent(props: MenuComponentProps) {
-  const { buttonMenu, buttonLabel, menuItems, ...rest } = props;
+  const {
+    buttonMenu,
+    buttonProps,
+    buttonLabel,
+    menuItems,
+    menuItemsProps,
+    ...rest
+  } = props;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -24,27 +33,33 @@ export default function MenuComponent(props: MenuComponentProps) {
   return (
     <div>
       {buttonMenu && (
-        <Button
+        <ButtonWrapper
           id="demo-positioned-button"
           aria-controls={open ? "demo-positioned-menu" : undefined}
           aria-haspopup="true"
           aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
+          {...buttonProps}
         >
           {buttonLabel || ""}
-        </Button>
+        </ButtonWrapper>
       )}
-
-      <Menu
-        id="demo-positioned-menu"
-        aria-labelledby="demo-positioned-button"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        {...rest}
-      >
-        <MenuItems handleClose={handleClose} menuItems={menuItems} />
-      </Menu>
+      {menuItems && menuItems?.length > 0 && (
+        <Menu
+          id="demo-positioned-menu"
+          aria-labelledby="demo-positioned-button"
+          anchorEl={anchorEl}
+          onClose={handleClose}
+          {...rest}
+          open={open}
+        >
+          <MenuItems
+            handleClose={handleClose}
+            menuItems={menuItems}
+            {...menuItemsProps}
+          />
+        </Menu>
+      )}
     </div>
   );
 }

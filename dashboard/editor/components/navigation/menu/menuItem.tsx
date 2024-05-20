@@ -4,7 +4,7 @@ import { ListItemIcon } from "@mui/material";
 import MaterialUIICon from "../../Icon";
 import NextLink from "next/link";
 
-interface MenuItemsProps extends MenuItemProps {
+export interface MenuItemsProps extends MenuItemProps {
   handleClose: () => void;
   menuItems: Item[];
 }
@@ -13,6 +13,7 @@ export interface Item {
   icon: string;
   label: string;
   href: string;
+  selected?: boolean;
 }
 
 export default function MenuItems(props: MenuItemsProps) {
@@ -38,12 +39,15 @@ export default function MenuItems(props: MenuItemsProps) {
               <MenuItem
                 onClick={handleCloseMenu}
                 key={item?.label || index}
+                selected={item?.selected}
                 {...item}
                 {...rest}
               >
-                <ListItemIcon>
-                  <MaterialUIICon name={item?.icon} />
-                </ListItemIcon>
+                {item?.icon && (
+                  <ListItemIcon>
+                    <MaterialUIICon name={item?.icon} />
+                  </ListItemIcon>
+                )}
                 {item?.label}
               </MenuItem>
             </NextLink>
