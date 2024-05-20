@@ -40,7 +40,7 @@ const Page = () => {
       setHeaderContent(data[0]);
       return dispatch({ type: "ADD_HEADER_DATA", payload: data });
     }
-    console.log("local header data", headerData[0]);
+    console.log("local header data");
     return setHeaderContent(headerData[0]);
   };
 

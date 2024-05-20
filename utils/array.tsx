@@ -32,7 +32,6 @@ export const objectContainsKeys = (object, keys) => {
 
 // converting array into object
 export const setNestedProperty = (obj, key, value) => {
-  console.log(key);
   const keys = key.split("|");
   let current = obj;
 
@@ -72,7 +71,6 @@ export const arrayToObject = (array) => {
     } else {
       mergeObjects(acc, obj);
     }
-    console.log(acc);
     return acc;
   }, {});
 };

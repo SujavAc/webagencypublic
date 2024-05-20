@@ -61,7 +61,6 @@ export const LocalStorageProvider = ({ children }) => {
         (eData) => eData.projectId === data?.projectId
       );
       let updateData = localValue;
-      console.log(index);
       if (index !== -1) {
         updateData[index] = { projectId: data?.projectId, data };
         setLocalValue(updateData);
@@ -91,7 +90,6 @@ export const LocalStorageProvider = ({ children }) => {
       return null;
     }
     const isExistingValue = findObject(localValue, { [fkey]: fvalue });
-    console.log(isExistingValue);
     if (isExistingValue) {
       const filteredDataInLocalStorage = filterOutArrayByKeyValuePair(
         localValue,
@@ -115,7 +113,6 @@ export const LocalStorageProvider = ({ children }) => {
     const handleStorageChange = () => {
       // Handle changes in local storage
       const newValue = localStorage.getItem(localStorageKey);
-      console.log(newValue);
       setLocalValue(newValue ? JSON.parse(newValue) : []);
     };
 
