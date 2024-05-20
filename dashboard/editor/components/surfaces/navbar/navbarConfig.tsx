@@ -12,6 +12,14 @@ export const NavbarConfig = {
           { label: "True", value: true },
         ],
       },
+      isAuthenticated: {
+        type: "radio",
+        options: [
+          { label: "False", value: false },
+          { label: "True", value: true },
+        ],
+      },
+      icon: { type: "text" },
       submenu: {
         type: "array",
         arrayFields: {
@@ -24,6 +32,14 @@ export const NavbarConfig = {
               { label: "True", value: true },
             ],
           },
+          isAuthenticated: {
+            type: "radio",
+            options: [
+              { label: "False", value: false },
+              { label: "True", value: true },
+            ],
+          },
+          icon: { type: "text" },
           submenu: {
             type: "array",
             arrayFields: {
@@ -36,6 +52,14 @@ export const NavbarConfig = {
                   { label: "True", value: true },
                 ],
               },
+              isAuthenticated: {
+                type: "radio",
+                options: [
+                  { label: "False", value: false },
+                  { label: "True", value: true },
+                ],
+              },
+              icon: { type: "text" },
             },
           },
         },
@@ -48,7 +72,7 @@ export const NavbarConfig = {
   logoImageSvg: {
     type: "textarea",
   },
-  isAuthenticationRequired: {
+  enableLogoutButton: {
     type: "radio",
     options: [
       { label: "False", value: false },
