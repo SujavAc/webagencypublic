@@ -1,68 +1,100 @@
 import Link from "next/link";
-import { Hero } from "@/types/hero";
 import PurifyText from "../../common/PurifyText";
+import { HeroType } from "@/types/hero";
+import { CommonContainerLayout } from "../../common/Layout/Container";
+import { CommonBoxContainer } from "../../common/Layout/Box";
+import { CommonTypographyComponenet } from "../../common/dataDisplay/Typography";
+import CommonButtonWrapper from "../../common/Inputs/Button";
+import CommonSvg from "../../common/dataDisplay/svg";
 
-const Hero = (props: Hero) => {
+const Hero = (props: HeroType) => {
   const { id, title, description, buttons, bottomLeftSvg, rightTopSvg } = props;
   return (
     <>
-      <section
-        id={id}
-        className="z-1 relative overflow-hidden bg-white pb-16 pt-[120px] dark:bg-gray-dark md:pb-[120px] md:pt-[150px] xl:pb-[160px] xl:pt-[180px] 2xl:pb-[200px] 2xl:pt-[210px]"
+      <CommonContainerLayout
+        maxWidth="xl"
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          position: "relative",
+        }}
+        disableGutters
       >
-        <div className="container">
-          <div className="-mx-4 flex flex-wrap">
-            <div className="w-full px-4">
-              <div
-                className="wow fadeInUp mx-auto max-w-[800px] text-center"
-                data-wow-delay=".2s"
-              >
-                {title && (
-                  <h1 className="mb-5 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
-                    {title}
-                  </h1>
-                )}
-                {description && (
-                  <div className="mb-12 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
-                    <PurifyText text={description} />
-                  </div>
-                )}
-                <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
-                  {buttons &&
-                    buttons?.map((link) => (
-                      <Link
-                        key={link?.label}
-                        href={link?.href}
-                        className="rounded-sm bg-primary px-8 py-4 text-base font-semibold text-white duration-300 ease-in-out hover:bg-primary/80"
-                        target={link?.openInNewTab ? "_blank" : "_self"}
-                      >
-                        {link?.label}
-                      </Link>
-                    ))}
-                  {/* <Link
-                    href="https://nextjstemplates.com/templates/saas-starter-startup"
-                    className="rounded-sm bg-primary px-8 py-4 text-base font-semibold text-white duration-300 ease-in-out hover:bg-primary/80"
-                  >
-                    🔥 Get Pro
-                  </Link>
-                  <Link
-                    href="https://github.com/NextJSTemplates/startup-nextjs"
-                    className="inline-block rounded-sm bg-black px-8 py-4 text-base font-semibold text-white duration-300 ease-in-out hover:bg-black/90 dark:bg-white/10 dark:text-white dark:hover:bg-white/5"
-                  >
-                    Star on GitHub
-                  </Link> */}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="absolute right-0 top-0 z-[0] opacity-30 lg:opacity-100">
-          <PurifyText text={rightTopSvg} />
-        </div>
-        <div className="absolute bottom-0 left-0 z-[0] opacity-30 lg:opacity-100">
-          <PurifyText text={bottomLeftSvg} />
-        </div>
-      </section>
+        <CommonBoxContainer
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: { xs: 2, sm: 3, md: 4 },
+            maxWidth: 800,
+            textAlign: "center",
+            zIndex: 1,
+          }}
+        >
+          {title && (
+            <CommonTypographyComponenet variant="h2">
+              {title}
+            </CommonTypographyComponenet>
+          )}
+          {description && (
+            <CommonTypographyComponenet
+              variant="h5"
+              component={"div"}
+              color="grey"
+            >
+              <PurifyText text={description} />
+            </CommonTypographyComponenet>
+          )}
+          <CommonBoxContainer
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: { xs: 1, sm: 2 },
+            }}
+          >
+            {buttons &&
+              buttons?.map((link, index) => (
+                <CommonButtonWrapper
+                  variant={index === 0 ? "contained" : "outlined"}
+                  key={link?.label || index}
+                  href={link?.href}
+                  target={link?.openInNewTab || false}
+                >
+                  {link?.label}
+                </CommonButtonWrapper>
+              ))}
+          </CommonBoxContainer>
+        </CommonBoxContainer>
+        <CommonSvg
+          svgString={rightTopSvg}
+          color="primary"
+          viewBox="0 0 60 60"
+          sx={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            height: "100%",
+            width: "100%",
+          }}
+        />
+        <CommonSvg
+          svgString={bottomLeftSvg}
+          color="primary"
+          viewBox="0 0 60 60"
+          sx={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            height: "100%",
+            width: "100%",
+          }}
+        />
+      </CommonContainerLayout>
     </>
   );
 };

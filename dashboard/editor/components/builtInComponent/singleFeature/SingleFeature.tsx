@@ -1,22 +1,55 @@
 import { Feature } from "@/types/feature";
 import PurifyText from "../../common/PurifyText";
+import CommonPaperWrapper from "../../common/Layout/Paper";
+import CommonSvg from "../../common/dataDisplay/svg";
+import { CommonTypographyComponenet } from "../../common/dataDisplay/Typography";
 
 const SingleFeature = (feature: Feature) => {
   const { id, icon, title, paragraph } = feature;
   return (
-    <div className="w-full" id={id}>
-      <div className="wow fadeInUp" data-wow-delay=".15s">
-        <div className="mb-10 flex h-[70px] w-[70px] items-center justify-center rounded-md bg-primary bg-opacity-10 text-primary">
-          <PurifyText text={icon} />
-        </div>
-        <h3 className="mb-5 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl xl:text-2xl">
+    <CommonPaperWrapper
+      id={id}
+      elevation={0}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: { xs: 1, sm: 2 },
+        alignItems: "flex-start",
+        p: { xs: 1, sm: 2 },
+      }}
+    >
+      {icon && (
+        <CommonPaperWrapper
+          variant="outlined"
+          square={false}
+          sx={{
+            height: 70,
+            width: 70,
+            borderRadius: 2,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <CommonSvg
+            svgString={icon}
+            color="primary"
+            viewBox="0 0 60 60"
+            sx={{ height: 40, width: 40 }}
+          />
+        </CommonPaperWrapper>
+      )}
+      {title && (
+        <CommonTypographyComponenet variant="h5">
           {title}
-        </h3>
-        <div className="pr-[10px] text-base font-medium leading-relaxed text-body-color">
+        </CommonTypographyComponenet>
+      )}
+      {paragraph && (
+        <CommonTypographyComponenet variant="body2" component={"div"}>
           <PurifyText text={paragraph} />
-        </div>
-      </div>
-    </div>
+        </CommonTypographyComponenet>
+      )}
+    </CommonPaperWrapper>
   );
 };
 

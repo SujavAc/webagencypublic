@@ -7,7 +7,7 @@ interface StackLayoutProps {
   stackProps?: StackProps;
 }
 
-export default function StackLayout(props: StackLayoutProps) {
+export default function CommonStackLayout(props: StackLayoutProps) {
   const { id, noOfItems, stackProps } = props;
   return (
     <div id={id}>

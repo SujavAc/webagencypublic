@@ -1,6 +1,5 @@
 "use client";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
-import ScrollToTop from "@/components/ScrollToTop";
 import { Inter } from "next/font/google";
 import MUIThemeProvider from "@/styles/MUIThemeProvider";
 import "node_modules/react-modal-video/css/modal-video.css";
@@ -14,6 +13,7 @@ import { UserAuthContextProvider } from "@/database/authentication/authContext";
 import "react-quill/dist/quill.snow.css";
 import { ManageScroll } from "@/utils/anchorScroll";
 import { LocalStorageProvider } from "@/database/localStorageContext";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,7 +30,7 @@ export default function RootLayout({
       */}
       <head />
 
-      <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>
+      <body>
         <ReduxProvider store={store}>
           <ManageScroll>
             <Providers>

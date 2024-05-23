@@ -1,4 +1,6 @@
+import { CommonBoxContainer } from "../../common/Layout/Box";
 import PurifyText from "../../common/PurifyText";
+import { CommonTypographyComponenet } from "../../common/dataDisplay/Typography";
 
 const SectionTitleComponent = ({
   title,
@@ -11,26 +13,27 @@ const SectionTitleComponent = ({
   title: string;
   paragraph?: string;
   width?: string;
-  align?: string;
+  align?: string | any;
   mb?: string;
   id?: string;
 }) => {
   return (
-    <div
-      className={`wow fadeInUp w-full ${align}`}
-      data-wow-delay=".1s"
-      style={{ maxWidth: width, marginBottom: mb }}
+    <CommonBoxContainer
       id={id}
+      textAlign={align || "left"}
+      sx={{ mb, maxWidth: width }}
     >
-      <h2 className="mb-4 text-3xl font-bold !leading-tight text-black dark:text-white sm:text-4xl md:text-[45px]">
-        {title}
-      </h2>
-      {paragraph && (
-        <div className="text-base !leading-relaxed text-body-color md:text-lg">
-          <PurifyText text={paragraph} />
-        </div>
+      {title && (
+        <CommonTypographyComponenet variant="h2">
+          {title}
+        </CommonTypographyComponenet>
       )}
-    </div>
+      {paragraph && (
+        <CommonTypographyComponenet variant="h6" component={"div"}>
+          <PurifyText text={paragraph} />
+        </CommonTypographyComponenet>
+      )}
+    </CommonBoxContainer>
   );
 };
 

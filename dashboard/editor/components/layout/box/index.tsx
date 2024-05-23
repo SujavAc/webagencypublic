@@ -1,11 +1,12 @@
 import * as React from "react";
-import Box, { BoxProps } from "@mui/material/Box";
+import { BoxProps } from "@mui/material/Box";
 import { DropZone } from "@measured/puck";
+import { CommonBoxContainer } from "../../common/Layout/Box";
 
 export default function BoxContainer(props: BoxProps) {
   return (
-    <Box component="div" {...props}>
+    <CommonBoxContainer component="div" {...props}>
       <DropZone zone="Box Zone" />
-    </Box>
+    </CommonBoxContainer>
   );
 }

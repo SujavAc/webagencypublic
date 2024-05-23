@@ -1,23 +1,38 @@
 "use client";
 import { DropZone } from "@measured/puck";
 import React, { useRef } from "react";
+import { CommonBoxContainer } from "../../../common/Layout/Box";
 
 const VideoPlayer = ({ id, ...rest }) => {
   const videoRef = useRef(null);
 
   return (
-    <div className="relative overflow-hidden" id={id}>
-      <video ref={videoRef} className={`w-full`} {...rest} />
-      <div className={`w-full`}>
+    <CommonBoxContainer
+      sx={{ position: "relative", overflow: "hidden" }}
+      id={id}
+    >
+      <video ref={videoRef} style={{ width: "100%" }} {...rest} />
+      <CommonBoxContainer sx={{ width: "100%" }}>
         {!rest?.controls && (
-          <div
-            className={`absolute top-0 flex h-full w-full items-center justify-center px-4 py-4 backdrop-blur-sm`}
+          <CommonBoxContainer
+            sx={{
+              width: "100%",
+              height: "100%",
+              position: "absolute",
+              top: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              p: 1,
+              backdropFilter: "blur(10px)",
+              backgroundColor: "Background",
+            }}
           >
             <DropZone zone="Video drop Zone" />
-          </div>
+          </CommonBoxContainer>
         )}
-      </div>
-    </div>
+      </CommonBoxContainer>
+    </CommonBoxContainer>
   );
 };
 

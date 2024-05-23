@@ -1,6 +1,6 @@
 import { Link } from "@/types/Link";
 
-export type Hero = {
+export type HeroType = {
   id: string;
   title: string;
   description: string;
