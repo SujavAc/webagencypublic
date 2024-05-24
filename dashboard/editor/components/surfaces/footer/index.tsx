@@ -48,6 +48,8 @@ const Footer = (props: FooterProps) => {
                 flexDirection: "column",
                 gap: { xs: 2, sm: 3 },
               }}
+              xs={12}
+              sm={4}
             >
               {logoImageSvg && (
                 <Link href="/">
@@ -73,7 +75,7 @@ const Footer = (props: FooterProps) => {
             </CommonGridItem>
             {links &&
               links?.map((link, index) => (
-                <CommonGridItem key={index} xs={12} sm={6} md={4}>
+                <CommonGridItem key={index} xs={12} sm={4}>
                   <CommonTypographyComponenet variant="h5" sx={{ pb: 1 }}>
                     {link?.title}
                   </CommonTypographyComponenet>
