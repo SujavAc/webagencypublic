@@ -1,3 +1,4 @@
+"use client";
 import CommonButtonWrapper from "@/dashboard/editor/components/common/Inputs/Button";
 import { CommonBoxContainer } from "@/dashboard/editor/components/common/Layout/Box";
 import { CommonContainerLayout } from "@/dashboard/editor/components/common/Layout/Container";
