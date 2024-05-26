@@ -2,7 +2,7 @@ import React from "react";
 import { IconProps } from "@mui/material/Icon";
 import * as Icons from "@mui/icons-material";
 
-interface MaterialUIIConProps extends IconProps {
+export interface MaterialUIIConProps extends IconProps {
   name: string;
 }
 

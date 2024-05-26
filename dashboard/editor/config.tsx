@@ -65,6 +65,8 @@ import CookieConsent from "./components/builtInComponent/cookie";
 import { sxConfig } from "./css/sx";
 import { StorageConfig } from "./components/databaseComponent/storage/storageConfig";
 import FilesList from "./components/databaseComponent/storage";
+import { BulletList } from "./components/builtInComponent/bulletPoint";
+import { BulletPointConfig } from "./components/builtInComponent/bulletPoint/bulletPointConfig";
 
 // Create Puck component config
 export const puckEditorConfig = {
@@ -99,6 +101,7 @@ export const puckEditorConfig = {
         "Share",
         "CopyText",
         "CookieConsent",
+        "BulletPoint",
       ],
       defaultExpanded: false, // Collapse this category by default
     },
@@ -686,6 +689,14 @@ export const puckEditorConfig = {
       },
       render: (fields) => {
         return <CookieConsent {...fields} />;
+      },
+    },
+    BulletPoint: {
+      fields: {
+        ...BulletPointConfig,
+      },
+      render: (fields) => {
+        return <BulletList {...fields} />;
       },
     },
 

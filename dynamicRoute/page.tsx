@@ -87,8 +87,8 @@ const Page = () => {
       }
     };
     if (slug && authRequiredRoute?.includes(slug) && !user?.uid) {
-      redirect("/signin");
       setLoading(false);
+      redirect("/signin");
       // Render the default homepage
     } else if (slug) {
       setLoading(true);
@@ -105,7 +105,7 @@ const Page = () => {
   }
 
   return (
-    <CommonContainerLayout maxWidth="xl" sx={{ pt: { xs: 8, sm: 10, md: 14 } }}>
+    <CommonContainerLayout maxWidth="xl" sx={{ py: { xs: 8, sm: 10, md: 14 } }}>
       {loading ? (
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}

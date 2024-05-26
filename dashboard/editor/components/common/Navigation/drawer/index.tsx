@@ -3,11 +3,11 @@ import Box from "@mui/material/Box";
 import Drawer, { DrawerProps } from "@mui/material/Drawer";
 import ButtonWrapper from "../../Inputs/Button";
 import NestedList from "../list";
-import Link from "next/link";
 import Image from "next/image";
 import { Divider } from "@mui/material";
 import { Menu } from "@/types/menu";
 import PurifyText from "../../PurifyText";
+import CommonLink from "../link";
 
 interface IDrawerListProps extends DrawerProps {
   title?: string;
@@ -29,7 +29,6 @@ export default function DrawerList(props: IDrawerListProps) {
       ) {
         return;
       }
-
       setOpenDrawer(open);
     };
 
@@ -47,13 +46,13 @@ export default function DrawerList(props: IDrawerListProps) {
       onKeyDown={toggleDrawer(false)}
     >
       <Box sx={{ p: 1 }}>
-        <Link href="/">
+        <CommonLink href="/">
           {logoImageUrl ? (
             <Image src={logoImageUrl} alt="logo" width={50} height={50} />
           ) : (
             <PurifyText text={logoImageSvg} />
           )}
-        </Link>
+        </CommonLink>
       </Box>
       <Divider />
       <NestedList items={menuData} heading={title} />
@@ -68,9 +67,7 @@ export default function DrawerList(props: IDrawerListProps) {
           iconButton
           startIcon="Menu"
           color="primary"
-        >
-          Open Drawer
-        </ButtonWrapper>
+        />
         <Drawer
           anchor={anchor}
           open={openDrawer}
