@@ -34,7 +34,7 @@ const Video = (props: VideoType) => {
           overflow: "hidden",
           borderRadius: 2,
           position: "relative",
-          height: { xs: 300, sm: 400 },
+          height: { xs: 200, sm: 400 },
         }}
       >
         {preImageUrl && (
@@ -47,6 +47,8 @@ const Video = (props: VideoType) => {
             alignItems: "center",
             height: "100%",
             width: "100%",
+            position: "absolute",
+            top: 0,
           }}
         >
           <CommonButtonWrapper

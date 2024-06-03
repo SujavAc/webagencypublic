@@ -1,4 +1,5 @@
 // pages/[...slug].js
+import { PageContentProvider } from "@/dynamicRoute/dynamicPageDataContext";
 import Page from "@/dynamicRoute/page";
 import { generateCommonMetadata, getItem } from "@/seo";
 import { Metadata, ResolvingMetadata } from "next";
@@ -34,7 +35,11 @@ export async function generateMetadata(
 }
 
 const DPage = () => {
-  return <Page />;
+  return (
+    <PageContentProvider>
+      <Page />
+    </PageContentProvider>
+  );
 };
 
 export const dynamicParams = true;

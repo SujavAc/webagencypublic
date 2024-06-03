@@ -30,7 +30,7 @@ export default function RootLayout({
       */}
       <head />
 
-      <body>
+      <body style={{ margin: "inherit" }}>
         <ReduxProvider store={store}>
           <ManageScroll>
             <Providers>

@@ -3,11 +3,16 @@ import { cache } from "react";
 import { getData } from "./database/paginateData";
 
 export const getItem = cache(async (pageName: string) => {
-  const { data, lastVisibleDoc, hasMore } = await getData("pages", 1, {
-    key: "pageName",
-    filterOperation: "==",
-    value: pageName,
-  });
+  const { data, lastVisibleDoc, hasMore } = await getData(
+    "pages",
+    1,
+    {
+      key: "pageName",
+      filterOperation: "==",
+      value: pageName,
+    },
+    null
+  );
   return { data, lastVisibleDoc, hasMore };
 });
 

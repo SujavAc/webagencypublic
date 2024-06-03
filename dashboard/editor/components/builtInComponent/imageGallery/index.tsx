@@ -1,7 +1,8 @@
 import React, { ReactElement } from "react";
 import { Box, Typography } from "@mui/material";
-import Image, { ImageProps } from "next/image";
+import { ImageProps } from "next/image";
 import MasonryGrid from "@/dashboard/editor/components/builtInComponent/masonrygrid";
+import { CommonImageComponent } from "../../common/image";
 
 interface ImageGalleryProps {
   title?: string;
@@ -22,10 +23,16 @@ const ImageGallery = (props: ImageGalleryProps) => {
       <MasonryGrid columns={{ xs: 2, sm: 2, md: 3 }}>
         {images?.map((image, index) => (
           <Box key={index}>
-            <Box sx={{ borderStartEndRadius: 4, borderStartStartRadius: 4 }}>
-              <Image
-                width={2500}
-                height={2500}
+            <Box
+              sx={{
+                borderStartEndRadius: 4,
+                borderStartStartRadius: 4,
+                overflow: "hidden",
+              }}
+            >
+              <CommonImageComponent
+                width={450}
+                height={250}
                 alt={image.alt}
                 src={
                   image.src ||
@@ -38,7 +45,6 @@ const ImageGallery = (props: ImageGalleryProps) => {
               sx={{
                 boxShadow: 24,
                 background: "transparent",
-                width: "100%",
                 display: "flex",
                 flexDirection: "row",
                 flexWrap: "wrap",

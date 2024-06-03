@@ -11,6 +11,7 @@ import { Backdrop, Box, CircularProgress } from "@mui/material";
 import { circularProgressClasses } from "@mui/material/CircularProgress";
 import { useParams, redirect } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { usePageContentContext } from "./dynamicPageDataContext";
 
 const Page = () => {
   const { user } = useUserAuth();
@@ -23,6 +24,7 @@ const Page = () => {
   const [headerContent, setHeaderContent] = useState(null);
   const [footerContent, setFooterContent] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { setPageContentData } = usePageContentContext();
   const pageData = useAppSelector((state) => state.pages.pagesData);
   const headerData = useAppSelector((state) => state.pages.headerData);
   const footerData = useAppSelector((state) => state.pages.footerData);
@@ -63,6 +65,7 @@ const Page = () => {
         await getFooterData();
         if (pageContentDataFromStore && pageContentDataFromStore?.length > 0) {
           setLoading(false);
+          setPageContentData(pageContentDataFromStore[0]);
           console.log("local data");
           return setPageContent(pageContentDataFromStore[0]);
         }
@@ -105,7 +108,7 @@ const Page = () => {
   }
 
   return (
-    <CommonContainerLayout maxWidth="xl" sx={{ py: { xs: 8, sm: 10, md: 14 } }}>
+    <>
       {loading ? (
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -145,11 +148,16 @@ const Page = () => {
       ) : (
         <>
           <Preview config={puckEditorConfig} data={headerContent} />
-          <Preview config={puckEditorConfig} data={pageContent} />
+          <CommonContainerLayout
+            maxWidth="xl"
+            sx={{ py: { xs: 8, sm: 10, md: 14 } }}
+          >
+            <Preview config={puckEditorConfig} data={pageContent} />
+          </CommonContainerLayout>
           <Preview config={puckEditorConfig} data={footerContent} />
         </>
       )}
-    </CommonContainerLayout>
+    </>
   );
 };
 

@@ -67,6 +67,10 @@ import { StorageConfig } from "./components/databaseComponent/storage/storageCon
 import FilesList from "./components/databaseComponent/storage";
 import { BulletList } from "./components/builtInComponent/bulletPoint";
 import { BulletPointConfig } from "./components/builtInComponent/bulletPoint/bulletPointConfig";
+import { DynamicContentConfig } from "./components/builtInComponent/dynamicContent/dynamicContentConfig";
+import { NestedTemplateRenderer } from "./components/builtInComponent/dynamicContent/nestedTemplateRenderer";
+import { NestedTemplateRendererConfig } from "./components/builtInComponent/dynamicContent/nestedTemplateRendererConfig";
+import DynamicContent from "./components/builtInComponent/dynamicContent";
 
 // Create Puck component config
 export const puckEditorConfig = {
@@ -127,6 +131,10 @@ export const puckEditorConfig = {
     },
     Form: {
       components: ["Form", "SignInForm", "SignUpForm"],
+      defaultExpanded: false, // Collapse this category by default
+    },
+    FireStoreDynamicData: {
+      components: ["DynamicContent", "NestedTemplateRenderer"],
       defaultExpanded: false, // Collapse this category by default
     },
   },
@@ -760,6 +768,8 @@ export const puckEditorConfig = {
         height: 500,
         width: 500,
         quality: 1,
+        loading: "lazy",
+        alt: "alt-text",
       },
       render: (fields) => {
         return <ImageComponent {...fields} />;
@@ -916,6 +926,28 @@ export const puckEditorConfig = {
       },
       render: (fields) => {
         return <SiginUpForm {...fields} />;
+      },
+    },
+
+    // testing dynamic component data
+    DynamicContent: {
+      fields: {
+        ...DynamicContentConfig,
+      },
+      defaultProps: {
+        limit: 5,
+        dynamicValue: false,
+      },
+      render: (props) => {
+        return <DynamicContent {...props} />;
+      },
+    },
+    NestedTemplateRenderer: {
+      fields: {
+        ...NestedTemplateRendererConfig,
+      },
+      render: (props) => {
+        return <NestedTemplateRenderer {...props} />;
       },
     },
   },
