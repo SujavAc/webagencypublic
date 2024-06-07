@@ -19,7 +19,7 @@ const ImageGallery = (props: ImageGalleryProps) => {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-      {title && <Typography variant="h3"> {title} </Typography>}
+      {title && <Typography variant="h2"> {title} </Typography>}
       <MasonryGrid columns={{ xs: 2, sm: 2, md: 3 }}>
         {images?.map((image, index) => (
           <Box key={index}>

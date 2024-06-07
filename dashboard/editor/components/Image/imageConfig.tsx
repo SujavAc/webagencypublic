@@ -21,10 +21,15 @@ export const ImageConfig = {
   loading: {
     type: "select",
     options: [
-      { label: "Auto", value: "auto" },
       { label: "Eager", value: "eager" },
       { label: "Lazy", value: "lazy" },
-      { label: "None", value: "none" },
+    ],
+  },
+  priority: {
+    type: "radio",
+    options: [
+      { label: "false", value: false },
+      { label: "True", value: true },
     ],
   },
   sizes: {

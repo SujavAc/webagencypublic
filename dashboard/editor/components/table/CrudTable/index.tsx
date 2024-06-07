@@ -26,7 +26,7 @@ interface ICrudTable {
   loadMoreDataFromCollection: (
     dbCollection: any,
     lastDocumentRead: any,
-    limit: any,
+    limit: any
   ) => void;
   deleteData: (dbCollection: any, id: string) => void;
   updateData: (dbCollection: any, id: string, updatedData: any) => void;
@@ -68,7 +68,7 @@ const CrudTable = (props: ICrudTable) => {
     dataForDBPath && dataForDBPath?.length > 0 && dataForDBPath[0]?.value;
 
   const lastDocumentRead = useAppSelector(
-    (state) => state.tableData.lastDocumentRead,
+    (state) => state.tableData.lastDocumentRead
   );
 
   const lastDocumentReadForDBPath =
@@ -90,9 +90,10 @@ const CrudTable = (props: ICrudTable) => {
 
   const handleUpdate = (data, id) => {
     if (!id || !data) {
-      return;
+      return { success: false, error: true };
     }
-    return updateData(databasePath, id, data);
+    updateData(databasePath, id, data);
+    return { success: true, error: false };
   };
 
   return (
@@ -122,7 +123,7 @@ const CrudTable = (props: ICrudTable) => {
             loadMoreDataFromCollection(
               databasePath,
               lastDocumentReadData,
-              limit,
+              limit
             )
           }
         >
@@ -150,10 +151,10 @@ const mapDispatchToProps = (dispatch: any) => {
     loadMoreDataFromCollection: (
       dbCollection: any,
       lastDocumentRead: any,
-      limit: any,
+      limit: any
     ) =>
       dispatch(
-        LoadMoreDataFromCollection(dbCollection, lastDocumentRead, limit),
+        LoadMoreDataFromCollection(dbCollection, lastDocumentRead, limit)
       ),
     deleteData: (dbCollection: any, id: string) =>
       dispatch(deleteData(dbCollection, id)),

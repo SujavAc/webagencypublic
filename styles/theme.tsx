@@ -1,15 +1,9 @@
 "use client";
-import { Roboto } from "next/font/google";
 import type {} from "@mui/material/themeCssVarsAugmentation";
 import { ThemeOptions, alpha, createTheme } from "@mui/material/styles";
 import { red } from "@mui/material/colors";
 import { PaletteMode } from "@mui/material";
 
-const roboto = Roboto({
-  weight: ["300", "400", "500", "700"],
-  subsets: ["latin"],
-  display: "swap",
-});
 declare module "@mui/material/styles/createPalette" {
   interface ColorRange {
     50: string;
@@ -576,6 +570,9 @@ function getLPTheme(mode: PaletteMode): ThemeOptions {
       MuiTextField: {
         styleOverrides: {
           root: ({ theme }) => ({
+            "& .MuiInputLabel-root.Mui-focused": {
+              background: theme.palette.background.paper,
+            },
             "& label .Mui-focused": {
               color: "white",
             },

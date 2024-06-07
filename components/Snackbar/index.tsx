@@ -1,7 +1,7 @@
 import * as React from "react";
 import { SnackbarProvider, closeSnackbar } from "notistack";
-import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import Messages from "./Messages";
+import CommonButtonWrapper from "@/dashboard/editor/components/common/Inputs/Button";
 
 interface MySnackbarProps {
   children?: React.ReactElement;
@@ -14,9 +14,12 @@ const MySnackbarStack = (props: MySnackbarProps) => {
     <SnackbarProvider
       maxSnack={3}
       action={(snackbarId) => (
-        <button onClick={() => closeSnackbar(snackbarId)}>
-          <CancelRoundedIcon />
-        </button>
+        <CommonButtonWrapper
+          onClick={() => closeSnackbar(snackbarId)}
+          iconButton
+          startIcon="Cancel"
+          color="inherit"
+        />
       )}
       autoHideDuration={3000}
       anchorOrigin={{ horizontal: "right", vertical: "bottom" }}

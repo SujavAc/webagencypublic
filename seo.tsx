@@ -6,11 +6,13 @@ export const getItem = cache(async (pageName: string) => {
   const { data, lastVisibleDoc, hasMore } = await getData(
     "pages",
     1,
-    {
-      key: "pageName",
-      filterOperation: "==",
-      value: pageName,
-    },
+    [
+      {
+        key: "pageName",
+        filterOperation: "==",
+        value: pageName,
+      },
+    ],
     null
   );
   return { data, lastVisibleDoc, hasMore };

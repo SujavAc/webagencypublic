@@ -34,8 +34,8 @@ export default function MenuComponent(props: MenuComponentProps) {
     <div>
       {buttonMenu && (
         <ButtonWrapper
-          id="demo-positioned-button"
-          aria-controls={open ? "demo-positioned-menu" : undefined}
+          id={`${buttonLabel}-button`}
+          aria-controls={open ? `${buttonLabel}-menu` : undefined}
           aria-haspopup="true"
           aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
@@ -46,8 +46,8 @@ export default function MenuComponent(props: MenuComponentProps) {
       )}
       {menuItems && menuItems?.length > 0 && (
         <Menu
-          id="demo-positioned-menu"
-          aria-labelledby="demo-positioned-button"
+          id={`${buttonLabel}-button`}
+          aria-labelledby={`${buttonLabel}-button`}
           anchorEl={anchorEl}
           onClose={handleClose}
           {...rest}

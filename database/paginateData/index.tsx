@@ -14,7 +14,7 @@ import { WhereCondition, orderByCondition } from "@/types/firebase/where";
 export const getData = async (
   dbcollection: string,
   limitN: number,
-  whereCondition?: WhereCondition,
+  whereCondition?: WhereCondition[],
   orderByCondition?: orderByCondition
 ) => {
   if (!dbcollection || !limitN) {
@@ -29,17 +29,12 @@ export const getData = async (
   try {
     const collRef = collection(db, dbcollection);
     let querySelection = query(collRef, limit(limitN));
+    const conditions = whereCondition?.map((con) =>
+      where(con?.key, con?.filterOperation, con?.value)
+    );
 
     if (whereCondition && Object.keys(whereCondition).length > 0) {
-      querySelection = query(
-        collRef,
-        where(
-          whereCondition?.key,
-          whereCondition?.filterOperation,
-          whereCondition?.value
-        ),
-        limit(limitN)
-      );
+      querySelection = query(collRef, ...conditions, limit(limitN));
     }
     if (orderByCondition && Object.keys(orderByCondition).length > 0) {
       querySelection = query(
@@ -56,11 +51,7 @@ export const getData = async (
     ) {
       querySelection = query(
         collRef,
-        where(
-          whereCondition?.key,
-          whereCondition?.filterOperation,
-          whereCondition?.value
-        ),
+        ...conditions,
         orderBy(orderByCondition?.fieldPath, orderByCondition?.filterOperation),
         limit(limitN)
       );
@@ -122,5 +113,27 @@ export const loadMoreData = async (
       hasMore: null,
       error: e,
     };
+  }
+};
+
+// Query Data in firestore
+export const fetchFirestoreDocuments = async (
+  dbcollection: string,
+  whereCondition: WhereCondition[],
+  limitN: number
+) => {
+  try {
+    const collRef = collection(db, dbcollection);
+    const conditions = whereCondition?.map((con) =>
+      where(con?.key, con?.filterOperation, con?.value)
+    );
+    const querySnapshot = await getDocs(
+      query(collRef, ...conditions, limit(limitN))
+    );
+    console.log(querySnapshot);
+    return querySnapshot;
+  } catch (error) {
+    console.error("Error fetching Firestore data: ", error);
+    throw error;
   }
 };

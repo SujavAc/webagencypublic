@@ -86,7 +86,7 @@ const Page = () => {
         return setLoading(false);
       } catch (error) {
         setLoading(false);
-        console.error("Error fetching blog content:", error);
+        console.error("Error fetching content:", error);
       }
     };
     if (slug && authRequiredRoute?.includes(slug) && !user?.uid) {

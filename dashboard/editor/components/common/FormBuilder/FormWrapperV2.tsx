@@ -33,8 +33,8 @@ const FormWrapperV2 = (props: IFormWrapperProps) => {
 
   const formSubmitHandler = async (data) => {
     if (onSubmit) {
-      const { error } = await onSubmit(data);
-      if (!error) {
+      const res = await onSubmit(data);
+      if (!res?.error) {
         return reset();
       }
     }

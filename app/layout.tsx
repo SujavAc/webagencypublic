@@ -1,6 +1,5 @@
 "use client";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
-import { Inter } from "next/font/google";
 import MUIThemeProvider from "@/styles/MUIThemeProvider";
 import "node_modules/react-modal-video/css/modal-video.css";
 import "../styles/index.css";
@@ -14,8 +13,6 @@ import "react-quill/dist/quill.snow.css";
 import { ManageScroll } from "@/utils/anchorScroll";
 import { LocalStorageProvider } from "@/database/localStorageContext";
 import ScrollToTop from "@/components/ScrollToTop";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
